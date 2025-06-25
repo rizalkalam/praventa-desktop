@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.LoginController">
+    <children>
+        <HBox alignment="BOTTOM_RIGHT" layoutX="-2.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane prefHeight="700.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane layoutX="43.0" layoutY="149.0" prefHeight="386.0" prefWidth="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="514.0" fitWidth="514.0" StackPane.alignment="CENTER">
+                                    <image>
+                                        <Image url="@../assets/bglogin1.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </StackPane>
+                        <ImageView fitHeight="700.0" fitWidth="534.0" layoutX="67.0" layoutY="-2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <image>
+                                <Image url="@../assets/bgkontrast.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <VBox alignment="CENTER" prefHeight="700.0" prefWidth="650.0" style="-fx-background-color: F1EEFF;">
+                    <children>
+                        <AnchorPane prefHeight="229.0" prefWidth="600.0" />
+                        <HBox alignment="TOP_CENTER" prefHeight="424.0" prefWidth="600.0">
+                            <children>
+                                <AnchorPane prefHeight="239.0" prefWidth="420.0">
+                                    <children>
+                                        <Text layoutX="65.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Masuk ke akun anda">
+                                            <font>
+                                                <Font name="System Bold" size="28.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="65.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pahami risiko kesehatan Anda dengan perhitungan berbasis data medis" wrappingWidth="419.2421875">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="usernameField" layoutX="63.0" layoutY="116.0" prefHeight="42.0" prefWidth="361.0" />
+                                        <PasswordField fx:id="passwordField" layoutX="64.0" layoutY="183.0" prefHeight="42.0" prefWidth="361.0" />
+                                        <Button fx:id="btnMasuk" layoutX="65.0" layoutY="263.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="359.0" style="-fx-background-color: #9E91E1;" text="Masuk" textFill="WHITE"  onAction="#handleLogin">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Button>
+                                        <Text fill="#b0b0b0" layoutX="150.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atau daftar akun sekarang!" wrappingWidth="167.2421875">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <Text fill="#9e91e1" layoutX="320.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daftar" wrappingWidth="40.57550048828125">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+                        <AnchorPane prefHeight="189.0" prefWidth="600.0" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
