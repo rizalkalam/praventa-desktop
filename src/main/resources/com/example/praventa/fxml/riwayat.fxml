@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.praventa.controller.RiwayatController"
+            >
+    <children>
+        <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+
+                <!-- Sidebar Container -->
+                <VBox fx:id="navContainer" prefWidth="200.0" style="-fx-background-color: #2C2C2C;" />
+
+                <!-- Main Content Area -->
+                <VBox prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <!-- Atas: Tiga panel -->
+                        <HBox prefHeight="239.0" spacing="20.0" padding="35.0">
+                            <children>
+                                <AnchorPane prefHeight="239.0" prefWidth="300.0" style="-fx-background-color: #ffffff;" />
+                                <AnchorPane prefHeight="239.0" prefWidth="150.0" style="-fx-background-color: #cccccc;" />
+                                <AnchorPane prefHeight="239.0" prefWidth="300.0" style="-fx-background-color: #9E91E1;" />
+                            </children>
+                        </HBox>
+
+                        <!-- Bawah: Notifikasi -->
+                        <BorderPane prefHeight="64.0" style="-fx-background-color: #3F3B53;" padding="0,0,0,30">
+                            <left>
+                                <ImageView fitHeight="49.0" fitWidth="49.0" BorderPane.alignment="CENTER">
+                                    <image>
+                                        <Image url="@/com/example/praventa/assets/notif_riwayat.png" />
+                                    </image>
+                                </ImageView>
+                            </left>
+                            <center>
+                                <Text fill="WHITE" text="Risiko Genetik Tinggi" BorderPane.alignment="CENTER_LEFT">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Text>
+                            </center>
+                        </BorderPane>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

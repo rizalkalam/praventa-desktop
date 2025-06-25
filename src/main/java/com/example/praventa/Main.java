@@ -14,7 +14,7 @@ public class Main extends Application {
         primaryStage = stage;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/login.fxml"));
-        Scene scene = new Scene(loader.load());
+        Scene scene = new Scene(loader.load(), 1200, 700);
         stage.setTitle("Praventa - Login");
         stage.setScene(scene);
         stage.setResizable(true);

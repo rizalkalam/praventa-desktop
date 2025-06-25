@@ -51,7 +51,7 @@
                                         </Text>
                                         <TextField fx:id="usernameField" layoutX="63.0" layoutY="116.0" prefHeight="42.0" prefWidth="361.0" />
                                         <PasswordField fx:id="passwordField" layoutX="64.0" layoutY="183.0" prefHeight="42.0" prefWidth="361.0" />
-                                        <Button fx:id="btnMasuk" layoutX="65.0" layoutY="263.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="359.0" style="-fx-background-color: #9E91E1;" text="Masuk" textFill="WHITE"  onAction="#handleLogin">
+                                        <Button fx:id="btnMasuk" layoutX="65.0" layoutY="263.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="359.0" style="-fx-background-color: #9E91E1;" text="Masuk" textFill="WHITE"  onAction="#handleMasukClick">
                                             <font>
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
