@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="800" prefHeight="600">
+
+    <children>
+        <Label layoutX="40.0" layoutY="40.0"
+               text="Halaman profil saya"
+               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    </children>
+</AnchorPane>

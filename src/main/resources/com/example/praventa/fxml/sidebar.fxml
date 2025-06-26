@@ -72,7 +72,7 @@
         </AnchorPane>
 
         <!-- Navigation Menu -->
-        <VBox prefHeight="353.0" prefWidth="268.0" spacing="20.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
+        <VBox prefHeight="299.0" prefWidth="284.0" spacing="20.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
 
             <padding>
                 <Insets bottom="20.0" top="40.0" />
@@ -167,6 +167,66 @@
 
             </children>
         </VBox>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <VBox prefHeight="228.0" prefWidth="284.0" spacing="20.0">
+         <children>
+            <BorderPane prefHeight="22.0" prefWidth="284.0">
+               <left>
+                  <Text fill="#505050" strokeType="OUTSIDE" strokeWidth="0.0" text="AKUN" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </left>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="26.0" />
+               </padding>
+            </BorderPane>
+            <BorderPane fx:id="navAkun" onMouseClicked="#handleNavAkunClick" prefHeight="22.0" prefWidth="284.0">
+               <left>
+                  <ImageView fx:id="iconAkun" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../assets/icn_akun.png" />
+                     </image>
+                  </ImageView>
+               </left>
+               <center>
+                  <Text fx:id="textAkun" strokeType="OUTSIDE" strokeWidth="0.0" text="Pengaturan Akun" wrappingWidth="216.162109375" BorderPane.alignment="CENTER" />
+               </center>
+               <opaqueInsets>
+                  <Insets right="1.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="26.0" />
+               </padding>
+               <right>
+                  <Rectangle fx:id="rectAkun" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" strokeType="INSIDE" strokeWidth="0.0" width="3.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane fx:id="navKeluar" onMouseClicked="#handleNavKeluarClick" prefHeight="22.0" prefWidth="284.0">
+               <left>
+                  <ImageView fx:id="iconKeluar" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../assets/icn_logout.png" />
+                     </image>
+                  </ImageView>
+               </left>
+               <center>
+                  <Text fx:id="textKeluar" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Keluar" wrappingWidth="216.162109375" BorderPane.alignment="CENTER" />
+               </center>
+               <opaqueInsets>
+                  <Insets right="1.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="29.0" />
+               </padding>
+               <right>
+                  <Rectangle fx:id="rectKeluar" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" strokeType="INSIDE" strokeWidth="0.0" width="3.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </children>
+      </VBox>
     </children>
 </VBox>

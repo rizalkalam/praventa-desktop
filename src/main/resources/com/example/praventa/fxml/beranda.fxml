@@ -88,35 +88,6 @@
                             <children>
                                 <AnchorPane prefHeight="243.0" prefWidth="180.0" style="-fx-background-color: #ffff;">
                                     <children>
-                                        <Circle layoutX="63.0" layoutY="55.0" radius="27.0" smooth="false" strokeType="INSIDE">
-                                            <fill>
-                                                <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
-                                                    <image>
-                                                        <Image url="@../assets/rekomendasi_food.png" />
-                                                    </image>
-                                                </ImagePattern>
-                                            </fill>
-                                        </Circle>
-                                        <Text layoutX="35.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
-                                            <font>
-                                                <Font name="System Bold" size="14.0" />
-                                            </font>
-                                        </Text>
-                                        <Text layoutX="36.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="152.93359375">
-                                            <font>
-                                                <Font size="10.0" />
-                                            </font>
-                                        </Text>
-                                        <Text layoutX="36.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="152.93359375">
-                                            <font>
-                                                <Font size="10.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fill="#9e91e1" layoutX="75.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selengkapnya" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane prefHeight="243.0" prefWidth="180.0" style="-fx-background-color: #ffff;">
-                                    <children>
                                         <Circle layoutX="60.0" layoutY="55.0" radius="27.0" smooth="false" strokeType="INSIDE">
                                             <fill>
                                                 <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
@@ -155,7 +126,7 @@
                                                 </ImagePattern>
                                             </fill>
                                         </Circle>
-                                        <Text layoutX="32.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
+                                        <Text layoutX="32.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Tidur">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>
@@ -184,7 +155,7 @@
                                                 </ImagePattern>
                                             </fill>
                                         </Circle>
-                                        <Text layoutX="32.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
+                                        <Text layoutX="32.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Aktivitas">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>

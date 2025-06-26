@@ -5,6 +5,9 @@ import com.example.praventa.util.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +17,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Optional;
 
 
 public class SidebarController {
@@ -27,22 +34,30 @@ public class SidebarController {
     @FXML private BorderPane navRiwayat;
     @FXML private BorderPane navAnalisis;
     @FXML private BorderPane navArtikel;
+    @FXML private BorderPane navAkun;
+    @FXML private BorderPane navKeluar;
 
     @FXML private ImageView iconHome;
     @FXML private ImageView iconRiwayat;
     @FXML private ImageView iconAnalisis;
     @FXML private ImageView iconArtikel;
+    @FXML private ImageView iconAkun;
+    @FXML private ImageView iconKeluar;
 
     @FXML private javafx.scene.text.Text textHome;
     @FXML private javafx.scene.text.Text textRiwayat;
     @FXML private javafx.scene.text.Text textAnalisis;
     @FXML private javafx.scene.text.Text textArtikel;
+    @FXML private javafx.scene.text.Text textAkun;
+    @FXML private javafx.scene.text.Text textKeluar;
 
 
     @FXML private Rectangle rectHome;
     @FXML private Rectangle rectRiwayat;
     @FXML private Rectangle rectAnalisis;
     @FXML private Rectangle rectArtikel;
+    @FXML private Rectangle rectAkun;
+    @FXML private Rectangle rectKeluar;
 
     private AnchorPane contentTarget;
 
@@ -75,18 +90,24 @@ public class SidebarController {
         iconRiwayat.setImage(loadIcon("icn_riwayat.png"));
         iconAnalisis.setImage(loadIcon("icn_analisis.png"));
         iconArtikel.setImage(loadIcon("icn_artikel.png"));
+        iconAkun.setImage(loadIcon("icn_akun.png"));
+        iconKeluar.setImage(loadIcon("icn_logout.png"));
 
         // Reset rectangle
         rectHome.setVisible(false);
         rectRiwayat.setVisible(false);
         rectAnalisis.setVisible(false);
         rectArtikel.setVisible(false);
+        rectAkun.setVisible(false);
+        rectKeluar.setVisible(false);
 
         // Reset warna teks ke default (hitam)
         textHome.setFill(Color.BLACK);
         textRiwayat.setFill(Color.BLACK);
         textAnalisis.setFill(Color.BLACK);
         textArtikel.setFill(Color.BLACK);
+        textAkun.setFill(Color.BLACK);
+        textKeluar.setFill(Color.web("#ff0000"));
 
         // Aktifkan menu
         activeIcon.setImage(loadIcon(activeIconName));
@@ -98,6 +119,8 @@ public class SidebarController {
         else if (activeIcon == iconRiwayat) textRiwayat.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconAnalisis) textAnalisis.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconArtikel) textArtikel.setFill(Color.web("#9E91E1"));
+        else if (activeIcon == iconAkun) textAkun.setFill(Color.web("#9E91E1"));
+        else if (activeIcon == iconKeluar) textKeluar.setFill(Color.web("#9E91E1"));
     }
 
     private Image loadIcon(String fileName) {
@@ -122,6 +145,42 @@ public class SidebarController {
     public void handleNavArticleClick() {
         setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
         loadPage("artikel.fxml");
+    }
+
+    public void handleNavAkunClick() {
+        setActiveMenu(navAkun, iconAkun, rectAkun, "icn_akun_active.png");
+        loadPage("profil.fxml");
+    }
+
+    public void handleNavKeluarClick() {
+        // Konfirmasi terlebih dahulu
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Konfirmasi Logout");
+        alert.setHeaderText("Anda yakin ingin keluar?");
+        alert.setContentText("Anda akan kembali ke halaman login.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                // Hapus session user
+                Session.setCurrentUser(null);
+
+                // Muat kembali halaman login.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/login.fxml"));
+                Parent root = loader.load();
+
+                // Dapatkan stage saat ini dari node (mainContent atau contentTarget)
+                Stage stage = (Stage) contentTarget.getScene().getWindow();
+                Scene scene = new Scene(root, 1200, 700);
+                stage.setScene(scene);
+                stage.setTitle("Praventa - Login");
+                stage.setResizable(false);
+                stage.centerOnScreen();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loadPage(String fxmlName) {
