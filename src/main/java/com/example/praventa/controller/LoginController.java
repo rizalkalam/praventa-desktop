@@ -83,7 +83,8 @@ public class LoginController {
                         rs.getString("username"),
                         rs.getString("email"),
                         rs.getString("role"),
-                        rs.getString("profile_picture")
+                        rs.getString("profile_picture"),
+                        rs.getString("phone_number")
                 );
             }
 

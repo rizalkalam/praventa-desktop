@@ -19,6 +19,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -72,12 +74,25 @@ public class SidebarController {
 
             // Set profile picture
             try {
-                String profilePicPath = user.getProfilePicture(); // misal: "assets/farid.jpg"
-                Image img = new Image(getClass().getResourceAsStream("/com/example/praventa/" + profilePicPath));
+                String profilePicPath = user.getProfilePicture();
+                File imageFile;
+
+                if (profilePicPath != null && new File(profilePicPath).exists()) {
+                    imageFile = new File(profilePicPath); // Absolute path
+                } else {
+                    imageFile = new File("src/main/resources/assets/icn_profile_default.png");
+                }
+
+                System.out.println("Final path used: " + imageFile.getAbsolutePath());
+
+                Image img = new Image(new FileInputStream(imageFile));
                 avatarCircle.setFill(new ImagePattern(img));
+
             } catch (Exception e) {
-                e.printStackTrace(); // fallback kalau gambar gagal
+                System.out.println("Gagal load foto profil: " + e.getMessage());
+                e.printStackTrace();
             }
+
         }
 
         // Default menu aktif
