@@ -1,119 +1,140 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.model.User;
+import com.example.praventa.util.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 public class SidebarController {
+    @FXML private AnchorPane mainContent;
 
     @FXML private Circle avatarCircle;
     @FXML private Text usernameText;
     @FXML private Text statusText;
 
-    @FXML private BorderPane navBeranda, navRiwayat, navAnalisis, navArtikel;
-    @FXML private ImageView iconBeranda, iconRiwayat, iconAnalisis, iconArtikel;
-    @FXML private Text textBeranda, textRiwayat, textAnalisis, textArtikel;
-    @FXML private Rectangle rectHome, rectRiwayat, rectAnalisis, rectArtikel;
+    @FXML private BorderPane navHome;
+    @FXML private BorderPane navRiwayat;
+    @FXML private BorderPane navAnalisis;
+    @FXML private BorderPane navArtikel;
 
-    private final Map<String, NavElement> navElements = new HashMap<>();
-    private AnchorPane mainContent;
-    private String currentPage = "";
+    @FXML private ImageView iconHome;
+    @FXML private ImageView iconRiwayat;
+    @FXML private ImageView iconAnalisis;
+    @FXML private ImageView iconArtikel;
 
-    public void setMainContent(AnchorPane mainContent) {
-        this.mainContent = mainContent;
-    }
+    @FXML private javafx.scene.text.Text textHome;
+    @FXML private javafx.scene.text.Text textRiwayat;
+    @FXML private javafx.scene.text.Text textAnalisis;
+    @FXML private javafx.scene.text.Text textArtikel;
 
-    @FXML
-    public void initialize() {
-        setupNavElements();
-        setActive("HOME");
-        loadPage("/com/example/praventa/fxml/beranda.fxml");
-    }
 
-    private void setupNavElements() {
-        navElements.put("HOME", new NavElement(navBeranda, iconBeranda, textBeranda, rectHome, "/com/example/praventa/assets/icn_home.png", "/com/example/praventa/assets/icn_home_active.png", "/com/example/praventa/fxml/beranda.fxml"));
-        navElements.put("RIWAYAT", new NavElement(navRiwayat, iconRiwayat, textRiwayat, rectRiwayat, "/com/example/praventa/assets/icn_riwayat.png", "/com/example/praventa/assets/icn_riwayat_active.png", "/com/example/praventa/fxml/riwayat.fxml"));
-        navElements.put("ANALISIS", new NavElement(navAnalisis, iconAnalisis, textAnalisis, rectAnalisis, "/com/example/praventa/assets/icn_analisis.png", "/com/example/praventa/assets/icn_analisis_active.png", "/com/example/praventa/fxml/analisis.fxml"));
-        navElements.put("ARTIKEL", new NavElement(navArtikel, iconArtikel, textArtikel, rectArtikel, "/com/example/praventa/assets/icn_artikel.png", "/com/example/praventa/assets/icn_artikel_active.png", "/com/example/praventa/fxml/artikel.fxml"));
-    }
+    @FXML private Rectangle rectHome;
+    @FXML private Rectangle rectRiwayat;
+    @FXML private Rectangle rectAnalisis;
+    @FXML private Rectangle rectArtikel;
 
-    private void setActive(String key) {
-        for (Map.Entry<String, NavElement> entry : navElements.entrySet()) {
-            boolean active = entry.getKey().equals(key);
-            NavElement el = entry.getValue();
+    private AnchorPane contentTarget;
 
-            if (el.label != null) el.label.setFill(active ? Color.web("#9e91e1") : Color.BLACK);
-            if (el.indicator != null) el.indicator.setFill(active ? Color.web("#9e91e1") : Color.WHITE);
-            if (el.icon != null) el.icon.setImage(new Image(getClass().getResourceAsStream(active ? el.activeIcon : el.defaultIcon)));
-            if (el.navPane != null) el.navPane.setStyle(active ? "-fx-background-color: rgba(158, 145, 225, 0.1); -fx-background-radius: 8px;" : "");
+    public void setMainContent(AnchorPane contentTarget) {
+        this.contentTarget = contentTarget;
+
+        // Ambil user dari session
+        User user = Session.getCurrentUser();
+        if (user != null) {
+            usernameText.setText(user.getUsername());
+            statusText.setText(user.getRole());
+
+            // Set profile picture
+            try {
+                String profilePicPath = user.getProfilePicture(); // misal: "assets/farid.jpg"
+                Image img = new Image(getClass().getResourceAsStream("/com/example/praventa/" + profilePicPath));
+                avatarCircle.setFill(new ImagePattern(img));
+            } catch (Exception e) {
+                e.printStackTrace(); // fallback kalau gambar gagal
+            }
         }
 
-        currentPage = key;
+        // Default menu aktif
+        handleNavHomeClick();
     }
 
-    private void loadPage(String fxmlPath) {
+    private void setActiveMenu(BorderPane activeNav, ImageView activeIcon, Rectangle activeRect, String activeIconName) {
+        // Reset ikon
+        iconHome.setImage(loadIcon("icn_home.png"));
+        iconRiwayat.setImage(loadIcon("icn_riwayat.png"));
+        iconAnalisis.setImage(loadIcon("icn_analisis.png"));
+        iconArtikel.setImage(loadIcon("icn_artikel.png"));
+
+        // Reset rectangle
+        rectHome.setVisible(false);
+        rectRiwayat.setVisible(false);
+        rectAnalisis.setVisible(false);
+        rectArtikel.setVisible(false);
+
+        // Reset warna teks ke default (hitam)
+        textHome.setFill(Color.BLACK);
+        textRiwayat.setFill(Color.BLACK);
+        textAnalisis.setFill(Color.BLACK);
+        textArtikel.setFill(Color.BLACK);
+
+        // Aktifkan menu
+        activeIcon.setImage(loadIcon(activeIconName));
+        activeRect.setFill(Color.web("#9E91E1"));
+        activeRect.setVisible(true);
+
+        // Ubah warna teks menu aktif
+        if (activeIcon == iconHome) textHome.setFill(Color.web("#9E91E1"));
+        else if (activeIcon == iconRiwayat) textRiwayat.setFill(Color.web("#9E91E1"));
+        else if (activeIcon == iconAnalisis) textAnalisis.setFill(Color.web("#9E91E1"));
+        else if (activeIcon == iconArtikel) textArtikel.setFill(Color.web("#9E91E1"));
+    }
+
+    private Image loadIcon(String fileName) {
+        return new Image(getClass().getResourceAsStream("/com/example/praventa/assets/" + fileName));
+    }
+
+    public void handleNavHomeClick() {
+        setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
+        loadPage("beranda.fxml");
+    }
+
+    public void handleNavRiwayatClick() {
+        setActiveMenu(navRiwayat, iconRiwayat, rectRiwayat, "icn_riwayat_active.png");
+        loadPage("riwayat.fxml");
+    }
+
+    public void handleNavAnalysisClick() {
+        setActiveMenu(navAnalisis, iconAnalisis, rectAnalisis, "icn_analisis_active.png");
+        loadPage("analisis.fxml");
+    }
+
+    public void handleNavArticleClick() {
+        setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
+        loadPage("artikel.fxml");
+    }
+
+    private void loadPage(String fxmlName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent page = loader.load();
-            mainContent.getChildren().setAll(page);
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
+            Parent content = loader.load();
+            contentTarget.getChildren().setAll(content);
+            AnchorPane.setTopAnchor(content, 0.0);
+            AnchorPane.setBottomAnchor(content, 0.0);
+            AnchorPane.setLeftAnchor(content, 0.0);
+            AnchorPane.setRightAnchor(content, 0.0);
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleNavClick(MouseEvent event) {
-        Object source = event.getSource();
-        if (source == navBeranda) {
-            setActive("HOME");
-            loadPage(navElements.get("HOME").fxmlPath);
-        } else if (source == navRiwayat) {
-            setActive("RIWAYAT");
-            loadPage(navElements.get("RIWAYAT").fxmlPath);
-        } else if (source == navAnalisis) {
-            setActive("ANALISIS");
-            loadPage(navElements.get("ANALISIS").fxmlPath);
-        } else if (source == navArtikel) {
-            setActive("ARTIKEL");
-            loadPage(navElements.get("ARTIKEL").fxmlPath);
-        }
-    }
-
-    private static class NavElement {
-        BorderPane navPane;
-        ImageView icon;
-        Text label;
-        Rectangle indicator;
-        String defaultIcon, activeIcon, fxmlPath;
-
-        NavElement(BorderPane navPane, ImageView icon, Text label, Rectangle indicator, String defaultIcon, String activeIcon, String fxmlPath) {
-            this.navPane = navPane;
-            this.icon = icon;
-            this.label = label;
-            this.indicator = indicator;
-            this.defaultIcon = defaultIcon;
-            this.activeIcon = activeIcon;
-            this.fxmlPath = fxmlPath;
         }
     }
 }

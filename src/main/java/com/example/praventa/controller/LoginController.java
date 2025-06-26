@@ -32,25 +32,29 @@ public class LoginController {
 
         User user = checkLogin(username, password);
         if (user != null) {
-            // Simpan ke session
+            // Simpan user ke session
             Session.setCurrentUser(user);
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/beranda.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/main.fxml"));
                 Parent root = loader.load();
 
                 Scene scene = new Scene(root);
-                Stage newStage = new Stage();
-                newStage.setScene(scene);
-                newStage.setMaximized(true);
+                Stage stage = new Stage();
+                stage.setTitle("Praventa - Dashboard");
+                stage.setScene(scene);
+                stage.setMaximized(true);
+                //stage.setResizable(false);
 
+                // Fade-in animation
                 FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
                 fadeIn.setFromValue(0.0);
                 fadeIn.setToValue(1.0);
                 fadeIn.play();
 
-                newStage.show();
+                stage.show();
 
+                // Tutup window login
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.close();
 
