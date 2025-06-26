@@ -8,6 +8,9 @@ public class User {
     private String profilePicture;
     private String phoneNumber;
 
+    public User() {
+    }
+
     public User(int id, String username, String email, String role, String profilePicture, String phoneNumber) {
         this.id = id;
         this.username = username;
@@ -26,6 +29,10 @@ public class User {
     public String getPhoneNumber() { return phoneNumber; }
 
     // Setters (agar bisa di-update)
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

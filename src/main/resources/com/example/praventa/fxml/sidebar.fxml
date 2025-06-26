@@ -44,7 +44,7 @@
                     <fill>
                         <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
                             <image>
-                                <Image url="@../assets/5.jpg" />
+                                <Image url="@../assets/icn_profile_default.jpg" />
                             </image>
                         </ImagePattern>
                     </fill>

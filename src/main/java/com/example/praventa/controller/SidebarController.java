@@ -202,13 +202,52 @@ public class SidebarController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
             Parent content = loader.load();
+
+            // Inject SidebarController ke ProfileController jika profil.fxml
+            if (fxmlName.equals("profil.fxml")) {
+                ProfileController profileController = loader.getController();
+                profileController.setSidebarController(this); // 👈 inject controller ini
+            }
+
             contentTarget.getChildren().setAll(content);
             AnchorPane.setTopAnchor(content, 0.0);
             AnchorPane.setBottomAnchor(content, 0.0);
             AnchorPane.setLeftAnchor(content, 0.0);
             AnchorPane.setRightAnchor(content, 0.0);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    public void refreshAvatar() {
+        User user = Session.getCurrentUser();
+        String path = user.getProfilePicture();
+
+        try {
+            Image image;
+
+            if (path != null && !path.isEmpty()) {
+                if (path.startsWith("assets/")) {
+                    // Jika gambar dari resource internal
+                    image = new Image(getClass().getResourceAsStream("/com/example/praventa/" + path));
+                } else {
+                    // Jika gambar dari direktori eksternal
+                    image = new Image(new FileInputStream(path));
+                }
+
+                avatarCircle.setFill(new ImagePattern(image));
+            }
+        } catch (Exception e) {
+            System.out.println("Gagal load avatar sidebar: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    public AnchorPane getMainContent() {
+        return contentTarget;
+    }
+
 }
