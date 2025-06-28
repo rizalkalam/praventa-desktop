@@ -61,7 +61,7 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Text>
-                                        <Text fill="#9e91e1" layoutX="320.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daftar" wrappingWidth="40.57550048828125">
+                                        <Text fx:id="registerText" onMouseClicked="#handleRegisterClick" style="-fx-cursor: hand;" fill="#9e91e1" layoutX="320.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daftar" wrappingWidth="40.57550048828125">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>

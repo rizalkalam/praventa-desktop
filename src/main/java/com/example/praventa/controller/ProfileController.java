@@ -137,6 +137,11 @@ public class ProfileController {
                 loadUserFromDatabase();
                 refreshFields();
 
+                // ⬇️ Tambahan: update tampilan sidebar
+                if (sidebarController != null) {
+                    sidebarController.refreshProfileData();
+                }
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Berhasil");
                 alert.setHeaderText(null);
@@ -187,7 +192,7 @@ public class ProfileController {
 
                 loadUserFromDatabase();
                 loadProfilePicture();
-                if (sidebarController != null) sidebarController.refreshAvatar();
+                if (sidebarController != null) sidebarController.refreshProfileData();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Foto profil berhasil diperbarui!");
                 alert.showAndWait();
@@ -223,7 +228,7 @@ public class ProfileController {
             if (stmt.executeUpdate() > 0) {
                 loadUserFromDatabase();
                 loadProfilePicture();
-                if (sidebarController != null) sidebarController.refreshAvatar();
+                if (sidebarController != null) sidebarController.refreshProfileData();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Foto profil telah dihapus dan diganti ke default.");
                 alert.showAndWait();

@@ -221,29 +221,33 @@ public class SidebarController {
     }
 
 
-    public void refreshAvatar() {
+    public void refreshProfileData() {
         User user = Session.getCurrentUser();
-        String path = user.getProfilePicture();
+        if (user != null) {
+            usernameText.setText(user.getUsername());
+            statusText.setText(user.getRole());
 
-        try {
-            Image image;
+            try {
+                String profilePicPath = user.getProfilePicture();
+                Image image;
 
-            if (path != null && !path.isEmpty()) {
-                if (path.startsWith("assets/")) {
-                    // Jika gambar dari resource internal
-                    image = new Image(getClass().getResourceAsStream("/com/example/praventa/" + path));
+                if (profilePicPath != null && !profilePicPath.isEmpty()) {
+                    if (profilePicPath.startsWith("assets/")) {
+                        image = new Image(getClass().getResourceAsStream("/com/example/praventa/" + profilePicPath));
+                    } else {
+                        image = new Image(new FileInputStream(profilePicPath));
+                    }
                 } else {
-                    // Jika gambar dari direktori eksternal
-                    image = new Image(new FileInputStream(path));
+                    image = new Image(getClass().getResourceAsStream("/com/example/praventa/assets/icn_profile_default.png"));
                 }
 
                 avatarCircle.setFill(new ImagePattern(image));
+            } catch (Exception e) {
+                System.out.println("Gagal memuat ulang data profil: " + e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println("Gagal load avatar sidebar: " + e.getMessage());
-            e.printStackTrace();
         }
     }
+
 
 
     public AnchorPane getMainContent() {

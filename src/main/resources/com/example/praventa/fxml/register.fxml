@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.RegisterController">
+    <children>
+        <HBox alignment="BOTTOM_RIGHT" layoutX="-2.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane prefHeight="700.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane layoutX="43.0" layoutY="149.0" prefHeight="386.0" prefWidth="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                        <ImageView fitHeight="388.0" fitWidth="430.0">
+                           <image>
+                              <Image url="@../../../../assets/bg_register.png" />
+                           </image>
+                        </ImageView>
+                            </children>
+                        </StackPane>
+                        <ImageView fitHeight="700.0" fitWidth="534.0" layoutX="67.0" layoutY="-2.0" nodeOrientation="RIGHT_TO_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <image>
+                                <Image url="@../assets/bgkontrast.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <VBox alignment="CENTER" prefHeight="700.0" prefWidth="650.0" style="-fx-background-color: F1EEFF;">
+                    <children>
+                        <AnchorPane prefHeight="229.0" prefWidth="600.0" />
+                        <HBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="576.0" prefWidth="625.0">
+                            <children>
+                                <AnchorPane prefHeight="423.0" prefWidth="425.0">
+                                    <children>
+                                        <Text layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buat akun baru">
+                                            <font>
+                                                <Font name="System Bold" size="28.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="6.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dapatkan analisis risiko penyakit dan rekomendasi kesehatan yang dipersonalisas" wrappingWidth="419.2421875">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="usernameField" layoutX="8.0" layoutY="170.0" prefHeight="42.0" prefWidth="361.0" />
+                                        <PasswordField fx:id="passwordField" layoutX="8.0" layoutY="228.0" prefHeight="42.0" prefWidth="361.0" />
+                                        <Button fx:id="btnMasuk" layoutX="9.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleDaftarClick" prefHeight="42.0" prefWidth="359.0" style="-fx-background-color: #9E91E1;" text="Daftar" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Button>
+                                        <Text fx:id="loginText" fill="#9e91e1" layoutX="207.0" layoutY="397.0" onMouseClicked="#handleLoginClick" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Masuk" wrappingWidth="48.2421875">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <Text fill="#b0b0b0" layoutX="97.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sudah ada akun? " wrappingWidth="109.7421875">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                              <TextField fx:id="emailField" layoutX="8.0" layoutY="107.0" prefHeight="42.0" prefWidth="361.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+                        <AnchorPane prefHeight="189.0" prefWidth="600.0" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>
