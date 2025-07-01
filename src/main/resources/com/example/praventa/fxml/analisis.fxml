@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.ImagePattern?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -151,19 +152,80 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="16.0" />
+                  <Insets bottom="28.0" />
                </VBox.margin>
             </VBox>
-            <HBox prefHeight="293.0" prefWidth="1115.0">
+            <HBox prefHeight="293.0" prefWidth="1115.0" spacing="58.0">
                <children>
-                  <!-- Pie Chart -->
-                  <StackPane fx:id="chartContainer" prefHeight="293.0" prefWidth="302.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 20;">
-                     <PieChart fx:id="pieChart" prefHeight="373.0" prefWidth="423.0" />
-                     <Circle fill="white" radius="60.0" />
-                     <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #4A4A4A;" text="73%" />
-                  </StackPane>
+
+                  <VBox alignment="CENTER" prefHeight="293.0" prefWidth="290.0" spacing="20" style="-fx-background-color: #D1D1FF; -fx-background-radius: 20;" xmlns:fx="http://javafx.com/fxml">
+                     <StackPane fx:id="donutContainer" prefHeight="400" prefWidth="400">
+                        <PieChart fx:id="pieChart" />
+                     </StackPane>
+
+                     <Label fx:id="centerLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+                     <VBox fx:id="legendBox" spacing="10" />
+                     <padding>
+                        <Insets bottom="28.0" left="28.0" right="28.0" />
+                     </padding>
+                  </VBox>
+
+                  <VBox fx:id="riskBox" alignment="TOP_LEFT" maxWidth="370.0" minWidth="219.0" prefHeight="293.0" prefWidth="370.0" spacing="12" style="-fx-background-color: #fff; -fx-background-radius: 20;" HBox.hgrow="NEVER">
+                     <padding>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                     </padding>
+                  </VBox>
+                  <AnchorPane prefHeight="293.0" prefWidth="297.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <children>
+                        <Circle layoutX="68.0" layoutY="57.0" radius="35.0" smooth="false" strokeType="INSIDE">
+                           <fill>
+                              <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
+                                 <image>
+                                    <Image url="@../assets/rekomendasi_food.png" />
+                                 </image>
+                              </ImagePattern>
+                           </fill>
+                        </Circle>
+                        <Text layoutX="32.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="220.43359375">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="220.43359375">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#9e91e1" layoutX="112.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selengkapnya" />
+                     </children>
+                  </AnchorPane>
+
+
                </children>
             </HBox>
+            <AnchorPane>
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="235.0" layoutX="581.0" layoutY="1.0">
+                     <image>
+                        <Image url="@../assets/btn_export.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="235.0" layoutX="838.0" layoutY="1.0" AnchorPane.rightAnchor="0.0">
+                     <image>
+                        <Image url="@../assets/btn_update.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </AnchorPane>
          </children>
       </VBox>
    </children>

@@ -1,190 +1,190 @@
 package com.example.praventa.controller;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class AnalisisController implements Initializable {
-    @FXML
-    private StackPane chartContainer;
+public class AnalisisController {
+
+    @FXML private PieChart pieChart;
+    @FXML private Label centerLabel;
+    @FXML private VBox legendBox;
+    @FXML private StackPane donutContainer;
+    @FXML private VBox riskBox;
+
+    private final String[] pieColors = {"#00E0DC", "#6A67CE", "#FFB347"}; // custom color set
 
     @FXML
-    private PieChart pieChart;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setupDonutChart();
+    public void initialize() {
+        makeDonut();
+        setChartData(40, 20, 13); // contoh data
+        pieChart.getData().addListener((ListChangeListener<PieChart.Data>) change -> updateCenterTextFromChart());
+        showDiseaseRiskBars();
     }
 
-    private void setupDonutChart() {
-        // Clear existing children di chartContainer
-        chartContainer.getChildren().clear();
+    public void setChartData(double diabetes, double serviks, double jantung) {
+        pieChart.getData().clear();
 
-        // Buat PieChart baru untuk donut
-        PieChart donutChart = new PieChart();
+        PieChart.Data data1 = new PieChart.Data("Diabetes", diabetes);
+        PieChart.Data data2 = new PieChart.Data("Kanker Serviks", serviks);
+        PieChart.Data data3 = new PieChart.Data("Jantung", jantung);
 
-        // Data sesuai dengan gambar - perhatikan urutan dan nilai
-        PieChart.Data diabetesData = new PieChart.Data("Diabetes", 49);
-        PieChart.Data kankerData = new PieChart.Data("Kanker Serviks", 20);
-        PieChart.Data jantungData = new PieChart.Data("Jantung", 13);
-        // Tambahkan data tersembunyi untuk bagian yang kosong (27%)
-        PieChart.Data emptyData = new PieChart.Data("Empty", 18);
+        pieChart.getData().addAll(data1, data2, data3);
 
-        donutChart.getData().addAll(diabetesData, kankerData, jantungData, emptyData);
-
-        // Konfigurasi chart
-        donutChart.setTitle("");
-        donutChart.setLabelsVisible(false);
-        donutChart.setLegendVisible(false);
-        donutChart.setStartAngle(90); // Mulai dari atas
-        donutChart.setClockwise(true);
-        donutChart.setPrefSize(200, 200);
-        donutChart.setMaxSize(200, 200);
-        donutChart.setMinSize(200, 200);
-
-        // Circle untuk efek donut - lebih besar
-        Circle innerCircle = new Circle(45);
-        innerCircle.setFill(Color.web("#ffff")); // Sama dengan background
-        innerCircle.setStroke(Color.TRANSPARENT);
-
-        // Label 73% di tengah
-        Label centerLabel = new Label("73%");
-        centerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        centerLabel.setTextFill(Color.web("#4A4A4A"));
-
-        // Stack untuk chart + circle + label
-        StackPane chartStack = new StackPane();
-        chartStack.getChildren().addAll(donutChart, innerCircle, centerLabel);
-        chartStack.setPrefSize(200, 200);
-        chartStack.setAlignment(Pos.CENTER);
-
-        // Legend
-        VBox legendBox = createCustomLegend();
-
-        // Layout utama - vertikal
-        VBox mainLayout = new VBox(20);
-        mainLayout.setAlignment(Pos.CENTER);
-        mainLayout.setPrefWidth(302);
-        mainLayout.setPadding(new Insets(20));
-        mainLayout.getChildren().addAll(chartStack, legendBox);
-
-        // Tambahkan ke container
-        chartContainer.getChildren().add(mainLayout);
-
-        // Apply colors setelah chart di-render
         Platform.runLater(() -> {
-            setChartColors(donutChart);
+            PieChart.Data[] dataArr = {data1, data2, data3};
+
+            for (int i = 0; i < dataArr.length; i++) {
+                PieChart.Data d = dataArr[i];
+                String color = pieColors[i % pieColors.length];
+                d.getNode().setStyle("-fx-pie-color: " + color + ";");
+                d.getNode().setUserData(new PieMeta(d.getName(), color));
+            }
+
+            updateCenterTextFromChart();
         });
     }
 
-    private void setChartColors(PieChart chart) {
-        // Apply CSS class ke chart
-        chart.getStyleClass().add("custom-pie-chart");
+    private void makeDonut() {
+        pieChart.setLabelsVisible(false);
+        pieChart.setLegendVisible(false);
 
-        // Hilangkan animasi untuk hasil yang lebih konsisten
-        chart.setAnimated(false);
+        Circle innerCircle = new Circle();
+        innerCircle.setFill(Color.WHITE);
 
-        // Set warna untuk setiap data
-        for (int i = 0; i < chart.getData().size(); i++) {
-            final int index = i;
-            PieChart.Data data = chart.getData().get(i);
+        // Perbesar ukuran lingkaran dalam
+        innerCircle.radiusProperty().bind(
+                Bindings.min(donutContainer.widthProperty(), donutContainer.heightProperty()).divide(3.2)
+        );
 
-            // Set warna langsung jika node sudah ada
-            if (data.getNode() != null) {
-                applyColorToNode(data.getNode(), index);
-            }
+        centerLabel.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+        StackPane.setAlignment(innerCircle, Pos.CENTER);
+        StackPane.setAlignment(centerLabel, Pos.CENTER);
 
-            // Listener untuk node yang belum tersedia
-            data.nodeProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue != null) {
-                    applyColorToNode(newValue, index);
-                }
-            });
+        donutContainer.getChildren().addAll(innerCircle, centerLabel);
+    }
+
+    private void updateCenterTextFromChart() {
+        if (pieChart == null || centerLabel == null) return;
+
+        double total = pieChart.getData().stream()
+                .mapToDouble(PieChart.Data::getPieValue)
+                .sum();
+
+        if (total == 0) {
+            centerLabel.setText("0%");
+            return;
+        }
+
+        legendBox.getChildren().clear();
+
+        for (PieChart.Data data : pieChart.getData()) {
+            PieMeta meta = (PieMeta) data.getNode().getUserData();
+            if (meta == null) continue;
+
+            double value = data.getPieValue();
+            double percent = (value / total) * 100;
+            data.setName(String.format("%s (%.0f%%)", meta.name, percent));
+
+            Region colorBox = new Region();
+            colorBox.setPrefSize(12, 12);
+            colorBox.setStyle("-fx-background-color: " + meta.colorHex + "; -fx-background-radius: 2px;");
+
+            Label label = new Label(meta.name);
+            Label percentLabel = new Label(String.format("%.0f%%", percent));
+            label.setStyle("-fx-font-size: 14px;");
+            percentLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: " + meta.colorHex + ";");
+
+            HBox legendItem = new HBox(10, colorBox, label, percentLabel);
+            legendItem.setAlignment(Pos.CENTER_LEFT);
+
+            legendBox.getChildren().add(legendItem);
+        }
+
+        centerLabel.setText(String.format("%.0f%%", total));
+    }
+
+    // Class untuk menyimpan nama dan warna
+    public static class PieMeta {
+        public final String name;
+        public final String colorHex;
+
+        public PieMeta(String name, String colorHex) {
+            this.name = name;
+            this.colorHex = colorHex;
         }
     }
 
-    private void applyColorToNode(javafx.scene.Node node, int index) {
-        String color = "";
-        switch (index) {
-            case 0: // Diabetes - Turquoise/Cyan
-                color = "#59FFE6";
-                break;
-            case 1: // Kanker Serviks - Yellow/Gold
-                color = "#FFD700";
-                break;
-            case 2: // Jantung - Red
-                color = "#FF4757";
-                break;
-            case 3: // Empty space - sama dengan background
-                color = "#B8B5FF";
-                // Atau bisa juga dibuat transparan
-                // node.setVisible(false);
-                break;
+    // Data penyakit dan nilainya
+    private static class RiskData {
+        String name;
+        double percentage; // 0.0 to 1.0
+        String color;
+
+        RiskData(String name, double percentage, String color) {
+            this.name = name;
+            this.percentage = percentage;
+            this.color = color;
         }
-
-        // Set style dengan warna yang tepat
-        node.setStyle("-fx-pie-color: " + color + "; -fx-border-color: transparent; -fx-border-width: 0;");
     }
 
-    private VBox createCustomLegend() {
-        VBox legendBox = new VBox(12);
-        legendBox.setAlignment(Pos.CENTER_LEFT);
-        legendBox.setPadding(new Insets(0, 20, 0, 20));
-        legendBox.setMaxWidth(250);
+    public void showDiseaseRiskBars() {
+        List<RiskData> risks = List.of(
+                new RiskData("Diabetes Tipe 2", 0.5, "#4FC3F7"),
+                new RiskData("Hipertensi", 0.8, "#FF7043"),
+                new RiskData("Penyakit Jantung", 0.4, "#3F51B5"),
+                new RiskData("Stroke", 0.6, "#EF5350"),
+                new RiskData("Kanker Serviks", 0.3, "#81C784")
+        );
 
-        // Diabetes
-        HBox diabetesRow = createLegendRow("●", "#40E0D0", "Diabetes", "49%");
+        riskBox.getChildren().clear();
 
-        // Kanker Serviks
-        HBox kankerRow = createLegendRow("●", "#FFD700", "Kanker Serviks", "20%");
+        double barWidth = 179; // sesuai prefWidth riskBox (219) - padding kiri kanan (20 + 20)
 
-        // Jantung
-        HBox jantungRow = createLegendRow("●", "#FF4757", "Jantung", "13%");
+        for (RiskData risk : risks) {
+            Label label = new Label(risk.name);
+            label.setStyle("-fx-font-size: 14px; -fx-text-fill: #000000;");
 
-        legendBox.getChildren().addAll(diabetesRow, kankerRow, jantungRow);
-        return legendBox;
-    }
+            StackPane barBackground = new StackPane();
+            barBackground.setStyle("-fx-background-color: #D3D3D3; -fx-background-radius: 10;");
+            barBackground.setPrefHeight(14);
+            barBackground.setPrefWidth(barWidth);
+            barBackground.setMaxWidth(barWidth);
+            barBackground.setMinWidth(barWidth);
 
-    private HBox createLegendRow(String bullet, String color, String label, String percentage) {
-        HBox row = new HBox(10);
-        row.setAlignment(Pos.CENTER_LEFT);
-        row.setPrefWidth(200);
+            Region fillBar = new Region();
+            fillBar.setStyle("-fx-background-color: " + risk.color + "; -fx-background-radius: 10;");
+            fillBar.setPrefHeight(14);
+            fillBar.setPrefWidth(barWidth * risk.percentage);
 
-        // Bullet point dengan warna - lebih besar
-        Label bulletLabel = new Label(bullet);
-        bulletLabel.setTextFill(Color.web(color));
-        bulletLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-        bulletLabel.setPrefWidth(25);
+            Region marker = new Region();
+            marker.setPrefSize(6, 14);
+            marker.setStyle("-fx-background-color:  #F5F5F5; -fx-background-radius: 3;");
+            marker.setTranslateX((barWidth * risk.percentage) - 3);
 
-        // Label teks
-        Label textLabel = new Label(label);
-        textLabel.setTextFill(Color.WHITE);
-        textLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
-        textLabel.setPrefWidth(120);
+            barBackground.getChildren().addAll(fillBar, marker);
 
-        // Persentase dengan warna yang sama seperti bullet
-        Label percentLabel = new Label(percentage);
-        percentLabel.setTextFill(Color.web(color));
-        percentLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        percentLabel.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(percentLabel, Priority.ALWAYS);
+            VBox wrapper = new VBox(6, label, barBackground);
+            wrapper.setPadding(new Insets(5, 0, 5, 0));
+            wrapper.setAlignment(Pos.CENTER_LEFT);
 
-        row.getChildren().addAll(bulletLabel, textLabel, percentLabel);
-        return row;
+            riskBox.getChildren().add(wrapper);
+        }
     }
 }
