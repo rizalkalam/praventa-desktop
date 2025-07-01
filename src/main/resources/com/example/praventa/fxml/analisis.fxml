@@ -1,17 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-            prefWidth="800" prefHeight="600">
-
-    <children>
-        <Label layoutX="40.0" layoutY="40.0"
-               text="Analisis Penyakit Anda"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    </children>
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.AnalisisController">
+   <children>
+      <VBox layoutX="93.0" layoutY="88.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-background-radius: 28;">
+               <children>
+                  <Label text="PRAVENTA" textFill="#9e91e1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="26.0" top="24.0" />
+                     </VBox.margin>
+                  </Label>
+                  <BorderPane prefHeight="34.0" prefWidth="1115.0">
+                     <center>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go Yoon Jung" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets left="178.0" />
+                           </BorderPane.margin>
+                        </Text>
+                     </center>
+                     <right>
+                        <BorderPane prefHeight="44.0" prefWidth="175.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+                           <center>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="12 Jun 2025" BorderPane.alignment="CENTER_LEFT">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets left="14.0" />
+                                 </BorderPane.margin>
+                              </Text>
+                           </center>
+                           <left>
+                              <ImageView BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/icn_history.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets left="14.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </left>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </BorderPane>
+                     </right>
+                     <VBox.margin>
+                        <Insets left="28.0" right="28.0" />
+                     </VBox.margin>
+                  </BorderPane>
+                  <StackPane prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="24 thn" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="58.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label alignment="CENTER" prefWidth="200.0" style="-fx-background-color: #3F3B53; -fx-background-radius: 18;" text="Lengkap" textAlignment="CENTER" textFill="#d1d1ff" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" top="12.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </center>
+                           <top>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status Data" BorderPane.alignment="CENTER" />
+                           </top>
+                           <HBox.margin>
+                              <Insets bottom="28.0" top="12.0" />
+                           </HBox.margin>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #D1D1FF; -fx-background-radius: 18;" text="Tersimpan" textFill="#9e91e1" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" top="12.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </center>
+                           <top>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gaya Hidup" BorderPane.alignment="CENTER" />
+                           </top>
+                           <HBox.margin>
+                              <Insets bottom="28.0" top="12.0" />
+                           </HBox.margin>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 18;" text="Diisi" textFill="#d1d1ff" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" top="12.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </center>
+                           <top>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kuisioner" BorderPane.alignment="CENTER" />
+                           </top>
+                           <HBox.margin>
+                              <Insets bottom="28.0" top="12.0" />
+                           </HBox.margin>
+                        </BorderPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="16.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox prefHeight="293.0" prefWidth="1115.0">
+               <children>
+                  <!-- Pie Chart -->
+                  <StackPane fx:id="chartContainer" prefHeight="293.0" prefWidth="302.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 20;">
+                     <PieChart fx:id="pieChart" prefHeight="373.0" prefWidth="423.0" />
+                     <Circle fill="white" radius="60.0" />
+                     <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #4A4A4A;" text="73%" />
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

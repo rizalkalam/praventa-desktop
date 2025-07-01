@@ -50,7 +50,7 @@ public class RegisterController {
             int rows = stmt.executeUpdate();
             if (rows > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil! Silakan login.");
-                openLoginPage(event);
+                openQuestionnairePage(event);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Pendaftaran gagal.");
             }
@@ -118,6 +118,36 @@ public class RegisterController {
             e.printStackTrace();
         }
     }
+
+    private void openQuestionnairePage(javafx.event.Event event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/questionnaire.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Praventa - Data Dasar");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+
+            // Optional: animasi fade
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+
+            stage.show();
+
+            // Tutup window register
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void showAlert(Alert.AlertType type, String message) {
         Alert alert = new Alert(type, message);

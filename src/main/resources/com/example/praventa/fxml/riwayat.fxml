@@ -1,23 +1,338 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.praventa.controller.RiwayatController"
-            prefWidth="800" prefHeight="600">
+<?import javafx.scene.text.Text?>
 
-    <children>
-        <Label layoutX="40.0" layoutY="40.0"
-               text="Riwayat Penyakit Anda"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    </children>
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.praventa.controller.RiwayatController">
+   <children>
+      <VBox layoutX="78.0" layoutY="65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <HBox prefHeight="271.0" prefWidth="1112.0">
+               <children>
+                  <BorderPane prefHeight="268.0" prefWidth="582.0" style="-fx-background-color: #ffff; -fx-background-radius: 18;">
+                     <top>
+                        <Label text="Data Pengguna" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets right="300.0" top="16.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </top>
+                     <left>
+                        <ImageView fitHeight="206.0" fitWidth="211.0" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../../../assets/bg_datapengguna.png" />
+                           </image>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="24.0" BorderPane.alignment="TOP_LEFT">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Umur">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jenis kelamin">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tinggi/Berat">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="8.0" top="16.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                     <right>
+                        <VBox prefHeight="230.0" prefWidth="225.0" spacing="24.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": Kalam Rizal">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": 20">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": Laki-laki">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": 169cm/56kg">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets top="16.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="196.0" prefWidth="485.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 18;">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <left>
+                        <VBox prefHeight="225.0" prefWidth="167.0" spacing="24.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ibu">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayah">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kakak">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adik">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="8.0" top="14.0" />
+                           </BorderPane.margin>
+                           <padding>
+                              <Insets left="35.0" />
+                           </padding>
+                        </VBox>
+                     </left>
+                     <center>
+                        <VBox prefHeight="225.0" prefWidth="126.0" spacing="24.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hipertensi">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diabetes">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets top="14.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                     <right>
+                        <ImageView fitHeight="200.0" fitWidth="146.0" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../../../assets/bg_family.png" />
+                           </image>
+                        </ImageView>
+                     </right>
+                     <top>
+                        <BorderPane prefHeight="38.0" prefWidth="483.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label text="Riwayat Penyakit Keluarga" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="80.0" />
+                                 </BorderPane.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </left>
+                           <right>
+                              <ImageView BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/icn_edit_family.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets right="20.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </right>
+                           <BorderPane.margin>
+                              <Insets top="8.0" />
+                           </BorderPane.margin>
+                        </BorderPane>
+                     </top>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <BorderPane prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #3F3B53; -fx-background-radius: 16;">
+               <VBox.margin>
+                  <Insets bottom="16.0" top="24.0" />
+               </VBox.margin>
+               <left>
+                  <ImageView fitHeight="51.0" fitWidth="51.0" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../../../assets/notif_riwayat.png" />
+                     </image>
+                     <BorderPane.margin>
+                        <Insets left="28.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </left>
+               <center>
+                  <Label text="Risiko Genetik Tinggi" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="50.0" prefWidth="200.0">
+               <left>
+                  <Label text="Riwayat Penyakit Pribadi" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </left>
+               <right>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+                     </padding>
+                  </Button>
+               </right>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </BorderPane>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="1112.0" style="-fx-background-color: #fff; -fx-background-radius: 10;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diabetes Tipe 2 (aktif)">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Metaformin 500mg, 2x/hari">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="rawat inap : ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="200.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="tidak">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="13 Mei 2020">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="260.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="24.0" left="18.0" right="18.0" top="24.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="14.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="1112.0" style="-fx-background-color: #fff; -fx-background-radius: 10;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diabetes Tipe 2 (aktif)">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Metaformin 500mg, 2x/hari">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="rawat inap : ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="200.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="tidak">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="13 Mei 2020">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="260.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="24.0" left="18.0" right="18.0" top="24.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
