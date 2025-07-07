@@ -13,6 +13,7 @@ import java.util.List;
 public class UserRepository {
     private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
 
+    // 🔍 Login
     public static User findByUsernameAndPassword(String username, String password) {
         try {
             File file = new File(FILE_PATH);
@@ -34,6 +35,7 @@ public class UserRepository {
         return null;
     }
 
+    // 📄 Load semua user dari XML
     public static List<User> loadUsers() {
         try {
             File file = new File(FILE_PATH);
@@ -49,6 +51,7 @@ public class UserRepository {
         }
     }
 
+    // 💾 Simpan ke XML
     public static void saveUsers(List<User> users) {
         try {
             JAXBContext context = JAXBContext.newInstance(UserListWrapper.class);
@@ -59,16 +62,52 @@ public class UserRepository {
             wrapper.setUsers(users);
 
             File file = new File(FILE_PATH);
-            file.getParentFile().mkdirs(); // Buat folder kalau belum ada
+            file.getParentFile().mkdirs(); // Buat folder jika belum ada
             marshaller.marshal(wrapper, file);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void addUser(User newUser) {
+    // ➕ Register user baru
+    public static boolean register(User newUser) {
         List<User> users = loadUsers();
+
+        // Cek duplikat username/email
+        for (User user : users) {
+            if (user.getUsername().equalsIgnoreCase(newUser.getUsername()) ||
+                    user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
+                return false;
+            }
+        }
+
+        // Set ID otomatis
+        int maxId = users.stream().mapToInt(User::getId).max().orElse(0);
+        newUser.setId(maxId + 1);
+
         users.add(newUser);
         saveUsers(users);
+        return true;
+    }
+
+    // 🔁 Update user yang sedang login
+    public static boolean updateUser(User updatedUser) {
+        List<User> users = loadUsers();
+        boolean updated = false;
+
+        for (int i = 0; i < users.size(); i++) {
+            User user = users.get(i);
+            if (user.getId() == updatedUser.getId()) {
+                users.set(i, updatedUser);
+                updated = true;
+                break;
+            }
+        }
+
+        if (updated) {
+            saveUsers(users);
+        }
+
+        return updated;
     }
 }

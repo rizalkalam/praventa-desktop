@@ -40,18 +40,8 @@ public class RegisterController {
             return;
         }
 
-        // Cek apakah username sudah dipakai
-        List<User> existingUsers = UserRepository.loadUsers();
-        for (User u : existingUsers) {
-            if (u.getUsername().equalsIgnoreCase(username)) {
-                showAlert(Alert.AlertType.ERROR, "Username sudah digunakan!");
-                return;
-            }
-        }
-
         // Buat user baru
         User newUser = new User();
-        newUser.setId(existingUsers.size() + 1); // Atau pakai UUID
         newUser.setUsername(username);
         newUser.setPassword(password);
         newUser.setEmail(email);
@@ -59,11 +49,14 @@ public class RegisterController {
         newUser.setProfilePicture("assets/icn_akun.png");
         newUser.setRole("pasien");
 
-        // Simpan ke XML
-        UserRepository.addUser(newUser);
-
-        showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil!");
-        openQuestionnairePage(event);
+        // Gunakan repository untuk register
+        boolean success = UserRepository.register(newUser);
+        if (success) {
+            showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil!");
+            openQuestionnairePage(event);
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Username atau email sudah digunakan!");
+        }
     }
 
     @FXML

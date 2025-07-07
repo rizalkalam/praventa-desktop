@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <email>kalam@praventa.com</email>
+        <email>rizalkalam@gmail.com</email>
         <id>0</id>
         <password>password123</password>
-        <phone_number>085155370503</phone_number>
-        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1751023430979.png</profile_picture>
+        <phone_number>085155370577</phone_number>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
         <role>pasien</role>
-        <username>kalamrizal</username>
+        <username>rizalkalam</username>
     </user>
     <user>
         <email>haqqiganteng@gmail.com</email>
@@ -17,5 +17,14 @@
         <profile_picture>assets/icn_akun.png</profile_picture>
         <role>pasien</role>
         <username>hakyukyu</username>
+    </user>
+    <user>
+        <email>yuharam@gmail.com</email>
+        <id>3</id>
+        <password>yuha123</password>
+        <phone_number>__</phone_number>
+        <profile_picture>assets/icn_akun.png</profile_picture>
+        <role>pasien</role>
+        <username>yuha</username>
     </user>
 </users>

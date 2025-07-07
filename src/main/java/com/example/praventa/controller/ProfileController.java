@@ -1,6 +1,7 @@
 package com.example.praventa.controller;
 
 import com.example.praventa.model.User;
+import com.example.praventa.repository.UserRepository;
 import com.example.praventa.utils.Database;
 import com.example.praventa.utils.Session;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProfileController {
 
@@ -106,6 +108,26 @@ public class ProfileController {
         }
     }
 
+    private void loadUserFromXML() {
+        User current = Session.getCurrentUser();
+        List<User> users = UserRepository.loadUsers();
+        for (User u : users) {
+            if (u.getId() == current.getId()) {
+                Session.setCurrentUser(u); // replace dengan yang terbaru
+                break;
+            }
+        }
+    }
+
+
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle("Informasi");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     @FXML
     private void handleSave(ActionEvent event) {
         User user = Session.getCurrentUser();
@@ -115,38 +137,33 @@ public class ProfileController {
         String newPhone = phoneField.getText();
 
         if (newName.isEmpty() || newEmail.isEmpty() || newPhone.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Semua field harus diisi.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Semua field harus diisi.");
             return;
         }
 
-        try (Connection conn = Database.getConnection()) {
-            String sql = "UPDATE users SET username = ?, email = ?, phone_number = ? WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, newName);
-            stmt.setString(2, newEmail);
-            stmt.setString(3, newPhone);
-            stmt.setInt(4, user.getId());
+        try {
+            // Perbarui data user
+            user.setUsername(newName);
+            user.setEmail(newEmail);
+            user.setPhoneNumber(newPhone);
 
-            if (stmt.executeUpdate() > 0) {
-                loadUserFromDatabase();
+            boolean updated = UserRepository.updateUser(user);
+            if (updated) {
+                loadUserFromXML();
                 refreshFields();
 
-                // ⬇️ Tambahan: update tampilan sidebar
                 if (sidebarController != null) {
                     sidebarController.refreshProfileData();
                 }
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Berhasil");
-                alert.setHeaderText(null);
-                alert.setContentText("Profil berhasil diperbarui!");
-                alert.showAndWait();
+                showAlert(Alert.AlertType.INFORMATION, "Profil berhasil diperbarui!");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Gagal memperbarui data.");
             }
-        } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            alert.showAndWait();
+
+        } catch (Exception e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Gagal memperbarui profil: " + e.getMessage());
         }
     }
 
@@ -154,50 +171,51 @@ public class ProfileController {
     private void handleChangePhoto() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Pilih Foto Profil");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
 
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             try {
                 User user = Session.getCurrentUser();
+
+                // Direktori penyimpanan
                 String userHome = System.getProperty("user.home");
                 Path assetDir = Paths.get(userHome, "praventa_assets");
                 Files.createDirectories(assetDir);
 
+                // Hapus gambar lama jika ada (selain default)
                 String oldPath = user.getProfilePicture();
                 if (oldPath != null && !oldPath.startsWith("assets")) {
                     File oldFile = new File(oldPath);
                     if (oldFile.exists()) oldFile.delete();
                 }
 
+                // Salin file baru
                 String ext = selectedFile.getName().substring(selectedFile.getName().lastIndexOf("."));
                 String newFileName = "profile_" + System.currentTimeMillis() + ext;
                 Path destination = assetDir.resolve(newFileName);
                 Files.copy(selectedFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
 
-                String savedPath = destination.toString();
+                // Simpan path dan update user
+                user.setProfilePicture(destination.toString());
+                boolean updated = UserRepository.updateUser(user);
 
-                try (Connection conn = Database.getConnection()) {
-                    String sql = "UPDATE users SET profile_picture = ? WHERE id = ?";
-                    PreparedStatement stmt = conn.prepareStatement(sql);
-                    stmt.setString(1, savedPath);
-                    stmt.setInt(2, user.getId());
-                    stmt.executeUpdate();
+                if (updated) {
+                    loadUserFromXML();
+                    loadProfilePicture();
+                    if (sidebarController != null) sidebarController.refreshProfileData();
+
+                    showAlert(Alert.AlertType.INFORMATION, "Foto profil berhasil diperbarui!");
+                    reloadProfileView();
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Gagal menyimpan perubahan foto.");
                 }
-
-                loadUserFromDatabase();
-                loadProfilePicture();
-                if (sidebarController != null) sidebarController.refreshProfileData();
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Foto profil berhasil diperbarui!");
-                alert.showAndWait();
-
-                reloadProfileView();
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-                alert.showAndWait();
+                showAlert(Alert.AlertType.ERROR, "Gagal mengganti foto: " + e.getMessage());
             }
         }
     }
@@ -206,35 +224,39 @@ public class ProfileController {
     private void handleDeletePhoto() {
         String defaultImagePath = "assets/icn_profile_default.jpg";
 
-        try (Connection conn = Database.getConnection()) {
+        try {
             User user = Session.getCurrentUser();
 
+            // Hapus gambar lama dari file sistem (jika bukan default)
             String oldPath = user.getProfilePicture();
             if (oldPath != null && !oldPath.startsWith("assets")) {
                 File oldFile = new File(oldPath);
                 if (oldFile.exists()) oldFile.delete();
             }
 
-            String sql = "UPDATE users SET profile_picture = ? WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, defaultImagePath);
-            stmt.setInt(2, user.getId());
-
-            if (stmt.executeUpdate() > 0) {
-                loadUserFromDatabase();
-                loadProfilePicture();
-                if (sidebarController != null) sidebarController.refreshProfileData();
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Foto profil telah dihapus dan diganti ke default.");
-                alert.showAndWait();
-
-                reloadProfileView();
+            // Update path foto ke default di XML
+            List<User> users = UserRepository.loadUsers();
+            for (User u : users) {
+                if (u.getId() == user.getId()) {
+                    u.setProfilePicture(defaultImagePath);
+                    break;
+                }
             }
+
+            UserRepository.saveUsers(users); // simpan ke file XML
+            loadUserFromXML();               // refresh data session
+            loadProfilePicture();           // refresh tampilan
+
+            if (sidebarController != null) {
+                sidebarController.refreshProfileData();
+            }
+
+            showAlert(Alert.AlertType.INFORMATION, "Foto profil telah dihapus dan diganti ke default.");
+            reloadProfileView();
 
         } catch (Exception e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            alert.showAndWait();
+            showAlert(Alert.AlertType.ERROR, "Gagal menghapus foto: " + e.getMessage());
         }
     }
 
