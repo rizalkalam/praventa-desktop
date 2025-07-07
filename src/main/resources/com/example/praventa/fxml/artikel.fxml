@@ -1,17 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-            prefWidth="800" prefHeight="600">
-
-    <children>
-        <Label layoutX="40.0" layoutY="40.0"
-               text="Artikel kesehatan"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    </children>
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.ArtikelController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-background-radius: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <BorderPane prefHeight="82.0" prefWidth="1121.0">
+               <bottom>
+                  <Line endX="963.6262817382812" startX="-100.0" BorderPane.alignment="CENTER" />
+               </bottom>
+               <center>
+                  <TextField promptText="Search" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="38.0" right="700.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" left="12.0" top="12.0" />
+                     </padding>
+                  </TextField>
+               </center>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </BorderPane>
+            <GridPane fx:id="grid" prefHeight="674.0" prefWidth="671.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1014.0" minWidth="10.0" prefWidth="351.5" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1045.8333206176758" minWidth="10.0" prefWidth="357.5" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1045.8333206176758" minWidth="10.0" prefWidth="355.5" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="495.5" minHeight="10.0" prefHeight="379.8333435058594" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="251.5" minHeight="10.0" prefHeight="240.16665649414062" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox fx:id="artikelCard" xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="385.0" prefWidth="294.0" spacing="12.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="18.0" right="24.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

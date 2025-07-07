@@ -1,4 +1,4 @@
-package com.example.praventa.util;
+package com.example.praventa.utils;
 
 import com.example.praventa.model.User;
 

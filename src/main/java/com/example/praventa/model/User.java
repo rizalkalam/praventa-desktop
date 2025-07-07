@@ -1,8 +1,13 @@
 package com.example.praventa.model;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "user")
 public class User {
     private int id;
     private String username;
+    private String password;
     private String email;
     private String role;
     private String profilePicture;
@@ -20,15 +25,42 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    // Getters
-    public int getId() { return id; }
-    public String getUsername() { return username; }
-    public String getEmail() { return email; }
-    public String getRole() { return role; }
-    public String getProfilePicture() { return profilePicture; }
-    public String getPhoneNumber() { return phoneNumber; }
+    @XmlElement
+    public int getId() {
+        return id;
+    }
 
-    // Setters (agar bisa di-update)
+    @XmlElement
+    public String getUsername() {
+        return username;
+    }
+
+    @XmlElement
+    public String getPassword() {
+        return password;
+    }
+
+    @XmlElement
+    public String getEmail() {
+        return email;
+    }
+
+    @XmlElement
+    public String getRole() {
+        return role;
+    }
+
+    @XmlElement(name = "profile_picture")
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    @XmlElement(name = "phone_number")
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    // Setters
     public void setId(int id) {
         this.id = id;
     }
@@ -37,15 +69,23 @@ public class User {
         this.username = username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

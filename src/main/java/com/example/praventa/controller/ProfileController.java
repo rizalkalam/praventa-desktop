@@ -1,12 +1,11 @@
 package com.example.praventa.controller;
 
 import com.example.praventa.model.User;
-import com.example.praventa.util.Database;
-import com.example.praventa.util.Session;
+import com.example.praventa.utils.Database;
+import com.example.praventa.utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,12 +17,9 @@ import javafx.scene.shape.Circle;
 //import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 
-import javax.print.DocFlavor;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,7 +28,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class ProfileController {
 

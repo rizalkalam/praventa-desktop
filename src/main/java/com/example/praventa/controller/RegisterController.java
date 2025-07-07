@@ -1,6 +1,8 @@
 package com.example.praventa.controller;
 
-import com.example.praventa.util.Database;
+import com.example.praventa.model.User;
+import com.example.praventa.repository.UserRepository;
+import com.example.praventa.utils.Database;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RegisterController {
 
@@ -37,27 +40,30 @@ public class RegisterController {
             return;
         }
 
-        try (Connection conn = Database.getConnection()) {
-            String sql = "INSERT INTO users (username, email, password, phone_number, profile_picture, role) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username);
-            stmt.setString(2, email);
-            stmt.setString(3, password); // Masih plain text (sebaiknya hash di versi produksi)
-            stmt.setString(4, "__"); // Default nomor HP
-            stmt.setString(5, "assets/icn_akun.png"); // Default foto profil
-            stmt.setString(6, "pasien"); // Default role
-
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil! Silakan login.");
-                openQuestionnairePage(event);
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Pendaftaran gagal.");
+        // Cek apakah username sudah dipakai
+        List<User> existingUsers = UserRepository.loadUsers();
+        for (User u : existingUsers) {
+            if (u.getUsername().equalsIgnoreCase(username)) {
+                showAlert(Alert.AlertType.ERROR, "Username sudah digunakan!");
+                return;
             }
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Gagal mendaftar: " + e.getMessage());
-            e.printStackTrace();
         }
+
+        // Buat user baru
+        User newUser = new User();
+        newUser.setId(existingUsers.size() + 1); // Atau pakai UUID
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setEmail(email);
+        newUser.setPhoneNumber("__");
+        newUser.setProfilePicture("assets/icn_akun.png");
+        newUser.setRole("pasien");
+
+        // Simpan ke XML
+        UserRepository.addUser(newUser);
+
+        showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil!");
+        openQuestionnairePage(event);
     }
 
     @FXML

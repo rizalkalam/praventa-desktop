@@ -1,4 +1,4 @@
-package com.example.praventa.util;
+package com.example.praventa.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

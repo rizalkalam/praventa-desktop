@@ -41,18 +41,29 @@ public class AnalisisController {
     public void setChartData(double diabetes, double serviks, double jantung) {
         pieChart.getData().clear();
 
+        double total = diabetes + serviks + jantung;
+        double sisa = 100 - total;
+        if (sisa < 0) sisa = 0;
+
         PieChart.Data data1 = new PieChart.Data("Diabetes", diabetes);
         PieChart.Data data2 = new PieChart.Data("Kanker Serviks", serviks);
         PieChart.Data data3 = new PieChart.Data("Jantung", jantung);
+        PieChart.Data data4 = new PieChart.Data("Tidak Berisiko", sisa); // bagian kosong
 
-        pieChart.getData().addAll(data1, data2, data3);
+        pieChart.getData().addAll(data1, data2, data3, data4);
 
         Platform.runLater(() -> {
-            PieChart.Data[] dataArr = {data1, data2, data3};
+            PieChart.Data[] dataArr = {data1, data2, data3, data4};
 
             for (int i = 0; i < dataArr.length; i++) {
                 PieChart.Data d = dataArr[i];
-                String color = pieColors[i % pieColors.length];
+                String color;
+                if (i < pieColors.length) {
+                    color = pieColors[i];
+                } else {
+                    color = "#E0E0E0"; // abu-abu untuk bagian tidak berisiko
+                }
+
                 d.getNode().setStyle("-fx-pie-color: " + color + ";");
                 d.getNode().setUserData(new PieMeta(d.getName(), color));
             }
@@ -83,11 +94,16 @@ public class AnalisisController {
     private void updateCenterTextFromChart() {
         if (pieChart == null || centerLabel == null) return;
 
-        double total = pieChart.getData().stream()
+        // Hitung total hanya dari slice risiko saja
+        double totalRisiko = pieChart.getData().stream()
+                .filter(data -> {
+                    PieMeta meta = (PieMeta) data.getNode().getUserData();
+                    return meta != null && !meta.name.equalsIgnoreCase("Tidak Berisiko");
+                })
                 .mapToDouble(PieChart.Data::getPieValue)
                 .sum();
 
-        if (total == 0) {
+        if (totalRisiko == 0) {
             centerLabel.setText("0%");
             return;
         }
@@ -98,8 +114,11 @@ public class AnalisisController {
             PieMeta meta = (PieMeta) data.getNode().getUserData();
             if (meta == null) continue;
 
+            // Lewati jika labelnya "Tidak Berisiko" atau label kosong
+            if (meta.name.equalsIgnoreCase("Tidak Berisiko")) continue;
+
             double value = data.getPieValue();
-            double percent = (value / total) * 100;
+            double percent = (value / totalRisiko) * 100;
             data.setName(String.format("%s (%.0f%%)", meta.name, percent));
 
             Region colorBox = new Region();
@@ -117,7 +136,7 @@ public class AnalisisController {
             legendBox.getChildren().add(legendItem);
         }
 
-        centerLabel.setText(String.format("%.0f%%", total));
+        centerLabel.setText(String.format("%.0f%%", totalRisiko));
     }
 
     // Class untuk menyimpan nama dan warna

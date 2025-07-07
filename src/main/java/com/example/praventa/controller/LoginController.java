@@ -1,9 +1,12 @@
 package com.example.praventa.controller;
 
-import com.example.praventa.Main;
 import com.example.praventa.model.User;
-import com.example.praventa.util.Database;
-import com.example.praventa.util.Session;
+import com.example.praventa.model.UserListWrapper;
+import com.example.praventa.repository.UserRepository;
+import com.example.praventa.utils.Database;
+import com.example.praventa.utils.Session;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,30 +74,7 @@ public class LoginController {
     }
 
     private User checkLogin(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection conn = Database.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, username);
-            stmt.setString(2, password); // Belum hashed
-
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // Buat objek user untuk disimpan ke session
-                return new User(
-                        rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("email"),
-                        rs.getString("role"),
-                        rs.getString("profile_picture"),
-                        rs.getString("phone_number")
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return UserRepository.findByUsernameAndPassword(username, password);
     }
 
     @FXML

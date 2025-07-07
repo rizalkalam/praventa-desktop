@@ -1,7 +1,8 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.model.Artikel;
 import com.example.praventa.model.User;
-import com.example.praventa.util.Session;
+import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -209,6 +210,11 @@ public class SidebarController {
                 profileController.setSidebarController(this); // 👈 inject controller ini
             }
 
+            if (fxmlName.equals("artikel.fxml")) {
+                ArtikelController artikelController = loader.getController();
+                artikelController.setSidebarController(this); // 👈 inject SidebarController
+            }
+
             contentTarget.getChildren().setAll(content);
             AnchorPane.setTopAnchor(content, 0.0);
             AnchorPane.setBottomAnchor(content, 0.0);
@@ -216,6 +222,24 @@ public class SidebarController {
             AnchorPane.setRightAnchor(content, 0.0);
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadDetailArtikelPage(Artikel artikel) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_detail.fxml"));
+            AnchorPane detailPage = loader.load();
+
+            ArtikelDetailController controller = loader.getController();
+            controller.setArtikel(artikel);
+
+            contentTarget.getChildren().setAll(detailPage);  // Ganti dari mainContent
+            AnchorPane.setTopAnchor(detailPage, 0.0);
+            AnchorPane.setBottomAnchor(detailPage, 0.0);
+            AnchorPane.setLeftAnchor(detailPage, 0.0);
+            AnchorPane.setRightAnchor(detailPage, 0.0);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -247,8 +271,6 @@ public class SidebarController {
             }
         }
     }
-
-
 
     public AnchorPane getMainContent() {
         return contentTarget;
