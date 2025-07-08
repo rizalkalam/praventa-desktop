@@ -17,4 +17,21 @@
             <gender>Male</gender>
         </personal_data>
     </user>
+    <user>
+        <id>2</id>
+        <username>yuharam</username>
+        <password>yuha123</password>
+        <email>yuharam@gmail.com</email>
+        <role>pasien</role>
+        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1751964761658.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <birth_date>__</birth_date>
+            <body_metrics>
+                <height>0</height>
+                <weight>0</weight>
+            </body_metrics>
+            <gender>__</gender>
+        </personal_data>
+    </user>
 </users>
