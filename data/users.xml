@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <email>rizalkalam@gmail.com</email>
-        <id>0</id>
-        <password>password123</password>
-        <phone_number>085155370577</phone_number>
-        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
-        <role>pasien</role>
+        <id>1</id>
         <username>rizalkalam</username>
-    </user>
-    <user>
-        <email>haqqiganteng@gmail.com</email>
-        <id>2</id>
-        <password>haqqi123</password>
-        <phone_number>__</phone_number>
-        <profile_picture>assets/icn_akun.png</profile_picture>
+        <password>password123</password>
+        <email>rizalkalam@gmail.com</email>
         <role>pasien</role>
-        <username>hakyukyu</username>
-    </user>
-    <user>
-        <email>yuharam@gmail.com</email>
-        <id>3</id>
-        <password>yuha123</password>
-        <phone_number>__</phone_number>
-        <profile_picture>assets/icn_akun.png</profile_picture>
-        <role>pasien</role>
-        <username>yuha</username>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>085155370577</phone_number>
+        <personal_data>
+            <birth_date>1998-07-12</birth_date>
+            <body_metrics>
+                <height>170</height>
+                <weight>70</weight>
+            </body_metrics>
+            <gender>Male</gender>
+        </personal_data>
     </user>
 </users>

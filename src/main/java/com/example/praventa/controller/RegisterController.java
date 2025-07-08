@@ -1,8 +1,8 @@
 package com.example.praventa.controller;
 
-import com.example.praventa.model.User;
+import com.example.praventa.model.users.User;
 import com.example.praventa.repository.UserRepository;
-import com.example.praventa.utils.Database;
+import com.example.praventa.utils.Session;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +18,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
 
 public class RegisterController {
 
@@ -41,16 +37,16 @@ public class RegisterController {
         }
 
         // Buat user baru
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        newUser.setEmail(email);
-        newUser.setPhoneNumber("__");
-        newUser.setProfilePicture("assets/icn_akun.png");
-        newUser.setRole("pasien");
+        User user = new User();
+        user.setUsername(usernameField.getText().trim());
+        user.setEmail(emailField.getText().trim());
+        user.setPassword(passwordField.getText().trim());
+        user.setPhoneNumber("__");
+        user.setProfilePicture("assets/icn_profile_default.jpg");
+        user.setRole("pasien");  // atau "admin" bila perlu
 
-        // Gunakan repository untuk register
-        boolean success = UserRepository.register(newUser);
+        boolean success = UserRepository.register(user);
+        Session.setCurrentUser(user);
         if (success) {
             showAlert(Alert.AlertType.INFORMATION, "Pendaftaran berhasil!");
             openQuestionnairePage(event);
@@ -120,7 +116,7 @@ public class RegisterController {
 
     private void openQuestionnairePage(javafx.event.Event event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/questionnaire.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/personal_data.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

@@ -1,7 +1,7 @@
 package com.example.praventa.controller;
 
 import com.example.praventa.model.Artikel;
-import com.example.praventa.model.User;
+import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

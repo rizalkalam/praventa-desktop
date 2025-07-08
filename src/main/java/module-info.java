@@ -12,4 +12,6 @@ module com.example.praventa {
     exports com.example.praventa;
     exports com.example.praventa.model;
     exports com.example.praventa.controller;
+    exports com.example.praventa.model.users;
+    opens com.example.praventa.model.users to jakarta.xml.bind, javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.praventa.model;
+package com.example.praventa.model.users;
 
 
 import jakarta.xml.bind.annotation.XmlElement;

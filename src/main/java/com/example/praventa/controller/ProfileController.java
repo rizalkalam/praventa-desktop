@@ -1,6 +1,6 @@
 package com.example.praventa.controller;
 
-import com.example.praventa.model.User;
+import com.example.praventa.model.users.User;
 import com.example.praventa.repository.UserRepository;
 import com.example.praventa.utils.Database;
 import com.example.praventa.utils.Session;

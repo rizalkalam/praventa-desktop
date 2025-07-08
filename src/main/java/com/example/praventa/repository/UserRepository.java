@@ -1,7 +1,9 @@
 package com.example.praventa.repository;
 
-import com.example.praventa.model.User;
-import com.example.praventa.model.UserListWrapper;
+import com.example.praventa.model.users.BodyMetrics;
+import com.example.praventa.model.users.PersonalData;
+import com.example.praventa.model.users.User;
+import com.example.praventa.model.users.UserListWrapper;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -54,17 +56,32 @@ public class UserRepository {
     // 💾 Simpan ke XML
     public static void saveUsers(List<User> users) {
         try {
-            JAXBContext context = JAXBContext.newInstance(UserListWrapper.class);
+            JAXBContext context = JAXBContext.newInstance(
+                    UserListWrapper.class,
+                    User.class,
+                    PersonalData.class,
+                    BodyMetrics.class
+            );
+
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             UserListWrapper wrapper = new UserListWrapper();
             wrapper.setUsers(users);
 
-            File file = new File(FILE_PATH);
-            file.getParentFile().mkdirs(); // Buat folder jika belum ada
+            File file = new File(FILE_PATH); // atau path absolut seperti "data/user.xml"
+            File parentDir = file.getParentFile();
+
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs(); // hanya buat folder jika memang ada parent path
+            }
+
             marshaller.marshal(wrapper, file);
+
+            System.out.println("✅ Data berhasil disimpan ke user.xml");
+
         } catch (Exception e) {
+            System.err.println("❌ Gagal menyimpan data ke XML:");
             e.printStackTrace();
         }
     }
@@ -84,6 +101,20 @@ public class UserRepository {
         // Set ID otomatis
         int maxId = users.stream().mapToInt(User::getId).max().orElse(0);
         newUser.setId(maxId + 1);
+
+        // ⬇️ Inisialisasi data personal dengan default "__" (jika belum ada)
+        if (newUser.getPersonalData() == null) {
+            PersonalData pd = new PersonalData();
+            pd.setGender("__");
+            pd.setBirthDate("__");
+
+            BodyMetrics metrics = new BodyMetrics();
+            metrics.setWeight(0);
+            metrics.setHeight(0);
+            pd.setBodyMetrics(metrics);
+
+            newUser.setPersonalData(pd);
+        }
 
         users.add(newUser);
         saveUsers(users);
