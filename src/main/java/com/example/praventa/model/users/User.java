@@ -1,13 +1,14 @@
 package com.example.praventa.model.users;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import java.util.List;
+import java.util.ArrayList;
+
+import jakarta.xml.bind.annotation.*;
 
 @XmlRootElement(name = "user")
-@XmlAccessorType(XmlAccessType.FIELD) // ✅ Solusi utama
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+
     private int id;
     private String username;
     private String password;
@@ -23,8 +24,15 @@ public class User {
     @XmlElement(name = "personal_data")
     private PersonalData personalData;
 
-    public User() {
-    }
+    @XmlElement(name = "lifestyle_data")
+    private LifestyleData lifestyleData;
+
+    @XmlElementWrapper(name = "family_disease_history")
+    @XmlElement(name = "disease")
+    private List<FamilyDiseaseHistory> familyDiseaseHistoryList;
+
+    // Constructors
+    public User() {}
 
     public User(int id, String username, String email, String role, String profilePicture, String phoneNumber) {
         this.id = id;
@@ -35,7 +43,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    // Getter dan Setter (boleh dibiarkan, JAXB akan abaikan)
+    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -59,4 +67,15 @@ public class User {
 
     public PersonalData getPersonalData() { return personalData; }
     public void setPersonalData(PersonalData personalData) { this.personalData = personalData; }
+
+    public LifestyleData getLifestyleData() { return lifestyleData; }
+    public void setLifestyleData(LifestyleData lifestyleData) { this.lifestyleData = lifestyleData; }
+
+    public List<FamilyDiseaseHistory> getFamilyDiseaseHistoryList() {
+        return familyDiseaseHistoryList;
+    }
+
+    public void setFamilyDiseaseHistoryList(List<FamilyDiseaseHistory> familyDiseaseHistoryList) {
+        this.familyDiseaseHistoryList = familyDiseaseHistoryList;
+    }
 }

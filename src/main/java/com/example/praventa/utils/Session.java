@@ -1,5 +1,6 @@
 package com.example.praventa.utils;
 
+import com.example.praventa.controller.SidebarController;
 import com.example.praventa.model.users.User;
 
 public class Session {
@@ -39,4 +40,15 @@ public class Session {
     public static void clear() {
         currentUser = null;
     }
+
+    private static SidebarController sidebarController;
+
+    public static void setSidebarController(SidebarController controller) {
+        sidebarController = controller;
+    }
+
+    public static SidebarController getSidebarController() {
+        return sidebarController;
+    }
+
 }

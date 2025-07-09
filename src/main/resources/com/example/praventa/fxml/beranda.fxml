@@ -22,12 +22,6 @@
         <HBox layoutX="-1.0" layoutY="130.0" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
-                <!-- LEFT SIDEBAR -->
-                <!--            <fx:include fx:id="navContainer" source="sidebar.fxml" />-->
-
-                <VBox fx:id="navContainer" prefHeight="700.0" />
-                <!-- LEFT SIDEBAR -->
-
                 <AnchorPane prefHeight="700.0" prefWidth="677.0" HBox.hgrow="ALWAYS">
                     <children>
                         <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="867.0" layoutY="15.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
@@ -57,7 +51,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Text>
-                                <Button layoutX="33.0" layoutY="182.0" mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Mulai Input" textAlignment="CENTER" textFill="WHITE">
+                                <Button fx:id="startLifestyleButton" onAction="#handleStartLifestyleInput" layoutX="33.0" layoutY="182.0" mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Mulai Input" textAlignment="CENTER" textFill="WHITE">
                            <padding>
                               <Insets bottom="10.0" left="38.0" right="38.0" top="10.0" />
                            </padding>

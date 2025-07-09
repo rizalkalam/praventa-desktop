@@ -16,5 +16,36 @@
             </body_metrics>
             <gender>Male</gender>
         </personal_data>
+        <lifestyle_data>
+            <fastFoodFrequency>12</fastFoodFrequency>
+            <drinkType>air putih</drinkType>
+            <smokingHabit>tidak</smokingHabit>
+            <alcoholHabit>tidak</alcoholHabit>
+            <physicalActivity>aktif</physicalActivity>
+            <sleepHabits>
+                <habit>Sering begadang</habit>
+            </sleepHabits>
+            <stressLevel>2</stressLevel>
+        </lifestyle_data>
+        <family_disease_history>
+            <disease>
+                <relation>Kakek</relation>
+                <diseaseName>Katarak</diseaseName>
+                <diagnosedAge>68</diagnosedAge>
+                <status>Wafat</status>
+            </disease>
+            <disease>
+                <relation>Kakek</relation>
+                <diseaseName>Katarak</diseaseName>
+                <diagnosedAge>68</diagnosedAge>
+                <status>Wafat</status>
+            </disease>
+            <disease>
+                <relation>Nenek</relation>
+                <diseaseName>Diabetes</diseaseName>
+                <diagnosedAge>70</diagnosedAge>
+                <status>Wafat</status>
+            </disease>
+        </family_disease_history>
     </user>
 </users>

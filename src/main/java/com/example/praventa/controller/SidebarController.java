@@ -64,6 +64,10 @@ public class SidebarController {
 
     private AnchorPane contentTarget;
 
+    @FXML public void initialize() {
+        Session.setSidebarController(this);
+    }
+
     public void setMainContent(AnchorPane contentTarget) {
         this.contentTarget = contentTarget;
 
@@ -199,7 +203,7 @@ public class SidebarController {
         }
     }
 
-    private void loadPage(String fxmlName) {
+    public void loadPage(String fxmlName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
             Parent content = loader.load();
