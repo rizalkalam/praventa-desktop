@@ -48,4 +48,29 @@
             </disease>
         </family_disease_history>
     </user>
+    <user>
+        <id>2</id>
+        <username>yuharam</username>
+        <password>yuha123</password>
+        <email>yuharam@gmail.com</email>
+        <role>pasien</role>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <birth_date>2007-07-10</birth_date>
+            <body_metrics>
+                <height>172</height>
+                <weight>55</weight>
+            </body_metrics>
+            <gender>Wanita</gender>
+        </personal_data>
+        <family_disease_history>
+            <disease>
+                <relation>Kakek</relation>
+                <diseaseName>Katarak</diseaseName>
+                <diagnosedAge>60</diagnosedAge>
+                <status>Wafat</status>
+            </disease>
+        </family_disease_history>
+    </user>
 </users>
