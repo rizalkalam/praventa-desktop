@@ -72,22 +72,22 @@
                            <right>
                               <VBox prefHeight="230.0" prefWidth="225.0" spacing="24.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": Kalam Rizal">
+                                    <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text=": Kalam Rizal">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": 20">
+                                    <Text fx:id="ageText" strokeType="OUTSIDE" strokeWidth="0.0" text=": 20">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": Laki-laki">
+                                    <Text fx:id="genderText" strokeType="OUTSIDE" strokeWidth="0.0" text=": Laki-laki">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=": 169cm/56kg">
+                                    <Text fx:id="heightnweightText" strokeType="OUTSIDE" strokeWidth="0.0" text=": 169cm/56kg">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

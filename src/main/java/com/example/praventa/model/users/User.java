@@ -31,6 +31,10 @@ public class User {
     @XmlElement(name = "disease")
     private List<FamilyDiseaseHistory> familyDiseaseHistoryList;
 
+    @XmlElementWrapper(name = "personal_disease_history")
+    @XmlElement(name = "disease")
+    private List<PersonalDisease> personalDiseases;
+
     // Constructors
     public User() {}
 
@@ -77,5 +81,13 @@ public class User {
 
     public void setFamilyDiseaseHistoryList(List<FamilyDiseaseHistory> familyDiseaseHistoryList) {
         this.familyDiseaseHistoryList = familyDiseaseHistoryList;
+    }
+
+    public List<PersonalDisease> getPersonalDiseases() {
+        return personalDiseases;
+    }
+
+    public void setPersonalDiseases(List<PersonalDisease> personalDiseases) {
+        this.personalDiseases = personalDiseases;
     }
 }

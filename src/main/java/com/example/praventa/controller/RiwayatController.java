@@ -1,5 +1,7 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.model.users.User;
+import com.example.praventa.utils.Session;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class RiwayatController {
 
@@ -22,7 +27,30 @@ public class RiwayatController {
     @FXML
     private AnchorPane mainContent;
 
+    @FXML
+    private Text usernameText;
+    @FXML
+    private Text ageText;
+    @FXML
+    private Text genderText;
+    @FXML
+    private Text heightnweightText;
+
     public void initialize() {
+        User currentUser = Session.getCurrentUser();
+        if (currentUser != null) {
+            usernameText.setText(currentUser.getUsername());
+            String birthDateStr = currentUser.getPersonalData().getBirthDate(); // Contoh: "2001-05-20"
+            LocalDate birthDate = LocalDate.parse(birthDateStr); // Konversi String ke LocalDate
+            LocalDate today = LocalDate.now(); // Tanggal hari ini
+
+            int age = Period.between(birthDate, today).getYears();
+            ageText.setText(String.valueOf(age));
+            genderText.setText(currentUser.getPersonalData().getGender());
+            int height = currentUser.getPersonalData().getBodyMetrics().getHeight();
+            int weight = currentUser.getPersonalData().getBodyMetrics().getWeight();
+            heightnweightText.setText(String.valueOf(height)+"cm"+"/"+String.valueOf(weight)+"kg");
+        }
     }
 
     @FXML

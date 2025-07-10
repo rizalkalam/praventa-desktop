@@ -47,6 +47,24 @@
                 <status>Wafat</status>
             </disease>
         </family_disease_history>
+        <personal_disease_history>
+            <disease>
+                <status>Tidak yakin</status>
+                <diagnosedYear>2012</diagnosedYear>
+                <hospitalized>true</hospitalized>
+                <diseaseName>Asam Lambung</diseaseName>
+                <treatmentDetails></treatmentDetails>
+                <underTreatment>false</underTreatment>
+            </disease>
+            <disease>
+                <status>Sudah sembuh</status>
+                <diagnosedYear>2025</diagnosedYear>
+                <hospitalized>true</hospitalized>
+                <diseaseName>Asam Lambung</diseaseName>
+                <treatmentDetails></treatmentDetails>
+                <underTreatment>true</underTreatment>
+            </disease>
+        </personal_disease_history>
     </user>
     <user>
         <id>2</id>
@@ -54,7 +72,7 @@
         <password>yuha123</password>
         <email>yuharam@gmail.com</email>
         <role>pasien</role>
-        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752129350850.jpg</profile_picture>
         <phone_number>__</phone_number>
         <personal_data>
             <birth_date>2007-07-10</birth_date>
@@ -72,6 +90,16 @@
                 <status>Wafat</status>
             </disease>
         </family_disease_history>
+        <personal_disease_history>
+            <disease>
+                <status>Tidak yakin</status>
+                <diagnosedYear>2020</diagnosedYear>
+                <hospitalized>false</hospitalized>
+                <diseaseName>Migrain</diseaseName>
+                <treatmentDetails></treatmentDetails>
+                <underTreatment>false</underTreatment>
+            </disease>
+        </personal_disease_history>
     </user>
     <user>
         <id>3</id>
@@ -96,7 +124,7 @@
         <password>rayhan123</password>
         <email>rayhan@gmail.com</email>
         <role>pasien</role>
-        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752123074093.JPG</profile_picture>
+        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752123159474.gif</profile_picture>
         <phone_number>__</phone_number>
         <personal_data>
             <birth_date>2006-07-10</birth_date>
@@ -106,5 +134,13 @@
             </body_metrics>
             <gender>Pria</gender>
         </personal_data>
+        <family_disease_history>
+            <disease>
+                <relation>Kakek</relation>
+                <diseaseName>Diabetes</diseaseName>
+                <diagnosedAge>66</diagnosedAge>
+                <status>Wafat</status>
+            </disease>
+        </family_disease_history>
     </user>
 </users>

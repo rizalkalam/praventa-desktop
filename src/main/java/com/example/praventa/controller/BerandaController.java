@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,12 +23,20 @@ import java.io.IOException;
 public class BerandaController {
     @FXML
     private Button startLifestyleButton;
+    @FXML
+    private Text usernameText;
 
     private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
 
     @FXML
     public void initialize() {
         checkLifestyleData();
+        User currentUser = Session.getCurrentUser();
+        if (currentUser != null) {
+            usernameText.setText("Hai, " + currentUser.getUsername() + "!");
+        } else {
+            usernameText.setText("Hai, Pengguna!");
+        }
     }
 
     @FXML
