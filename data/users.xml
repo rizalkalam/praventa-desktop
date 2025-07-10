@@ -73,4 +73,38 @@
             </disease>
         </family_disease_history>
     </user>
+    <user>
+        <id>3</id>
+        <username>haqqi</username>
+        <password>haqqi123</password>
+        <email>haqqi@gmail.com</email>
+        <role>pasien</role>
+        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752122575049.JPG</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <birth_date>__</birth_date>
+            <body_metrics>
+                <height>0</height>
+                <weight>0</weight>
+            </body_metrics>
+            <gender>__</gender>
+        </personal_data>
+    </user>
+    <user>
+        <id>4</id>
+        <username>rayhan</username>
+        <password>rayhan123</password>
+        <email>rayhan@gmail.com</email>
+        <role>pasien</role>
+        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752123074093.JPG</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <birth_date>2006-07-10</birth_date>
+            <body_metrics>
+                <height>179</height>
+                <weight>55</weight>
+            </body_metrics>
+            <gender>Pria</gender>
+        </personal_data>
+    </user>
 </users>

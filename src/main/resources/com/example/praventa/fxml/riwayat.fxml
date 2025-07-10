@@ -238,7 +238,7 @@
                         </Label>
                      </left>
                      <right>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
+                        <Button onMouseClicked="#handleAddHistory" mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -355,19 +355,6 @@
                      <VBox.margin>
                         <Insets bottom="8.0" top="16.0" />
                      </VBox.margin>
-                     <right>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
-                           </padding>
-                        </Button>
-                     </right>
                   </BorderPane>
                   <BorderPane prefHeight="66.0" prefWidth="1112.0" style="-fx-background-color: #fff; -fx-background-radius: 14;">
                      <right>

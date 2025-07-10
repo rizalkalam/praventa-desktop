@@ -130,7 +130,7 @@ public class ProfileController {
 
     @FXML
     private void handleSave(ActionEvent event) {
-        User user = Session.getCurrentUser();
+        User sessionUser = Session.getCurrentUser();
 
         String newName = nameField.getText();
         String newEmail = emailField.getText();
@@ -142,12 +142,13 @@ public class ProfileController {
         }
 
         try {
-            // Perbarui data user
-            user.setUsername(newName);
-            user.setEmail(newEmail);
-            user.setPhoneNumber(newPhone);
+            User updatedUser = new User();
+            updatedUser.setId(sessionUser.getId()); // wajib set ID
+            updatedUser.setUsername(newName);
+            updatedUser.setEmail(newEmail);
+            updatedUser.setPhoneNumber(newPhone);
 
-            boolean updated = UserRepository.updateUser(user);
+            boolean updated = UserRepository.updateUser(updatedUser);
             if (updated) {
                 loadUserFromXML();
                 refreshFields();
@@ -178,34 +179,38 @@ public class ProfileController {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             try {
-                User user = Session.getCurrentUser();
+                User sessionUser = Session.getCurrentUser();
 
-                // Direktori penyimpanan
+                // Direktori penyimpanan di folder user
                 String userHome = System.getProperty("user.home");
                 Path assetDir = Paths.get(userHome, "praventa_assets");
                 Files.createDirectories(assetDir);
 
-                // Hapus gambar lama jika ada (selain default)
-                String oldPath = user.getProfilePicture();
+                // Hapus file lama jika ada dan bukan default
+                String oldPath = sessionUser.getProfilePicture();
                 if (oldPath != null && !oldPath.startsWith("assets")) {
                     File oldFile = new File(oldPath);
                     if (oldFile.exists()) oldFile.delete();
                 }
 
-                // Salin file baru
+                // Salin file baru ke direktori penyimpanan
                 String ext = selectedFile.getName().substring(selectedFile.getName().lastIndexOf("."));
                 String newFileName = "profile_" + System.currentTimeMillis() + ext;
                 Path destination = assetDir.resolve(newFileName);
                 Files.copy(selectedFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
 
-                // Simpan path dan update user
-                user.setProfilePicture(destination.toString());
-                boolean updated = UserRepository.updateUser(user);
+                // Buat user baru hanya untuk update foto
+                User updatedUser = new User();
+                updatedUser.setId(sessionUser.getId());
+                updatedUser.setProfilePicture(destination.toString());
 
+                boolean updated = UserRepository.updateUser(updatedUser);
                 if (updated) {
                     loadUserFromXML();
                     loadProfilePicture();
-                    if (sidebarController != null) sidebarController.refreshProfileData();
+                    if (sidebarController != null) {
+                        sidebarController.refreshProfileData();
+                    }
 
                     showAlert(Alert.AlertType.INFORMATION, "Foto profil berhasil diperbarui!");
                     reloadProfileView();
@@ -225,34 +230,33 @@ public class ProfileController {
         String defaultImagePath = "assets/icn_profile_default.jpg";
 
         try {
-            User user = Session.getCurrentUser();
+            User sessionUser = Session.getCurrentUser();
 
-            // Hapus gambar lama dari file sistem (jika bukan default)
-            String oldPath = user.getProfilePicture();
+            // Hapus file lama dari sistem (jika bukan default)
+            String oldPath = sessionUser.getProfilePicture();
             if (oldPath != null && !oldPath.startsWith("assets")) {
                 File oldFile = new File(oldPath);
                 if (oldFile.exists()) oldFile.delete();
             }
 
-            // Update path foto ke default di XML
-            List<User> users = UserRepository.loadUsers();
-            for (User u : users) {
-                if (u.getId() == user.getId()) {
-                    u.setProfilePicture(defaultImagePath);
-                    break;
+            // Buat user baru hanya untuk update path foto
+            User updatedUser = new User();
+            updatedUser.setId(sessionUser.getId());
+            updatedUser.setProfilePicture(defaultImagePath);
+
+            boolean updated = UserRepository.updateUser(updatedUser);
+            if (updated) {
+                loadUserFromXML();
+                loadProfilePicture();
+                if (sidebarController != null) {
+                    sidebarController.refreshProfileData();
                 }
+
+                showAlert(Alert.AlertType.INFORMATION, "Foto profil telah dihapus dan diganti ke default.");
+                reloadProfileView();
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Gagal memperbarui foto profil.");
             }
-
-            UserRepository.saveUsers(users); // simpan ke file XML
-            loadUserFromXML();               // refresh data session
-            loadProfilePicture();           // refresh tampilan
-
-            if (sidebarController != null) {
-                sidebarController.refreshProfileData();
-            }
-
-            showAlert(Alert.AlertType.INFORMATION, "Foto profil telah dihapus dan diganti ke default.");
-            reloadProfileView();
 
         } catch (Exception e) {
             e.printStackTrace();

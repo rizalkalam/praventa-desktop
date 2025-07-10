@@ -52,4 +52,32 @@ public class RiwayatController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleAddHistory(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/personal_disease.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+
+            // Fade in animation (opsional)
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+
+            stage.show();
+
+            // Tutup window sekarang
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

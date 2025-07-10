@@ -4,6 +4,7 @@ import com.example.praventa.model.users.BodyMetrics;
 import com.example.praventa.model.users.PersonalData;
 import com.example.praventa.model.users.User;
 import com.example.praventa.model.users.UserListWrapper;
+import com.example.praventa.utils.XmlUtils;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -123,22 +124,39 @@ public class UserRepository {
 
     // 🔁 Update user yang sedang login
     public static boolean updateUser(User updatedUser) {
-        List<User> users = loadUsers();
-        boolean updated = false;
+        try {
+            File file = new File(FILE_PATH); // lokasi users.xml
+            UserListWrapper wrapper = XmlUtils.loadUsers(file);
+            List<User> users = wrapper.getUsers();
 
-        for (int i = 0; i < users.size(); i++) {
-            User user = users.get(i);
-            if (user.getId() == updatedUser.getId()) {
-                users.set(i, updatedUser);
-                updated = true;
-                break;
+            for (int i = 0; i < users.size(); i++) {
+                User existingUser = users.get(i);
+                if (existingUser.getId() == updatedUser.getId()) {
+
+                    // Hanya update field yang boleh diubah
+                    if (updatedUser.getUsername() != null)
+                        existingUser.setUsername(updatedUser.getUsername());
+
+                    if (updatedUser.getEmail() != null)
+                        existingUser.setEmail(updatedUser.getEmail());
+
+                    if (updatedUser.getPhoneNumber() != null)
+                        existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
+
+                    if (updatedUser.getProfilePicture() != null)
+                        existingUser.setProfilePicture(updatedUser.getProfilePicture());
+
+                    // Simpan kembali
+                    users.set(i, existingUser);
+                    wrapper.setUsers(users);
+                    XmlUtils.saveUsers(wrapper, file);
+                    return true;
+                }
             }
-        }
 
-        if (updated) {
-            saveUsers(users);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        return updated;
+        return false;
     }
 }
