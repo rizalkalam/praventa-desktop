@@ -40,6 +40,17 @@ public class User {
     @XmlElement(name = "result")
     private List<QuestionnaireResult> questionnaireResults = new ArrayList<>();
 
+    @XmlElement(name = "recommendation")
+    private String recommendation;
+
+    public String getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
+    }
+
     // Constructors
     public User() {}
 

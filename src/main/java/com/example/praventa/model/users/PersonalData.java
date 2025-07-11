@@ -7,7 +7,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 public class PersonalData {
 
     private String gender = "__";
-    private String birthDate = "__";
+    private String age = "__";
     private BodyMetrics bodyMetrics = new BodyMetrics();
 
     public PersonalData() {}
@@ -21,13 +21,13 @@ public class PersonalData {
         this.gender = gender;
     }
 
-    @XmlElement(name = "birth_date")
-    public String getBirthDate() {
-        return birthDate;
+    @XmlElement(name = "age")
+    public String getAge() {
+        return age;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     @XmlElement(name = "body_metrics")

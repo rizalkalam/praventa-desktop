@@ -3,24 +3,25 @@ package com.example.praventa.controller;
 import com.example.praventa.model.users.LifestyleData;
 import com.example.praventa.model.users.User;
 import com.example.praventa.model.users.UserListWrapper;
+import com.example.praventa.repository.UserRepository;
+import com.example.praventa.service.GeminiService;
 import com.example.praventa.utils.Session;
 import com.example.praventa.utils.XmlUtils;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +84,7 @@ public class LifestyleDataController {
         if (currentStep >= 7) {
             saveToUserXml();
             navigateToDashboard(event);
+            sendToGemini();
         } else {
             showStep();
         }
@@ -207,5 +209,62 @@ public class LifestyleDataController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendToGemini() {
+        User currentUser = Session.getCurrentUser();
+        if (currentUser == null) return;
+
+        StringBuilder prompt = new StringBuilder();
+        prompt.append("Saya memiliki data berikut dari pasien:\n");
+        prompt.append("Umur: ").append(currentUser.getPersonalData().getAge()).append("\n");
+        prompt.append("Jenis Kelamin: ").append(currentUser.getPersonalData().getGender()).append("\n");
+        prompt.append("Tinggi badan: ").append(currentUser.getPersonalData().getBodyMetrics().getHeight()).append(" cm\n");
+        prompt.append("Berat badan: ").append(currentUser.getPersonalData().getBodyMetrics().getWeight()).append(" kg\n\n");
+
+        LifestyleData l = currentUser.getLifestyleData();
+        prompt.append("Frekuensi makan fast food per minggu: ").append(l.getFastFoodFrequency()).append("\n");
+        prompt.append("Jenis minuman yang dikonsumsi: ").append(l.getDrinkType()).append("\n");
+        prompt.append("Kebiasaan merokok: ").append(l.getSmokingHabit()).append("\n");
+        prompt.append("Kebiasaan alkohol: ").append(l.getAlcoholHabit()).append("\n");
+        prompt.append("Aktivitas fisik: ").append(l.getPhysicalActivity()).append("\n");
+        prompt.append("Kebiasaan tidur: ").append(String.join(", ", l.getSleepHabits())).append("\n");
+        prompt.append("Tingkat stres: ").append(l.getStressLevel()).append(" dari 10\n\n");
+
+        prompt.append("Berdasarkan data tersebut, berikan saya rekomendasi gaya hidup sehat.\n");
+        prompt.append("Format output HARUS terdiri dari tiga bagian terpisah:\n");
+        prompt.append("1. Rekomendasi Makan (maksimal 2 poin singkat)\n");
+        prompt.append("2. Rekomendasi Tidur (maksimal 2 poin singkat)\n");
+        prompt.append("3. Rekomendasi Aktivitas (maksimal 2 poin singkat)\n");
+        prompt.append("Tuliskan dalam format:\n");
+        prompt.append("Rekomendasi Makan:\n- ...\n- ...\n");
+        prompt.append("Rekomendasi Tidur:\n- ...\n- ...\n");
+        prompt.append("Rekomendasi Aktivitas:\n- ...\n- ...\n");
+
+        // Hanya satu thread
+        new Thread(() -> {
+            try {
+                String rekomendasi = GeminiService.generateRecommendation(prompt.toString());
+
+                System.out.println("[Rekomendasi Gemini]\n" + rekomendasi);
+
+                // Simpan ke user & XML
+                currentUser.setRecommendation(rekomendasi);
+                UserRepository.saveToXml(currentUser);
+
+                // Tampilkan di UI
+                javafx.application.Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Rekomendasi Gaya Hidup");
+                    alert.setHeaderText("Hasil dari Gemini AI");
+                    alert.setContentText(rekomendasi);
+                    alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                    alert.show();
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

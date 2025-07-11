@@ -9,20 +9,13 @@ import com.example.praventa.utils.Session;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -185,7 +178,7 @@ public class PersonalDataController {
             // Buat objek PersonalData
             PersonalData personalData = new PersonalData();
             personalData.setGender(gender);
-            personalData.setBirthDate(LocalDate.now().minusYears(age).toString());
+            personalData.setAge(Integer.toString(age));
 
             BodyMetrics bodyMetrics = new BodyMetrics();
             bodyMetrics.setWeight(weight);

@@ -4,9 +4,11 @@ import com.example.praventa.model.questionnaire.QuestionAnswer;
 import com.example.praventa.model.questionnaire.QuestionnaireResult;
 import com.example.praventa.model.users.User;
 import com.example.praventa.repository.UserRepository;
+import com.example.praventa.utils.SceneUtil;
 import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputKuisionerController {
+    @FXML private AnchorPane rootPane;
     @FXML private Text titleText;
     @FXML private Text descriptionText;
     @FXML private Text descriptionText1;
@@ -197,6 +200,7 @@ public class InputKuisionerController {
 
             System.out.println("[DEBUG] Kuisioner disimpan untuk user: " + currentUser.getUsername());
             showAlert("Kuisioner berhasil disimpan.");
+            SceneUtil.switchToMainPage(rootPane);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -28,22 +28,29 @@ public class UserListWrapper {
             User existingUser = users.get(i);
             if (updatedUser.getUsername().equals(existingUser.getUsername())) {
 
-                // Gabungkan hanya bagian family disease history
-                List<FamilyDiseaseHistory> existingList = existingUser.getFamilyDiseaseHistoryList();
+                // ✅ Update hanya data yang baru
+                if (updatedUser.getLifestyleData() != null)
+                    existingUser.setLifestyleData(updatedUser.getLifestyleData());
+
+                if (updatedUser.getRecommendation() != null)
+                    existingUser.setRecommendation(updatedUser.getRecommendation());
+
+                // 🔁 Gabungkan family disease history
                 List<FamilyDiseaseHistory> newList = updatedUser.getFamilyDiseaseHistoryList();
+                if (newList != null) {
+                    List<FamilyDiseaseHistory> existingList = existingUser.getFamilyDiseaseHistoryList();
+                    if (existingList == null) existingList = new ArrayList<>();
+                    existingList.addAll(newList);
+                    existingUser.setFamilyDiseaseHistoryList(existingList);
+                }
 
-                if (existingList == null) existingList = new ArrayList<>();
-                if (newList != null) existingList.addAll(newList);
-
-                existingUser.setFamilyDiseaseHistoryList(existingList);
-
-                // Tidak timpa field lainnya, hanya perbarui bagian ini
+                // ⛔ Jangan ganti dengan updatedUser secara keseluruhan!
                 users.set(i, existingUser);
                 return;
             }
         }
 
-        // Jika user belum ada, tambahkan langsung
+        // Jika user belum ada, tambahkan
         users.add(updatedUser);
     }
 
