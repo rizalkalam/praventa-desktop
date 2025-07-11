@@ -23,7 +23,7 @@ public class OpenAIService {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ENDPOINT))
-                    .header("Authorization", "Bearer " + API_KEY)
+//                    .header("Authorization", "Bearer " + API_KEY)
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();
