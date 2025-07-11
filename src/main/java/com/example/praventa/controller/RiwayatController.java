@@ -40,12 +40,7 @@ public class RiwayatController {
         User currentUser = Session.getCurrentUser();
         if (currentUser != null) {
             usernameText.setText(currentUser.getUsername());
-            String birthDateStr = currentUser.getPersonalData().getAge(); // Contoh: "2001-05-20"
-            LocalDate birthDate = LocalDate.parse(birthDateStr); // Konversi String ke LocalDate
-            LocalDate today = LocalDate.now(); // Tanggal hari ini
-
-            int age = Period.between(birthDate, today).getYears();
-            ageText.setText(String.valueOf(age));
+            ageText.setText(String.valueOf(currentUser.getPersonalData().getAge()));
             genderText.setText(currentUser.getPersonalData().getGender());
             int height = currentUser.getPersonalData().getBodyMetrics().getHeight();
             int weight = currentUser.getPersonalData().getBodyMetrics().getWeight();

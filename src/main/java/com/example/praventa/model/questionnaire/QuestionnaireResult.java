@@ -34,4 +34,5 @@ public class QuestionnaireResult {
     public void setQuestionAnswers(List<QuestionAnswer> questionAnswers) {
         this.questionAnswers = questionAnswers;
     }
+
 }

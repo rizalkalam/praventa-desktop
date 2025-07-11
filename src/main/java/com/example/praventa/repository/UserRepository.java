@@ -1,5 +1,7 @@
 package com.example.praventa.repository;
 
+import com.example.praventa.model.questionnaire.RiskAnalysis;
+import com.example.praventa.model.questionnaire.RiskData;
 import com.example.praventa.model.questionnaire.QuestionAnswer;
 import com.example.praventa.model.questionnaire.QuestionnaireResult;
 import com.example.praventa.model.users.*;
@@ -27,7 +29,9 @@ public class UserRepository {
                 QuestionAnswer.class,
                 LifestyleData.class,
                 PersonalDisease.class,
-                FamilyDiseaseHistory.class
+                FamilyDiseaseHistory.class,
+                RiskAnalysis.class,
+                RiskData.class
         );
     }
 

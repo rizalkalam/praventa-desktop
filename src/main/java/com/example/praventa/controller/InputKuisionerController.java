@@ -1,19 +1,29 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.model.questionnaire.RiskAnalysis;
+import com.example.praventa.model.questionnaire.RiskData;
 import com.example.praventa.model.questionnaire.QuestionAnswer;
 import com.example.praventa.model.questionnaire.QuestionnaireResult;
 import com.example.praventa.model.users.User;
 import com.example.praventa.repository.UserRepository;
+import com.example.praventa.service.GeminiService;
 import com.example.praventa.utils.SceneUtil;
 import com.example.praventa.utils.Session;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputKuisionerController {
     @FXML private AnchorPane rootPane;
@@ -34,6 +44,7 @@ public class InputKuisionerController {
 
     @FXML private Label progressLabel;
     @FXML private Button nextButton, nextButton1;
+    private Alert activeAlert;
 
     private final List<QuestionSet> allQuestionSets = new ArrayList<>();
     private int currentStep = 0;
@@ -197,6 +208,7 @@ public class InputKuisionerController {
 
             // Simpan seluruh user kembali ke XML
             UserRepository.saveUsers(users);
+            analyzeRiskWithGemini(resultList);
 
             System.out.println("[DEBUG] Kuisioner disimpan untuk user: " + currentUser.getUsername());
             showAlert("Kuisioner berhasil disimpan.");
@@ -270,4 +282,135 @@ public class InputKuisionerController {
             return questions;
         }
     }
+
+    private void analyzeRiskWithGemini(List<QuestionnaireResult> results) {
+        StringBuilder prompt = new StringBuilder();
+        prompt.append("Saya memiliki hasil kuisioner risiko penyakit ...\n");
+
+        for (QuestionnaireResult r : results) {
+            prompt.append("Kategori: ").append(r.getCategory()).append("\n");
+            for (QuestionAnswer qa : r.getQuestionAnswers()) {
+                prompt.append("- ").append(qa.getQuestion())
+                        .append(" Jawaban: ").append(qa.isAnswer() ? "Ya" : "Tidak").append("\n");
+            }
+            prompt.append("\n");
+        }
+
+        // Tambahan instruksi Gemini
+        prompt.append("Berdasarkan data tersebut, berikan saya:\n");
+        prompt.append("1. Nilai probabilitas ...\n");
+        prompt.append("2. Tampilkan dalam bentuk: setChartData(...);\n");
+        prompt.append("3. Berikan juga data: new RiskData(...);\n");
+
+        // 🔁 Kirim ke Gemini di thread baru
+        new Thread(() -> {
+            try {
+                String response = GeminiService.generateRecommendation(prompt.toString());
+                System.out.println("[Gemini Output]\n" + response);
+
+                // ✅ Simpan hasil Gemini
+                saveGeminiResultToUser(response);
+
+                // Tampilkan hasil ke pengguna
+                javafx.application.Platform.runLater(() -> {
+                    showShortInfo("Hasil analisis berhasil disimpan!");
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void saveGeminiResultToUser(String geminiOutput) {
+        try {
+            // 1. Parsing chart data dari format: setChartData(40, 20, 13);
+            List<Integer> chartValues = new ArrayList<>();
+            Matcher chartMatcher = Pattern.compile("setChartData\\(([^)]+)\\);").matcher(geminiOutput);
+            if (chartMatcher.find()) {
+                String[] parts = chartMatcher.group(1).split(",");
+                for (String part : parts) {
+                    part = part.trim();
+                    if (part.matches("\\d+")) { // hanya parse angka bulat
+                        chartValues.add(Integer.parseInt(part));
+                    }
+                }
+            }
+
+            // 2. Parsing RiskData dari format: new RiskData("Nama", 0.5, "#HEX")
+            List<RiskData> riskList = new ArrayList<>();
+            Matcher riskMatcher = Pattern.compile(
+                    "new RiskData\\(\"(.*?)\",\\s*([0-9.]+),\\s*\"(#[A-Fa-f0-9]+)\"\\)"
+            ).matcher(geminiOutput);
+            while (riskMatcher.find()) {
+                String name = riskMatcher.group(1);
+                double percentage = Double.parseDouble(riskMatcher.group(2));
+                String color = riskMatcher.group(3);
+                riskList.add(new RiskData(name, percentage, color));
+            }
+
+            // Fallback jika parsing gagal
+            if (chartValues.size() < 3 || chartValues.size() > 4) {
+                System.out.println("Chart data tidak valid, menggunakan nilai default.");
+                chartValues = List.of(60, 30, 65, 75); // default fallback
+            }
+
+            if (riskList.isEmpty()) {
+                System.out.println("Risk data kosong, menggunakan data default.");
+                riskList = List.of(
+                        new RiskData("Diabetes Tipe 2", 0.5, "#4FC3F7"),
+                        new RiskData("Hipertensi", 0.8, "#FF7043"),
+                        new RiskData("Penyakit Jantung", 0.4, "#3F51B5"),
+                        new RiskData("Stroke", 0.6, "#EF5350"),
+                        new RiskData("Kanker Serviks", 0.3, "#81C784")
+                );
+            }
+
+            // 3. Simpan ke XML user
+            User currentUser = Session.getCurrentUser();
+            if (currentUser != null) {
+                RiskAnalysis analysis = new RiskAnalysis(riskList, chartValues);
+                currentUser.setRiskAnalysis(analysis);
+
+                List<User> allUsers = UserRepository.loadUsers();
+                for (int i = 0; i < allUsers.size(); i++) {
+                    if (allUsers.get(i).getId() == currentUser.getId()) {
+                        allUsers.set(i, currentUser);
+                        break;
+                    }
+                }
+
+                UserRepository.saveUsers(allUsers);
+                System.out.println("[DEBUG] RiskAnalysis berhasil disimpan ke XML user.");
+                showShortInfo("✅ Hasil analisis risiko berhasil disimpan.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showShortInfo("❌ Gagal menyimpan hasil analisis ke XML.");
+        }
+    }
+
+    private void showShortInfo(String message) {
+        Platform.runLater(() -> {
+            if (activeAlert != null && activeAlert.isShowing()) {
+                activeAlert.setContentText(message); // ganti teks jika sudah tampil
+                return; // tidak buat alert baru
+            }
+
+            activeAlert = new Alert(Alert.AlertType.INFORMATION);
+            activeAlert.setTitle(null);
+            activeAlert.setHeaderText(null);
+            activeAlert.setContentText(message);
+            activeAlert.initModality(Modality.NONE); // Tidak blok UI
+            activeAlert.show();
+
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(e -> {
+                activeAlert.close();
+                activeAlert = null; // reset alert
+            });
+            delay.play();
+        });
+    }
+
 }

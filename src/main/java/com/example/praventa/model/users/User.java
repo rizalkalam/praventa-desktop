@@ -3,6 +3,7 @@ package com.example.praventa.model.users;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.praventa.model.questionnaire.RiskAnalysis;
 import com.example.praventa.model.questionnaire.QuestionnaireResult;
 import jakarta.xml.bind.annotation.*;
 
@@ -42,6 +43,9 @@ public class User {
 
     @XmlElement(name = "recommendation")
     private String recommendation;
+
+    @XmlElement(name = "risk_analysis")
+    private RiskAnalysis riskAnalysis;
 
     public String getRecommendation() {
         return recommendation;
@@ -113,5 +117,14 @@ public class User {
 
     public void addQuestionnaireResult(QuestionnaireResult result) {
         this.questionnaireResults.add(result);
+    }
+
+    // Getter & Setter
+    public RiskAnalysis getRiskAnalysis() {
+        return riskAnalysis;
+    }
+
+    public void setRiskAnalysis(RiskAnalysis riskAnalysis) {
+        this.riskAnalysis = riskAnalysis;
     }
 }
