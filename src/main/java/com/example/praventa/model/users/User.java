@@ -3,6 +3,7 @@ package com.example.praventa.model.users;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.praventa.model.questionnaire.QuestionnaireResult;
 import jakarta.xml.bind.annotation.*;
 
 @XmlRootElement(name = "user")
@@ -34,6 +35,10 @@ public class User {
     @XmlElementWrapper(name = "personal_disease_history")
     @XmlElement(name = "disease")
     private List<PersonalDisease> personalDiseases;
+
+    @XmlElementWrapper(name = "questionnaire_results")
+    @XmlElement(name = "result")
+    private List<QuestionnaireResult> questionnaireResults = new ArrayList<>();
 
     // Constructors
     public User() {}
@@ -89,5 +94,13 @@ public class User {
 
     public void setPersonalDiseases(List<PersonalDisease> personalDiseases) {
         this.personalDiseases = personalDiseases;
+    }
+
+    public List<QuestionnaireResult> getQuestionnaireResults() {
+        return questionnaireResults;
+    }
+
+    public void addQuestionnaireResult(QuestionnaireResult result) {
+        this.questionnaireResults.add(result);
     }
 }

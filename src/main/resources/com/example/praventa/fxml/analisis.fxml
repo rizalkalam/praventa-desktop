@@ -124,7 +124,7 @@
                               <Insets bottom="28.0" top="12.0" />
                            </HBox.margin>
                         </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <BorderPane onMouseClicked="#handleQestionnaire" prefHeight="200.0" prefWidth="200.0">
                            <center>
                               <Label alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 18;" text="Diisi" textFill="#d1d1ff" BorderPane.alignment="CENTER">
                                  <font>

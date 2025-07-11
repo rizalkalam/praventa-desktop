@@ -65,6 +65,127 @@
                 <underTreatment>true</underTreatment>
             </disease>
         </personal_disease_history>
+        <questionnaire_results>
+            <result>
+                <category>Diabetes</category>
+                <question>
+                    <text>Sering merasa haus sepanjang hari?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering merasa lapar?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering buang air kecil malam hari?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Berat badan berlebih?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Riwayat penyakit keluarga diabetes?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Hipertensi</category>
+                <question>
+                    <text>Sering merasa pusing sakit kepala mendadak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering merasa tegang mudah marah?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering makan makanan manis?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jantung berdetak cepat tanpa sebab?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Penyakit Jantung</category>
+                <question>
+                    <text>Nyeri dada saat beraktivitas?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Cepat lelah saat naik tangga/jalan jauh?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jantung berdebar/tidak teratur?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering makan gorengan dan makanan berlemak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Stroke</category>
+                <question>
+                    <text>Tiba-tiba lemas di satu sisi tubuh?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Kesulitan bicara mendadak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Merokok setiap hari?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Stres berat berkepanjangan?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Riwayat keluarga pernah stroke?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Kanker Serviks</category>
+                <question>
+                    <text>Belum pernah melakukan Pap smear?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Keputihan berbau/disertai darah?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Pendarahan setelah berhubungan?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Aktif seksual sejak usia muda?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Pasangan seksual lebih dari satu?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+        </questionnaire_results>
     </user>
     <user>
         <id>2</id>
@@ -100,6 +221,127 @@
                 <underTreatment>false</underTreatment>
             </disease>
         </personal_disease_history>
+        <questionnaire_results>
+            <result>
+                <category>Diabetes</category>
+                <question>
+                    <text>Sering merasa haus sepanjang hari?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering merasa lapar?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering buang air kecil malam hari?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Berat badan berlebih?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Riwayat penyakit keluarga diabetes?</text>
+                    <answer>true</answer>
+                </question>
+            </result>
+            <result>
+                <category>Hipertensi</category>
+                <question>
+                    <text>Sering merasa pusing sakit kepala mendadak?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering merasa tegang mudah marah?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering makan makanan manis?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jantung berdetak cepat tanpa sebab?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Penyakit Jantung</category>
+                <question>
+                    <text>Nyeri dada saat beraktivitas?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Cepat lelah saat naik tangga/jalan jauh?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Jantung berdebar/tidak teratur?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering makan gorengan dan makanan berlemak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Stroke</category>
+                <question>
+                    <text>Tiba-tiba lemas di satu sisi tubuh?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Kesulitan bicara mendadak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Merokok setiap hari?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Stres berat berkepanjangan?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Riwayat keluarga pernah stroke?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Kanker Serviks</category>
+                <question>
+                    <text>Belum pernah melakukan Pap smear?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Keputihan berbau/disertai darah?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Pendarahan setelah berhubungan?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Aktif seksual sejak usia muda?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Pasangan seksual lebih dari satu?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+        </questionnaire_results>
     </user>
     <user>
         <id>3</id>
@@ -117,6 +359,7 @@
             </body_metrics>
             <gender>__</gender>
         </personal_data>
+        <questionnaire_results/>
     </user>
     <user>
         <id>4</id>
@@ -142,5 +385,6 @@
                 <status>Wafat</status>
             </disease>
         </family_disease_history>
+        <questionnaire_results/>
     </user>
 </users>

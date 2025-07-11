@@ -1,9 +1,8 @@
 package com.example.praventa.repository;
 
-import com.example.praventa.model.users.BodyMetrics;
-import com.example.praventa.model.users.PersonalData;
-import com.example.praventa.model.users.User;
-import com.example.praventa.model.users.UserListWrapper;
+import com.example.praventa.model.questionnaire.QuestionAnswer;
+import com.example.praventa.model.questionnaire.QuestionnaireResult;
+import com.example.praventa.model.users.*;
 import com.example.praventa.utils.XmlUtils;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
@@ -16,13 +15,22 @@ import java.util.List;
 public class UserRepository {
     private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
 
-    // 🔍 Login
     public static User findByUsernameAndPassword(String username, String password) {
         try {
             File file = new File(FILE_PATH);
             if (!file.exists()) return null;
 
-            JAXBContext context = JAXBContext.newInstance(UserListWrapper.class);
+            JAXBContext context = JAXBContext.newInstance(
+                    UserListWrapper.class,
+                    User.class,
+                    QuestionnaireResult.class,
+                    QuestionAnswer.class,
+                    PersonalData.class,
+                    LifestyleData.class,
+                    PersonalDisease.class,
+                    FamilyDiseaseHistory.class
+            );
+
             Unmarshaller unmarshaller = context.createUnmarshaller();
             UserListWrapper wrapper = (UserListWrapper) unmarshaller.unmarshal(file);
 
@@ -159,4 +167,19 @@ public class UserRepository {
         }
         return false;
     }
+
+    public static void saveToXml(User updatedUser) {
+        try {
+            File file = new File("D:/Kuliah/Project/praventa/data/users.xml");
+            UserListWrapper wrapper = XmlUtils.loadUsers(file);
+
+            if (updatedUser != null) {
+                wrapper.replaceUser(updatedUser);
+                XmlUtils.saveUsers(wrapper, file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
