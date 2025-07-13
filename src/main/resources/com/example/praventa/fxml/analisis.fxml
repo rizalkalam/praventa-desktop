@@ -211,7 +211,7 @@
             </HBox>
             <AnchorPane>
                <children>
-                  <ImageView fitHeight="54.0" fitWidth="235.0" layoutX="581.0" layoutY="1.0">
+                  <ImageView onMouseClicked="#handleExport" fitHeight="54.0" fitWidth="235.0" layoutX="581.0" layoutY="1.0">
                      <image>
                         <Image url="@../assets/btn_export.png" />
                      </image>
