@@ -1,5 +1,12 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.model.questionnaire.RiskAnalysis;
+import com.example.praventa.model.questionnaire.RiskData;
+import com.example.praventa.model.users.User;
+import com.example.praventa.model.users.UserListWrapper;
+import com.example.praventa.utils.Session;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -19,14 +26,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AnalisisController {
@@ -37,76 +45,128 @@ public class AnalisisController {
     @FXML private StackPane donutContainer;
     @FXML private VBox riskBox;
 
-    private final String[] pieColors = {"#00E0DC", "#6A67CE", "#FFB347"}; // custom color set
+    private User loadedUser;
 
     @FXML
     public void initialize() {
         makeDonut();
-        setChartData(40, 20, 13); // contoh data
-        pieChart.getData().addListener((ListChangeListener<PieChart.Data>) change -> updateCenterTextFromChart());
-        showDiseaseRiskBars();
-    }
 
-    @FXML
-    private void handleQestionnaire(MouseEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/input_Kuisioner.fxml"));
-            Parent root = loader.load();
+            File file = new File("D:\\Kuliah\\Project\\praventa\\data\\users.xml");
+            UserListWrapper wrapper = XmlUtils.loadFromXml(file, UserListWrapper.class);
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Input Gaya Hidup - Praventa");
-            stage.setScene(scene);
-            stage.setMaximized(true);
+            User currentUser = Session.getCurrentUser();
+            if (currentUser != null) {
+                loadedUser = wrapper.getUserByUsername(currentUser.getUsername());
 
-            // Fade in animation (opsional)
-            FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
-            fadeIn.setFromValue(0.0);
-            fadeIn.setToValue(1.0);
-            fadeIn.play();
+                if (loadedUser != null && loadedUser.getRiskAnalysis() != null) {
+                    RiskAnalysis analysis = loadedUser.getRiskAnalysis();
 
-            stage.show();
-
-            // Tutup window sekarang
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
+                    List<RiskData> risks = analysis.getRisks();
+                    if (risks != null && !risks.isEmpty()) {
+                        setChartDataFromRisks(risks);
+                        showDiseaseRiskBars();
+                    } else {
+                        showFallbackDiseaseBars();
+                    }
+                } else {
+                    showFallbackDiseaseBars();
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+            showFallbackDiseaseBars();
         }
+
+        pieChart.getData().addListener((ListChangeListener<PieChart.Data>) change -> updateCenterTextFromChart());
     }
 
-    public void setChartData(double diabetes, double serviks, double jantung) {
+    public void setChartDataFromRisks(List<RiskData> risks) {
         pieChart.getData().clear();
 
-        double total = diabetes + serviks + jantung;
-        double sisa = 100 - total;
-        if (sisa < 0) sisa = 0;
+        // Buat salinan list agar bisa disort
+        List<RiskData> sortedRisks = new ArrayList<>(risks);
 
-        PieChart.Data data1 = new PieChart.Data("Diabetes", diabetes);
-        PieChart.Data data2 = new PieChart.Data("Kanker Serviks", serviks);
-        PieChart.Data data3 = new PieChart.Data("Jantung", jantung);
-        PieChart.Data data4 = new PieChart.Data("Tidak Berisiko", sisa); // bagian kosong
+        // Urutkan berdasarkan persentase menurun
+        sortedRisks.sort((a, b) -> Double.compare(b.getPercentage(), a.getPercentage()));
 
-        pieChart.getData().addAll(data1, data2, data3, data4);
+        // Ambil hanya 3 risiko tertinggi
+        List<RiskData> top3Risks = sortedRisks.subList(0, Math.min(3, sortedRisks.size()));
+
+        List<PieChart.Data> pieDataList = new ArrayList<>();
+
+        for (RiskData risk : top3Risks) {
+            double percentValue = risk.getPercentage() * 100;
+            PieChart.Data data = new PieChart.Data(
+                    risk.getName(),
+                    percentValue
+            );
+            pieDataList.add(data);
+        }
+
+        pieChart.getData().addAll(pieDataList);
 
         Platform.runLater(() -> {
-            PieChart.Data[] dataArr = {data1, data2, data3, data4};
+            for (int i = 0; i < pieDataList.size(); i++) {
+                PieChart.Data data = pieDataList.get(i);
+                String color = top3Risks.get(i).getColor();
 
-            for (int i = 0; i < dataArr.length; i++) {
-                PieChart.Data d = dataArr[i];
-                String color;
-                if (i < pieColors.length) {
-                    color = pieColors[i];
-                } else {
-                    color = "#E0E0E0"; // abu-abu untuk bagian tidak berisiko
-                }
-
-                d.getNode().setStyle("-fx-pie-color: " + color + ";");
-                d.getNode().setUserData(new PieMeta(d.getName(), color));
+                data.getNode().setStyle("-fx-pie-color: " + color + ";");
+                data.getNode().setUserData(new PieMeta(data.getName(), color));
             }
 
             updateCenterTextFromChart();
         });
+    }
+
+    public void showDiseaseRiskBars() {
+        riskBox.getChildren().clear();
+        double barWidth = 179;
+
+        if (loadedUser == null || loadedUser.getRiskAnalysis() == null) return;
+
+        List<RiskData> risks = loadedUser.getRiskAnalysis().getRisks();
+
+        for (RiskData risk : risks) {
+            Label label = new Label(risk.getName());
+            label.setStyle("-fx-font-size: 14px; -fx-text-fill: #000000;");
+
+            StackPane barBackground = new StackPane();
+            barBackground.setStyle("-fx-background-color: #D3D3D3; -fx-background-radius: 10;");
+            barBackground.setPrefSize(barWidth, 14);
+
+            Region fillBar = new Region();
+            fillBar.setStyle("-fx-background-color: " + risk.getColor() + "; -fx-background-radius: 10;");
+            fillBar.setPrefWidth(barWidth * risk.getPercentage());
+            fillBar.setPrefHeight(14);
+
+            Region marker = new Region();
+            marker.setPrefSize(6, 14);
+            marker.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 3;");
+            marker.setTranslateX((barWidth * risk.getPercentage()) - 3);
+
+            barBackground.getChildren().addAll(fillBar, marker);
+
+            VBox wrapper = new VBox(6, label, barBackground);
+            wrapper.setPadding(new Insets(5, 0, 5, 0));
+            wrapper.setAlignment(Pos.CENTER_LEFT);
+
+            riskBox.getChildren().add(wrapper);
+        }
+    }
+
+    public void showFallbackDiseaseBars() {
+        List<RiskData> fallbackRisks = List.of(
+                new RiskData("Diabetes Tipe 2", 0.5, "#4FC3F7"),
+                new RiskData("Hipertensi", 0.8, "#FF7043"),
+                new RiskData("Penyakit Jantung", 0.4, "#3F51B5"),
+                new RiskData("Stroke", 0.6, "#EF5350"),
+                new RiskData("Kanker Serviks", 0.3, "#81C784")
+        );
+        loadedUser = new User();
+        loadedUser.setRiskAnalysis(new RiskAnalysis(fallbackRisks, new ArrayList<>()));
+        setChartDataFromRisks(fallbackRisks);
+        showDiseaseRiskBars();
     }
 
     private void makeDonut() {
@@ -115,8 +175,6 @@ public class AnalisisController {
 
         Circle innerCircle = new Circle();
         innerCircle.setFill(Color.WHITE);
-
-        // Perbesar ukuran lingkaran dalam
         innerCircle.radiusProperty().bind(
                 Bindings.min(donutContainer.widthProperty(), donutContainer.heightProperty()).divide(3.2)
         );
@@ -131,36 +189,25 @@ public class AnalisisController {
     private void updateCenterTextFromChart() {
         if (pieChart == null || centerLabel == null) return;
 
-        // Hitung total hanya dari slice risiko saja
-        double totalRisiko = pieChart.getData().stream()
-                .filter(data -> {
-                    PieMeta meta = (PieMeta) data.getNode().getUserData();
-                    return meta != null && !meta.name.equalsIgnoreCase("Tidak Berisiko");
-                })
+        double totalRisiko = 100.0;
+        double totalTop3 = pieChart.getData().stream()
                 .mapToDouble(PieChart.Data::getPieValue)
                 .sum();
-
-        if (totalRisiko == 0) {
-            centerLabel.setText("0%");
-            return;
-        }
 
         legendBox.getChildren().clear();
 
         for (PieChart.Data data : pieChart.getData()) {
             PieMeta meta = (PieMeta) data.getNode().getUserData();
-            if (meta == null) continue;
+            if (meta == null || meta.name.equalsIgnoreCase("Tidak Berisiko")) continue;
 
-            // Lewati jika labelnya "Tidak Berisiko" atau label kosong
-            if (meta.name.equalsIgnoreCase("Tidak Berisiko")) continue;
+            double percent = data.getPieValue(); // Sudah dalam skala 0–100
 
-            double value = data.getPieValue();
-            double percent = (value / totalRisiko) * 100;
-            data.setName(String.format("%s (%.0f%%)", meta.name, percent));
+            Tooltip tooltip = new Tooltip(String.format("%s: %.0f%%", meta.name, percent));
+            Tooltip.install(data.getNode(), tooltip);
 
             Region colorBox = new Region();
             colorBox.setPrefSize(12, 12);
-            colorBox.setStyle("-fx-background-color: " + meta.colorHex + "; -fx-background-radius: 2px;");
+            colorBox.setStyle("-fx-background-color: " + meta.colorHex + ";");
 
             Label label = new Label(meta.name);
             Label percentLabel = new Label(String.format("%.0f%%", percent));
@@ -173,10 +220,9 @@ public class AnalisisController {
             legendBox.getChildren().add(legendItem);
         }
 
-        centerLabel.setText(String.format("%.0f%%", totalRisiko));
+        centerLabel.setText("Top 3");
     }
 
-    // Class untuk menyimpan nama dan warna
     public static class PieMeta {
         public final String name;
         public final String colorHex;
@@ -187,60 +233,35 @@ public class AnalisisController {
         }
     }
 
-    // Data penyakit dan nilainya
-    private static class RiskData {
-        String name;
-        double percentage; // 0.0 to 1.0
-        String color;
-
-        RiskData(String name, double percentage, String color) {
-            this.name = name;
-            this.percentage = percentage;
-            this.color = color;
+    public static class XmlUtils {
+        public static <T> T loadFromXml(File file, Class<T> clazz) throws Exception {
+            JAXBContext context = JAXBContext.newInstance(clazz);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            return (T) unmarshaller.unmarshal(file);
         }
     }
 
-    public void showDiseaseRiskBars() {
-        List<RiskData> risks = List.of(
-                new RiskData("Diabetes Tipe 2", 0.5, "#4FC3F7"),
-                new RiskData("Hipertensi", 0.8, "#FF7043"),
-                new RiskData("Penyakit Jantung", 0.4, "#3F51B5"),
-                new RiskData("Stroke", 0.6, "#EF5350"),
-                new RiskData("Kanker Serviks", 0.3, "#81C784")
-        );
+    @FXML
+    private void handleQestionnaire(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/input_Kuisioner.fxml"));
+            Parent root = loader.load();
 
-        riskBox.getChildren().clear();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setScene(scene);
+            stage.setMaximized(true);
 
-        double barWidth = 179; // sesuai prefWidth riskBox (219) - padding kiri kanan (20 + 20)
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
 
-        for (RiskData risk : risks) {
-            Label label = new Label(risk.name);
-            label.setStyle("-fx-font-size: 14px; -fx-text-fill: #000000;");
-
-            StackPane barBackground = new StackPane();
-            barBackground.setStyle("-fx-background-color: #D3D3D3; -fx-background-radius: 10;");
-            barBackground.setPrefHeight(14);
-            barBackground.setPrefWidth(barWidth);
-            barBackground.setMaxWidth(barWidth);
-            barBackground.setMinWidth(barWidth);
-
-            Region fillBar = new Region();
-            fillBar.setStyle("-fx-background-color: " + risk.color + "; -fx-background-radius: 10;");
-            fillBar.setPrefHeight(14);
-            fillBar.setPrefWidth(barWidth * risk.percentage);
-
-            Region marker = new Region();
-            marker.setPrefSize(6, 14);
-            marker.setStyle("-fx-background-color:  #F5F5F5; -fx-background-radius: 3;");
-            marker.setTranslateX((barWidth * risk.percentage) - 3);
-
-            barBackground.getChildren().addAll(fillBar, marker);
-
-            VBox wrapper = new VBox(6, label, barBackground);
-            wrapper.setPadding(new Insets(5, 0, 5, 0));
-            wrapper.setAlignment(Pos.CENTER_LEFT);
-
-            riskBox.getChildren().add(wrapper);
+            stage.show();
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

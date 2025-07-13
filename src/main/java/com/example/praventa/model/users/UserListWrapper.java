@@ -28,23 +28,33 @@ public class UserListWrapper {
             User existingUser = users.get(i);
             if (updatedUser.getUsername().equals(existingUser.getUsername())) {
 
-                // ✅ Update hanya data yang baru
+                // ✅ Update hanya data lifestyle
                 if (updatedUser.getLifestyleData() != null)
                     existingUser.setLifestyleData(updatedUser.getLifestyleData());
 
+                // ✅ Update hanya data recommendation
                 if (updatedUser.getRecommendation() != null)
                     existingUser.setRecommendation(updatedUser.getRecommendation());
 
-                // 🔁 Gabungkan family disease history
+                // ✅ Gabungkan familyDiseaseHistory tanpa duplikat
                 List<FamilyDiseaseHistory> newList = updatedUser.getFamilyDiseaseHistoryList();
-                if (newList != null) {
+                if (newList != null && !newList.isEmpty()) {
                     List<FamilyDiseaseHistory> existingList = existingUser.getFamilyDiseaseHistoryList();
-                    if (existingList == null) existingList = new ArrayList<>();
-                    existingList.addAll(newList);
+                    if (existingList == null) {
+                        existingList = new ArrayList<>();
+                    }
+
+                    for (FamilyDiseaseHistory newHistory : newList) {
+                        if (!existingList.contains(newHistory)) {
+                            existingList.add(newHistory);
+                        }
+                    }
                     existingUser.setFamilyDiseaseHistoryList(existingList);
                 }
 
-                // ⛔ Jangan ganti dengan updatedUser secara keseluruhan!
+                // 🛠 Update lainnya bisa kamu tambahkan di sini jika ada...
+
+                // ⛔ Jangan replace seluruh objek agar tidak menimpa data lain
                 users.set(i, existingUser);
                 return;
             }
@@ -57,6 +67,17 @@ public class UserListWrapper {
     public User getUserById(int id) {
         for (User user : users) {
             if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUserByUsername(String username) {
+        if (username == null) return null;
+
+        for (User user : users) {
+            if (username.equals(user.getUsername())) {
                 return user;
             }
         }

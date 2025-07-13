@@ -244,7 +244,7 @@ public class FamilyDiseaseController {
                 return;
             }
 
-            // Buat data riwayat penyakit baru
+            // 🔧 Buat list baru hanya berisi 1 data baru
             FamilyDiseaseHistory history = new FamilyDiseaseHistory();
             history.setRelation(relationComboBox.getValue());
             history.setDiseaseName(diseaseNameField.getText());
@@ -253,20 +253,21 @@ public class FamilyDiseaseController {
             history.setDiagnosedAge(ageText.isBlank() ? -1 : Integer.parseInt(ageText));
             history.setStatus(rbAlive.isSelected() ? "Hidup" : "Wafat");
 
-            // Tambahkan ke currentUser (dari session)
-            List<FamilyDiseaseHistory> list = currentUser.getFamilyDiseaseHistoryList();
-            if (list == null) list = new ArrayList<>();
-            list.add(history);
-            currentUser.setFamilyDiseaseHistoryList(list);
+            List<FamilyDiseaseHistory> singleNewList = new ArrayList<>();
+            singleNewList.add(history);
 
-            // Update ke dalam wrapper
-            wrapper.replaceUser(currentUser);
+            // ❗Set list baru ini (sementara) ke currentUser → akan digabung oleh replaceUser
+            currentUser.setFamilyDiseaseHistoryList(singleNewList);
 
-            // Simpan wrapper ke file XML
+            // Simpan
             saveToXml(currentUser);
 
-            // Debug
-            System.out.println("[DEBUG] Riwayat penyakit disimpan: " + list);
+            // 🔁 Refresh session
+            UserListWrapper refreshedWrapper = XmlUtils.loadUsers(file);
+            User refreshedUser = refreshedWrapper.getUserByUsername(currentUser.getUsername());
+            if (refreshedUser != null) {
+                Session.setCurrentUser(refreshedUser);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -106,22 +106,22 @@
                            <left>
                               <VBox prefHeight="225.0" prefWidth="167.0" spacing="24.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ibu">
+                                    <Text fx:id="relation1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ibu">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayah">
+                                    <Text fx:id="relation2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayah">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kakak">
+                                    <Text fx:id="relation3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kakak">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adik">
+                                    <Text fx:id="relation4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adik">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -138,22 +138,22 @@
                            <center>
                               <VBox prefHeight="225.0" prefWidth="126.0" spacing="24.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hipertensi">
+                                    <Text fx:id="disease1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hipertensi">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diabetes">
+                                    <Text fx:id="disease2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diabetes">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                    <Text fx:id="disease3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                    <Text fx:id="disease4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

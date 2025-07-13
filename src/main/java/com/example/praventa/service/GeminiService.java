@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class GeminiService {
     private static final String API_KEY = System.getenv("GEMINI_API_KEY");
-    private static final String ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY;
+    private static final String ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="+API_KEY;
 
     public static String generateRecommendation(String prompt) throws Exception {
         HttpClient client = HttpClient.newHttpClient();

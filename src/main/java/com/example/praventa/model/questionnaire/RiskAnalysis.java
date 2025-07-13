@@ -1,12 +1,10 @@
 package com.example.praventa.model.questionnaire;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
-import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.*;
 
 import java.util.List;
 
+@XmlRootElement(name = "risk_analysis")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RiskAnalysis {
     @XmlElementWrapper(name = "risks")
