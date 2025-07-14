@@ -1,6 +1,9 @@
-package com.example.praventa.controller.user;
+package com.example.praventa.controller.admin;
 
 import com.example.praventa.controller.BaseSidebarController;
+import com.example.praventa.controller.user.ArtikelController;
+import com.example.praventa.controller.user.ArtikelDetailController;
+import com.example.praventa.controller.user.ProfileController;
 import com.example.praventa.model.Artikel;
 import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
@@ -16,8 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -26,8 +29,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Optional;
 
-
-public class SidebarController extends BaseSidebarController {
+public class SidebarAdminController extends BaseSidebarController {
     @FXML private AnchorPane mainContent;
 
     @FXML private Circle avatarCircle;
@@ -35,30 +37,22 @@ public class SidebarController extends BaseSidebarController {
     @FXML private Text statusText;
 
     @FXML private BorderPane navHome;
-    @FXML private BorderPane navRiwayat;
-    @FXML private BorderPane navAnalisis;
     @FXML private BorderPane navArtikel;
     @FXML private BorderPane navAkun;
     @FXML private BorderPane navKeluar;
 
     @FXML private ImageView iconHome;
-    @FXML private ImageView iconRiwayat;
-    @FXML private ImageView iconAnalisis;
     @FXML private ImageView iconArtikel;
     @FXML private ImageView iconAkun;
     @FXML private ImageView iconKeluar;
 
     @FXML private javafx.scene.text.Text textHome;
-    @FXML private javafx.scene.text.Text textRiwayat;
-    @FXML private javafx.scene.text.Text textAnalisis;
     @FXML private javafx.scene.text.Text textArtikel;
     @FXML private javafx.scene.text.Text textAkun;
     @FXML private javafx.scene.text.Text textKeluar;
 
 
     @FXML private Rectangle rectHome;
-    @FXML private Rectangle rectRiwayat;
-    @FXML private Rectangle rectAnalisis;
     @FXML private Rectangle rectArtikel;
     @FXML private Rectangle rectAkun;
     @FXML private Rectangle rectKeluar;
@@ -108,24 +102,18 @@ public class SidebarController extends BaseSidebarController {
     private void setActiveMenu(BorderPane activeNav, ImageView activeIcon, Rectangle activeRect, String activeIconName) {
         // Reset ikon
         iconHome.setImage(loadIcon("icn_home.png"));
-        iconRiwayat.setImage(loadIcon("icn_riwayat.png"));
-        iconAnalisis.setImage(loadIcon("icn_analisis.png"));
         iconArtikel.setImage(loadIcon("icn_artikel.png"));
         iconAkun.setImage(loadIcon("icn_akun.png"));
         iconKeluar.setImage(loadIcon("icn_logout.png"));
 
         // Reset rectangle
         rectHome.setVisible(false);
-        rectRiwayat.setVisible(false);
-        rectAnalisis.setVisible(false);
         rectArtikel.setVisible(false);
         rectAkun.setVisible(false);
         rectKeluar.setVisible(false);
 
         // Reset warna teks ke default (hitam)
         textHome.setFill(Color.BLACK);
-        textRiwayat.setFill(Color.BLACK);
-        textAnalisis.setFill(Color.BLACK);
         textArtikel.setFill(Color.BLACK);
         textAkun.setFill(Color.BLACK);
         textKeluar.setFill(Color.web("#ff0000"));
@@ -137,8 +125,6 @@ public class SidebarController extends BaseSidebarController {
 
         // Ubah warna teks menu aktif
         if (activeIcon == iconHome) textHome.setFill(Color.web("#9E91E1"));
-        else if (activeIcon == iconRiwayat) textRiwayat.setFill(Color.web("#9E91E1"));
-        else if (activeIcon == iconAnalisis) textAnalisis.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconArtikel) textArtikel.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconAkun) textAkun.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconKeluar) textKeluar.setFill(Color.web("#9E91E1"));
@@ -151,16 +137,6 @@ public class SidebarController extends BaseSidebarController {
     public void handleNavHomeClick() {
         setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
         loadPage("beranda.fxml");
-    }
-
-    public void handleNavRiwayatClick() {
-        setActiveMenu(navRiwayat, iconRiwayat, rectRiwayat, "icn_riwayat_active.png");
-        loadPage("riwayat.fxml");
-    }
-
-    public void handleNavAnalysisClick() {
-        setActiveMenu(navAnalisis, iconAnalisis, rectAnalisis, "icn_analisis_active.png");
-        loadPage("analisis.fxml");
     }
 
     public void handleNavArticleClick() {
@@ -208,17 +184,6 @@ public class SidebarController extends BaseSidebarController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
             Parent content = loader.load();
-
-            // Inject SidebarController ke ProfileController jika profil.fxml
-            if (fxmlName.equals("profil.fxml")) {
-                ProfileController profileController = loader.getController();
-                profileController.setSidebarController(this); // 👈 inject controller ini
-            }
-
-            if (fxmlName.equals("artikel.fxml")) {
-                ArtikelController artikelController = loader.getController();
-                artikelController.setSidebarController(this); // 👈 inject SidebarController
-            }
 
             contentTarget.getChildren().setAll(content);
             AnchorPane.setTopAnchor(content, 0.0);
