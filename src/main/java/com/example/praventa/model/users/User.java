@@ -115,6 +115,10 @@ public class User {
         return questionnaireResults;
     }
 
+    public void setQuestionnaireResults(List<QuestionnaireResult> questionnaireResults) {
+        this.questionnaireResults = questionnaireResults;
+    }
+
     public void addQuestionnaireResult(QuestionnaireResult result) {
         this.questionnaireResults.add(result);
     }
