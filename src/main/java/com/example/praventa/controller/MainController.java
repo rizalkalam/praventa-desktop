@@ -1,6 +1,5 @@
 package com.example.praventa.controller;
 
-import com.example.praventa.controller.user.SidebarController;
 import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
@@ -28,14 +27,14 @@ public class MainController {
             String role = currentUser.getRole();
 
             switch (role.toLowerCase()) {
-                case "user":
-                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar_user.fxml"));
+                case "pasien":
+                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar.fxml"));
                     break;
                 case "pakar":
                     loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar_pakar.fxml"));
                     break;
                 case "admin":
-                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar_admin.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlAdmin/sidebarAdmin.fxml"));
                     break;
                 default:
                     throw new IllegalArgumentException("Role tidak dikenali: " + role);

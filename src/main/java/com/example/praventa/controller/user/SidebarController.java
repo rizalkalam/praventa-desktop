@@ -1,5 +1,6 @@
 package com.example.praventa.controller.user;
 
+import com.example.praventa.controller.BaseSidebarController;
 import com.example.praventa.model.Artikel;
 import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
@@ -26,7 +27,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class SidebarController {
+public class SidebarController extends BaseSidebarController {
     @FXML private AnchorPane mainContent;
 
     @FXML private Circle avatarCircle;
@@ -279,5 +280,4 @@ public class SidebarController {
     public AnchorPane getMainContent() {
         return contentTarget;
     }
-
 }
