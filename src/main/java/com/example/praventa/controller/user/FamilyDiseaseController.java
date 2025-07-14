@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.users.FamilyDiseaseHistory;
 import com.example.praventa.model.users.User;
@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.users.User;
 import com.example.praventa.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.questionnaire.RiskAnalysis;
 import com.example.praventa.model.questionnaire.RiskData;
@@ -10,7 +10,6 @@ import jakarta.xml.bind.Unmarshaller;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -32,10 +30,8 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class AnalisisController {
 

@@ -1,16 +1,10 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainController {
     @FXML

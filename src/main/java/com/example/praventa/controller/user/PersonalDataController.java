@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.users.BodyMetrics;
 import com.example.praventa.model.users.PersonalData;
@@ -18,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.File;
-import java.time.LocalDate;
 import java.util.*;
 
 public class PersonalDataController {

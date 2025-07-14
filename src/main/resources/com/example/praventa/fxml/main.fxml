@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.praventa.controller.MainController">
+            fx:controller="com.example.praventa.controller.user.MainController">
 
     <!-- Sidebar container -->
     <VBox fx:id="navContainer" layoutX="0.0" layoutY="0.0" prefWidth="248.0" />

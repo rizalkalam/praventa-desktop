@@ -1,5 +1,6 @@
 package com.example.praventa.controller;
 
+import com.example.praventa.controller.user.SidebarController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
