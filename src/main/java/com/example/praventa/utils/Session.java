@@ -1,6 +1,6 @@
 package com.example.praventa.utils;
 
-import com.example.praventa.controller.SidebarController;
+import com.example.praventa.controller.user.SidebarController;
 import com.example.praventa.model.users.User;
 
 public class Session {

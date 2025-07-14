@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.users.FamilyDiseaseHistory;
 import com.example.praventa.model.users.User;
@@ -17,8 +17,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 public class RiwayatController {

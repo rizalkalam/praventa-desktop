@@ -19,4 +19,6 @@ module com.example.praventa {
     opens com.example.praventa.model.questionnaire to jakarta.xml.bind;
 
     opens com.example.praventa to javafx.fxml;
+    exports com.example.praventa.controller.user;
+    opens com.example.praventa.controller.user to javafx.fxml;
 }

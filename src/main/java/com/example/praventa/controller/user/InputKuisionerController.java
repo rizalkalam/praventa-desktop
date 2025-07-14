@@ -1,4 +1,4 @@
-package com.example.praventa.controller;
+package com.example.praventa.controller.user;
 
 import com.example.praventa.model.questionnaire.RiskAnalysis;
 import com.example.praventa.model.questionnaire.RiskData;
@@ -14,7 +14,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.util.Duration;
