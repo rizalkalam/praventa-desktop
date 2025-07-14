@@ -31,7 +31,7 @@ public class MainController {
                     loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar.fxml"));
                     break;
                 case "pakar":
-                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/sidebar_pakar.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlPakar/sidebar_pakar.fxml"));
                     break;
                 case "admin":
                     loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlAdmin/sidebarAdmin.fxml"));
