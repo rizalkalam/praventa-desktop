@@ -15,7 +15,7 @@ public class MainController {
     @FXML
     private AnchorPane mainContent;
 
-    private String defaultPage = "beranda.fxml";
+    private String defaultPage = "beranda_user.fxml";
 
     public void initialize() {
         try {
