@@ -11,6 +11,7 @@ module com.example.praventa {
     opens com.example.praventa.model.users to jakarta.xml.bind;
     opens com.example.praventa.controller to javafx.fxml;
     opens com.example.praventa.controller.admin to javafx.fxml;
+    opens com.example.praventa.controller.pakar to javafx.fxml;
 
     exports com.example.praventa;
     exports com.example.praventa.model;
@@ -22,5 +23,6 @@ module com.example.praventa {
     opens com.example.praventa to javafx.fxml;
     exports com.example.praventa.controller.user;
     exports com.example.praventa.controller.admin;
+    exports com.example.praventa.controller.pakar;
     opens com.example.praventa.controller.user to javafx.fxml;
 }

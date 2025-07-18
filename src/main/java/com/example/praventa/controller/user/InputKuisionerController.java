@@ -199,8 +199,12 @@ public class InputKuisionerController {
 
             // Ganti user yang cocok dengan versi yang sudah diperbarui
             for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getId() == currentUser.getId()) {
-                    users.set(i, currentUser);
+                User existingUser = users.get(i);
+                if (existingUser.getId() == currentUser.getId()) {
+                    // 🔄 Hanya update hasil kuisioner
+                    existingUser.setQuestionnaireResults(new ArrayList<>(resultList));
+
+                    users.set(i, existingUser); // ✅ ganti hanya data kuisioner
                     break;
                 }
             }
@@ -373,12 +377,15 @@ public class InputKuisionerController {
 
                 List<User> allUsers = UserRepository.loadUsers();
                 for (int i = 0; i < allUsers.size(); i++) {
-                    if (allUsers.get(i).getId() == currentUser.getId()) {
-                        allUsers.set(i, currentUser);
+                    User existingUser = allUsers.get(i);
+                    if (existingUser.getId() == currentUser.getId()) {
+                        // Update hanya bagian RiskAnalysis, biarkan yang lain tetap
+                        existingUser.setRiskAnalysis(currentUser.getRiskAnalysis());
+
+                        allUsers.set(i, existingUser);  // Ganti dengan user yang telah di-*merge*
                         break;
                     }
                 }
-
                 UserRepository.saveUsers(allUsers);
                 System.out.println("[DEBUG] RiskAnalysis berhasil disimpan ke XML user.");
                 showShortInfo("✅ Hasil analisis risiko berhasil disimpan.");
