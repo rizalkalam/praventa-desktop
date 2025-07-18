@@ -150,7 +150,7 @@ public class SidebarController extends BaseSidebarController {
 
     public void handleNavHomeClick() {
         setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
-        loadPage("beranda.fxml");
+        loadPage("beranda_user.fxml");
     }
 
     public void handleNavRiwayatClick() {
