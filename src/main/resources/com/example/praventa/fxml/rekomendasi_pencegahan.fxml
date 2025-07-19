@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.RekomendasiPencegahan">
+   <children>
+      <ScrollPane layoutX="150.0" layoutY="149.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox prefHeight="1060.0" prefWidth="1183.0" spacing="24.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <BorderPane prefHeight="79.0" prefWidth="547.0" style="-fx-background-radius: 28; -fx-background-color: #ffff;">
+                     <center>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Praventa - Rekomendasi pencegahan" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Text>
+                     </center>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="280.0" right="280.0" top="38.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow offsetX="3.0" offsetY="3.0">
+                           <color>
+                              <Color red="0.7171052694320679" green="0.7171052694320679" blue="0.7171052694320679" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </BorderPane>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="28.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <effect>
+                        <DropShadow offsetX="3.0" offsetY="3.0">
+                           <color>
+                              <Color red="0.7960526347160339" green="0.7960526347160339" blue="0.7960526347160339" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="50" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="52.0" />
+                           </font>
+                        </Label>
+                        <Label style="-fx-background-color: #FFFF00; -fx-background-radius: 18;" text="Sedang">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="8.0" left="42.0" right="42.0" top="8.0" />
+                           </padding>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Berdasarkan data yang Anda berikan, tingkat risiko kesehatan Anda berada pada kategori sedang. Berikut adalah rekomendasi tindak lanjut yang dapat Anda lakukan" textAlignment="CENTER" wrappingWidth="774.625">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets bottom="48.0" top="48.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <effect>
+                        <DropShadow offsetX="3.0" offsetY="3.0">
+                           <color>
+                              <Color red="0.7960526347160339" green="0.7960526347160339" blue="0.7960526347160339" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <BorderPane prefHeight="61.0" prefWidth="1067.0">
+                           <left>
+                              <ImageView BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/aktifitas_fisik.png" />
+                                 </image>
+                              </ImageView>
+                           </left>
+                        </BorderPane>
+                        <Label text="Aktifitas fisik">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tingkatkan aktivitas fisik untuk mengurangi risiko penyakit dan meningkatkan kesehatan secara keseluruhan">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Olahraga 30 menit sehari">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Gunakan tangga daripada lift">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Jalan kaki atau berseda">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <effect>
+                        <DropShadow offsetX="3.0" offsetY="3.0">
+                           <color>
+                              <Color red="0.7960526347160339" green="0.7960526347160339" blue="0.7960526347160339" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <BorderPane prefHeight="61.0" prefWidth="1067.0">
+                           <left>
+                              <ImageView BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/aktifitas_fisik.png" />
+                                 </image>
+                              </ImageView>
+                           </left>
+                        </BorderPane>
+                        <Label text="Aktifitas fisik">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tingkatkan aktivitas fisik untuk mengurangi risiko penyakit dan meningkatkan kesehatan secara keseluruhan">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Olahraga 30 menit sehari">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Gunakan tangga daripada lift">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Jalan kaki atau berseda">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="38.0" right="38.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

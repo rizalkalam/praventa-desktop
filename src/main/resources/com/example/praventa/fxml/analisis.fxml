@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.AnalisisController">
    <children>
-      <VBox layoutX="93.0" layoutY="88.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="35.0">
+      <VBox layoutX="93.0" layoutY="88.0" prefHeight="200.0" prefWidth="100.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="35.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-background-radius: 28;">
                <children>
@@ -152,33 +152,33 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="28.0" />
+                  <Insets />
                </VBox.margin>
             </VBox>
             <HBox prefHeight="293.0" prefWidth="1115.0" spacing="58.0">
                <children>
 
-                  <VBox alignment="CENTER" prefHeight="293.0" prefWidth="290.0" spacing="20" style="-fx-background-color: #D1D1FF; -fx-background-radius: 20;" xmlns:fx="http://javafx.com/fxml">
+                        <VBox alignment="CENTER" prefHeight="293.0" prefWidth="290.0" spacing="20" style="-fx-background-color: #D1D1FF; -fx-background-radius: 20;" xmlns:fx="http://javafx.com/fxml">
                      <StackPane fx:id="donutContainer" prefHeight="400" prefWidth="400">
                         <PieChart fx:id="pieChart" />
                      </StackPane>
 
-                     <Label fx:id="centerLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                           <Label fx:id="centerLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
-                     <VBox fx:id="legendBox" spacing="10" />
+                           <VBox fx:id="legendBox" spacing="10" />
                      <padding>
                         <Insets bottom="28.0" left="28.0" right="28.0" />
                      </padding>
                   </VBox>
 
-                  <VBox fx:id="riskBox" alignment="TOP_LEFT" maxWidth="370.0" minWidth="219.0" prefHeight="293.0" prefWidth="370.0" spacing="12" style="-fx-background-color: #fff; -fx-background-radius: 20;" HBox.hgrow="NEVER">
+                        <VBox fx:id="riskBox" alignment="TOP_LEFT" maxWidth="370.0" minWidth="219.0" prefHeight="293.0" prefWidth="370.0" spacing="12" style="-fx-background-color: #fff; -fx-background-radius: 20;" HBox.hgrow="NEVER">
                      <padding>
                         <Insets bottom="20" left="20" right="20" top="20" />
                      </padding>
                   </VBox>
-                  <AnchorPane prefHeight="293.0" prefWidth="297.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                  <VBox prefHeight="200.0" prefWidth="338.0" spacing="14.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
                      <children>
-                        <Circle layoutX="68.0" layoutY="57.0" radius="35.0" smooth="false" strokeType="INSIDE">
+                        <Circle radius="34.0" smooth="false" strokeType="INSIDE">
                            <fill>
                               <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
                                  <image>
@@ -187,45 +187,59 @@
                               </ImagePattern>
                            </fill>
                         </Circle>
-                        <Text layoutX="32.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text layoutX="33.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="220.43359375">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="33.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="220.43359375">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.93360900878906">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="#9e91e1" layoutX="112.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selengkapnya" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="256.93359375">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
                      </children>
-                  </AnchorPane>
+                     <padding>
+                        <Insets bottom="24.0" left="26.0" right="10.0" top="26.0" />
+                     </padding>
+                  </VBox>
 
-
-               </children>
-            </HBox>
-            <AnchorPane>
-               <children>
-                  <ImageView onMouseClicked="#handleExport" fitHeight="54.0" fitWidth="235.0" layoutX="581.0" layoutY="1.0">
-                     <image>
-                        <Image url="@../assets/btn_export.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="235.0" layoutX="838.0" layoutY="1.0" AnchorPane.rightAnchor="0.0">
-                     <image>
-                        <Image url="@../assets/btn_update.png" />
-                     </image>
-                  </ImageView>
-               </children>
+      
+                     </children>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets />
                </VBox.margin>
-            </AnchorPane>
+            </HBox>
+            <BorderPane prefHeight="59.0" prefWidth="1115.0">
+               <right>
+                  <HBox prefHeight="103.0" prefWidth="670.0" spacing="12.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="54.0" fitWidth="235.0">
+                           <image>
+                              <Image url="@../../../../assets/tindak_lanjut.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="54.0" fitWidth="235.0">
+                           <image>
+                              <Image url="@../assets/btn_update.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="54.0" fitWidth="235.0" onMouseClicked="#handleExport">
+                           <image>
+                              <Image url="@../assets/btn_export.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </right>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </BorderPane>
          </children>
       </VBox>
    </children>
