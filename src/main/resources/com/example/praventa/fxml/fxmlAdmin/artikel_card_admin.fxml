@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="338.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="338.0" prefWidth="294.0" spacing="12.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.ArtikelCardController">
+    <effect>
+        <DropShadow color="#00000040" offsetX="0" offsetY="4" radius="10" />
+    </effect>
+    <children>
+        <StackPane prefHeight="121.0" prefWidth="209.0">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="175.0" fitWidth="295.0">
+                    <image>
+                        <Image url="@../../../../../assets/img_article1.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </StackPane>
+        <VBox prefHeight="145.0" prefWidth="294.0" spacing="10.0">
+            <children>
+                <Text fx:id="tanggalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Interior Deaign , 16 Jun 2025" wrappingWidth="196.5475311279297">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+                <Label fx:id="judulText" text="Diabetes - Gejala, Penyebab, dan Pencegahan" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="deskripsiText" prefHeight="20.0" prefWidth="274.0" text="Label" wrapText="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                      <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_RIGHT">
+                     <BorderPane.margin>
+                        <Insets right="12.0" />
+                     </BorderPane.margin>
+                     <image>
+                        <Image url="@../../../../../assets/Group_78.png" />
+                     </image>
+                  </ImageView>
+               </center>
+               <right>
+                      <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-image: &quot;C:\Users\ASUS\Pictures\Figma\Group 79.png&quot;;" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../../../../assets/Group_79.png" />
+                     </image>
+                  </ImageView>
+               </right>
+            </BorderPane>
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </VBox>
+    </children>
+</VBox>
