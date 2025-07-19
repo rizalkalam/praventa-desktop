@@ -46,7 +46,7 @@ public class LifestyleDataController {
     private final LifestyleData lifestyleData = new LifestyleData();
     private int currentStep = 0;
 
-    private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
+    private static final String FILE_PATH = "D:\\FPA\\praventa-desktop\\data\\users.xml";
 
     @FXML
     public void initialize() {

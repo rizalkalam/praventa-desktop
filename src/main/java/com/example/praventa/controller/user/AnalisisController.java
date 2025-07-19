@@ -160,13 +160,9 @@ public class AnalisisController {
                 new RiskData("Kanker Serviks", 0.3, "#81C784")
         );
         loadedUser = new User();
-        loadedUser.setRiskAnalysis(new RiskAnalysis(new ArrayList<>(), new ArrayList<>()));
-
-        pieChart.getData().clear();
-        riskBox.getChildren().clear();
-        legendBox.getChildren().clear();
-
-        centerLabel.setText("Tidak ada data");
+        loadedUser.setRiskAnalysis(new RiskAnalysis(fallbackRisks, new ArrayList<>()));
+        setChartDataFromRisks(fallbackRisks);
+        showDiseaseRiskBars();
     }
 
     private void makeDonut() {

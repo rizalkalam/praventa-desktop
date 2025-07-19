@@ -37,7 +37,7 @@ public class PersonalDataController {
     private double weight;
     private double height;
 
-    private static final String FILE_PATH = "D:\\Kuliah\\Project\\praventa\\data\\users.xml";
+    private static final String FILE_PATH = "D:\\FPA\\praventa-desktop\\data\\users.xml";
 
     private final QuestionStep[] questionSteps = {
             new QuestionStep("1/4", "Masukkan Umur Anda",
