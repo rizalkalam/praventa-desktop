@@ -47,7 +47,7 @@ public class FamilyDiseaseController {
     private final ToggleGroup yesNoGroup = new ToggleGroup();
     private final ToggleGroup statusGroup = new ToggleGroup();
 
-    private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
+    private static final String FILE_PATH = "D:\\FPA\\praventa-desktop\\data\\users.xml";
 
     @FXML
     public void initialize() {
@@ -292,7 +292,7 @@ public class FamilyDiseaseController {
 
     public static void saveToXml(User updatedUser) {
         try {
-            File file = new File("D:/Kuliah/Project/praventa/data/users.xml");
+            File file = new File("D:\\FPA\\praventa-desktop\\data\\users.xml");
             UserListWrapper wrapper = XmlUtils.loadUsers(file);
 
             if (updatedUser != null) {

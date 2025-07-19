@@ -40,11 +40,11 @@
                               <Font name="System Bold" size="34.0" />
                            </font>
                         </Label>
-                        <Label text="Isi laporan berdasakan hasil kuisioner anda">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan ini berdasarkan hasil kuisioner anda">
                            <font>
-                              <Font size="22.0" />
+                              <Font size="16.0" />
                            </font>
-                        </Label>
+                        </Text>
                      </children>
                   </VBox>
                   <VBox prefHeight="458.0" prefWidth="1043.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
