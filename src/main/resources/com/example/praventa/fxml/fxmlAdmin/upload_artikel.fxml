@@ -1,119 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.praventa.fxml.fxmlAdmin.UploadArtikel" prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="1034.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.fxml.fxmlAdmin.UploadArtikel">
     <children>
-        <AnchorPane layoutX="26.0" layoutY="24.0" prefHeight="752.0" prefWidth="1151.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15; -fx-border-color: white; -fx-border-radius: 50;">
+        <AnchorPane layoutX="26.0" layoutY="24.0" prefHeight="871.0" prefWidth="1151.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15; -fx-border-color: white; -fx-border-radius: 50;">
             <children>
                 <Line endX="1321.9613037109375" endY="41.21202850341797" layoutX="-180.0" layoutY="11.0" startX="184.99998474121094" startY="41.21202850341797" />
-                <Text layoutX="500.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validasi Artikel">
+                <Text layoutX="491.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Artikel">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Text>
-                <Text layoutX="80.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Judul artikel            :">
+                <Text layoutX="100.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Judul artikel *">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="80.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal rilis            :">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <Text layoutX="80.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori                  :">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <Text layoutX="80.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status                      :">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <Label layoutX="260.0" layoutY="80.0" text="Label">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="260.0" layoutY="120.0" text="Label">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="260.0" layoutY="160.0" text="Label">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="260.0" layoutY="200.0" text="Label">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
-                <Text layoutX="96.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Isi artikel">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <AnchorPane layoutX="66.0" layoutY="297.0" prefHeight="199.0" prefWidth="1017.0" style="-fx-border-color: black;">
-                    <children>
-                        <Label layoutX="24.0" layoutY="20.0" prefHeight="159.0" prefWidth="971.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <Text layoutX="96.0" layoutY="549.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catatan">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-                <AnchorPane layoutX="66.0" layoutY="567.0" prefHeight="89.0" prefWidth="1017.0" style="-fx-border-color: black;">
-                    <children>
-                        <Label layoutX="24.0" layoutY="13.0" prefHeight="64.0" prefWidth="971.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="946.0" layoutY="699.0" prefHeight="35.0" prefWidth="137.0" style="-fx-background-color: green;">
-                    <children>
-                        <Text fill="WHITE" layoutX="40.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validasi">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="791.0" layoutY="699.0" prefHeight="35.0" prefWidth="137.0" style="-fx-background-color: red;">
-                    <children>
-                        <Text fill="WHITE" layoutX="48.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tolak">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </AnchorPane>
+            <TextField fx:id="emailField" layoutX="90.0" layoutY="105.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+               <padding>
+                  <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="100.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="emailField1" layoutX="90.0" layoutY="195.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+               <padding>
+                  <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="100.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal publikasi *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="emailField11" layoutX="90.0" layoutY="285.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+               <padding>
+                  <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="100.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ringkasan artikel *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="emailField111" alignment="TOP_LEFT" layoutX="90.0" layoutY="375.0" prefHeight="105.0" prefWidth="971.0" promptText="Tulis ringkasan artikel (minimal 100 karakter)" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+               <padding>
+                  <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="100.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Konten artikel *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="emailField1111" alignment="TOP_LEFT" layoutX="90.0" layoutY="530.0" prefHeight="179.0" prefWidth="971.0" promptText="Tulis konten artikel lengkap" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+               <padding>
+                  <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="100.0" layoutY="745.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Masukkan gambar/dokumen *">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="101.0" layoutY="770.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="378.0" text="max (10 mb)" />
+            <Button layoutX="864.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: blue;" text="Publikasi" textFill="WHITE" />
+            <Button layoutX="657.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Simpan draf" textFill="WHITE" />
             </children>
         </AnchorPane>
-        <Line endX="1321.9613037109375" endY="41.21202850341797" layoutX="-154.0" layoutY="233.0" startX="184.99998474121094" startY="41.21202850341797" />
-        <Line endX="1321.9613037109375" endY="41.21202850341797" layoutX="-154.0" layoutY="499.0" startX="184.99998474121094" startY="41.21202850341797" />
-        <Line endX="1321.9613037109375" endY="41.21202850341797" layoutX="-156.0" layoutY="661.0" startX="184.99998474121094" startY="41.21202850341797" />
     </children>
 </AnchorPane>
