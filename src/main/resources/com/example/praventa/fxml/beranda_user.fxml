@@ -107,16 +107,8 @@
                                           <Font name="System Bold" size="18.0" />
                                       </font>
                                   </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.93360900878906">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="256.93359375">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
+                                  <Text fx:id="foodRec1" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.93360900878906" />
+                                  <Text fx:id="foodRec2" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="256.93359375" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
@@ -138,16 +130,8 @@
                                           <Font name="System Bold" size="18.0" />
                                       </font>
                                   </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.26690673828125">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="248.93359375">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
+                                  <Text fx:id="activityRec1" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.26690673828125" />
+                                  <Text fx:id="activityRec2" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="248.93359375" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
@@ -169,16 +153,8 @@
                                           <Font name="System Bold" size="18.0" />
                                       </font>
                                   </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="247.60028076171875">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="232.93359375">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                                  </Text>
+                                  <Text fx:id="sleepRec1" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="247.60028076171875" />
+                                  <Text fx:id="sleepRec2" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="232.93359375" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
@@ -200,7 +176,7 @@
                         </ImageView>
                </left>
                <center>
-                        <ImageView fitHeight="54.0" fitWidth="235.0" BorderPane.alignment="CENTER_LEFT">
+                        <ImageView fx:id="updateLifestyleButton" fitHeight="54.0" fitWidth="235.0" BorderPane.alignment="CENTER_LEFT" onMouseClicked="#handleEditLifestyle">
                             <image>
                                 <Image url="@../assets/btn_update.png" />
                             </image>
@@ -273,7 +249,7 @@
                       </BorderPane>
                        <AnchorPane fx:id="bubbleContainer" prefHeight="555.0" prefWidth="258.0" style="-fx-background-color: #ffff;">
                            <children>
-                               <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="450.0" prefWidth="258.0" style="-fx-background-color: #ffff;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                               <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="450.0" prefWidth="258.0" style="-fx-background-color: #ffff; -fx-background: white;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                    <content>
                                        <VBox fx:id="messageContainer" prefWidth="258.0" spacing="10.0" style="-fx-background-color: transparent;">
                                            <padding>

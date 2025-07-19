@@ -13,31 +13,48 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.RekomendasiPencegahan">
+<AnchorPane prefHeight="800.0" prefWidth="1484.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.DiseaseRiskController">
    <children>
-      <ScrollPane layoutX="150.0" layoutY="149.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="150.0" layoutY="149.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox prefHeight="1060.0" prefWidth="1183.0" spacing="24.0" style="-fx-background-color: #ffff;">
+            <VBox prefHeight="1060.0" prefWidth="1420.0" spacing="24.0" style="-fx-background-color: #ffff;">
                <children>
-                  <BorderPane prefHeight="79.0" prefWidth="547.0" style="-fx-background-radius: 28; -fx-background-color: #ffff;">
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Praventa - Rekomendasi pencegahan" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="26.0" />
-                           </font>
-                        </Text>
+                        <BorderPane prefHeight="79.0" prefWidth="547.0" style="-fx-background-radius: 28; -fx-background-color: #ffff;" BorderPane.alignment="CENTER">
+                           <center>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Praventa - Rekomendasi pencegahan" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                           <effect>
+                              <DropShadow offsetX="3.0" offsetY="3.0">
+                                 <color>
+                                    <Color red="0.7171052694320679" green="0.7171052694320679" blue="0.7171052694320679" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" left="350.0" right="350.0" top="20.0" />
+                           </BorderPane.margin>
+                        </BorderPane>
                      </center>
+                     <right>
+                        <BorderPane prefHeight="700.0" prefWidth="17.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <ImageView fx:id="closeButton" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/close_btn.png" />
+                                 </image>
+                              </ImageView>
+                           </top>
+                        </BorderPane>
+                     </right>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="280.0" right="280.0" top="38.0" />
+                        <Insets top="24.0" />
                      </VBox.margin>
-                     <effect>
-                        <DropShadow offsetX="3.0" offsetY="3.0">
-                           <color>
-                              <Color red="0.7171052694320679" green="0.7171052694320679" blue="0.7171052694320679" />
-                           </color>
-                        </DropShadow>
-                     </effect>
                   </BorderPane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="28.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
                      <effect>

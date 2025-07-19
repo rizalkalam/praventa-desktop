@@ -12,7 +12,9 @@ import com.example.praventa.utils.Session;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -21,6 +23,7 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +43,7 @@ public class InputKuisionerController {
     @FXML private RadioButton rbYa3, rbTidak3;
     @FXML private RadioButton rbYa4, rbTidak4;
     @FXML private RadioButton rbYa5, rbTidak5;
+    @FXML private ImageView closeButton;
 
     @FXML private Label progressLabel;
     @FXML private Button nextButton, nextButton1;
@@ -52,6 +56,8 @@ public class InputKuisionerController {
 
     @FXML
     public void initialize() {
+        closeButton.setCursor(Cursor.HAND);
+
         initQuestions();
         initToggleGroups();
         loadStep();
@@ -71,6 +77,19 @@ public class InputKuisionerController {
             if (currentStep > 0) {
                 currentStep--;
                 loadStep();
+            }
+        });
+
+        // Validasi apakah closeButton null atau tidak terlihat
+        closeButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmasi");
+            alert.setHeaderText("Batal mengisi data?");
+            alert.setContentText("Perubahan belum akan disimpan. Kembali ke beranda?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                SceneUtil.switchToMainPage(rootPane);
             }
         });
     }

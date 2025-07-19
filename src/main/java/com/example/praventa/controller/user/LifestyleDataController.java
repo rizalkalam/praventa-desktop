@@ -5,15 +5,18 @@ import com.example.praventa.model.users.User;
 import com.example.praventa.model.users.UserListWrapper;
 import com.example.praventa.repository.UserRepository;
 import com.example.praventa.service.GeminiService;
+import com.example.praventa.utils.SceneUtil;
 import com.example.praventa.utils.Session;
 import com.example.praventa.utils.XmlUtils;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -24,6 +27,7 @@ import javafx.util.Duration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
@@ -41,15 +45,17 @@ public class LifestyleDataController {
     @FXML private CheckBox cbTerbangunMalam;
     @FXML private Slider stressSlider;
     @FXML private Label stressLabel;
+    @FXML private ImageView closeButton;
 
     private final List<CheckBox> sleepCheckboxes = new ArrayList<>();
     private final LifestyleData lifestyleData = new LifestyleData();
     private int currentStep = 0;
 
-    private static final String FILE_PATH = "D:\\FPA\\praventa-desktop\\data\\users.xml";
+    private static final String FILE_PATH = "D:\\Kuliah\\Project\\praventa\\data\\users.xml";
 
     @FXML
     public void initialize() {
+        closeButton.setCursor(Cursor.HAND);
         showStep();
         nextButton.setOnAction(this::handleNext);
 
@@ -60,6 +66,18 @@ public class LifestyleDataController {
                 cbTerbangunMalam
         ));
 
+        // Validasi apakah closeButton null atau tidak terlihat
+        closeButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmasi");
+            alert.setHeaderText("Batal mengisi data?");
+            alert.setContentText("Perubahan belum akan disimpan. Kembali ke beranda?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                SceneUtil.switchToMainPage(rootPane);
+            }
+        });
     }
 
     private void handleNext(ActionEvent event) {

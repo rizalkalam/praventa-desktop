@@ -31,49 +31,22 @@
                   </Label>
                   <BorderPane prefHeight="34.0" prefWidth="1115.0">
                      <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go Yoon Jung" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                        <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Yoon Jung" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                            <BorderPane.margin>
-                              <Insets left="178.0" />
+                              <Insets />
                            </BorderPane.margin>
                         </Text>
                      </center>
-                     <right>
-                        <BorderPane prefHeight="44.0" prefWidth="175.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
-                           <center>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="12 Jun 2025" BorderPane.alignment="CENTER_LEFT">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                                 <BorderPane.margin>
-                                    <Insets left="14.0" />
-                                 </BorderPane.margin>
-                              </Text>
-                           </center>
-                           <left>
-                              <ImageView BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../../../../assets/icn_history.png" />
-                                 </image>
-                                 <BorderPane.margin>
-                                    <Insets left="14.0" />
-                                 </BorderPane.margin>
-                              </ImageView>
-                           </left>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
-                        </BorderPane>
-                     </right>
                      <VBox.margin>
                         <Insets left="28.0" right="28.0" />
                      </VBox.margin>
                   </BorderPane>
                   <StackPane prefHeight="70.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="24 thn" textAlignment="CENTER">
+                        <Text fx:id="ageText" strokeType="OUTSIDE" strokeWidth="0.0" text="24 thn" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="58.0" />
                            </font>
@@ -84,7 +57,7 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Label alignment="CENTER" prefWidth="200.0" style="-fx-background-color: #3F3B53; -fx-background-radius: 18;" text="Lengkap" textAlignment="CENTER" textFill="#d1d1ff" BorderPane.alignment="CENTER">
+                              <Label fx:id="personalDataStatus" alignment="CENTER" prefWidth="200.0" style="-fx-background-color: #3F3B53; -fx-background-radius: 18;" text="Lengkap" textAlignment="CENTER" textFill="#d1d1ff" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -103,9 +76,9 @@
                               <Insets bottom="28.0" top="12.0" />
                            </HBox.margin>
                         </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <BorderPane onMouseClicked="#handleLifestyle" prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Label alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #D1D1FF; -fx-background-radius: 18;" text="Tersimpan" textFill="#9e91e1" BorderPane.alignment="CENTER">
+                              <Label fx:id="lifestyleDataStatus" alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #D1D1FF; -fx-background-radius: 18;" text="Tersimpan" textFill="#9e91e1" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -126,7 +99,7 @@
                         </BorderPane>
                         <BorderPane onMouseClicked="#handleQestionnaire" prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Label alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 18;" text="Diisi" textFill="#d1d1ff" BorderPane.alignment="CENTER">
+                              <Label fx:id="questionnaireDataStatus" alignment="CENTER" maxWidth="200.0" style="-fx-background-color: #9E91E1; -fx-background-radius: 18;" text="Diisi" textFill="#d1d1ff" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -176,9 +149,9 @@
                         <Insets bottom="20" left="20" right="20" top="20" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="338.0" spacing="14.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
+                  <VBox fx:id="rekomendasiData" prefHeight="200.0" prefWidth="338.0" spacing="14.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
                      <children>
-                        <Circle radius="34.0" smooth="false" strokeType="INSIDE">
+                        <Circle fx:id="imageRekomendation" radius="34.0" smooth="false" strokeType="INSIDE">
                            <fill>
                               <ImagePattern height="1" proportional="true" width="1" x="0" y="0">
                                  <image>
@@ -187,17 +160,17 @@
                               </ImagePattern>
                            </fill>
                         </Circle>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
+                        <Text fx:id="recomendationTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekomendasi Makanan">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.93360900878906">
+                        <Text fx:id="rec1" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ganti camilan manis dengan buah segar" wrappingWidth="256.93360900878906">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="256.93359375">
+                        <Text fx:id="rec2" strokeType="OUTSIDE" strokeWidth="0.0" text="- Kurangi gula tambahan dari minuman hari ini." wrappingWidth="256.93359375">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -207,7 +180,6 @@
                         <Insets bottom="24.0" left="26.0" right="10.0" top="26.0" />
                      </padding>
                   </VBox>
-
       
                      </children>
                <VBox.margin>
@@ -218,7 +190,7 @@
                <right>
                   <HBox prefHeight="103.0" prefWidth="670.0" spacing="12.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="54.0" fitWidth="235.0">
+                        <ImageView fitHeight="54.0" fitWidth="235.0" onMouseClicked="#handleTindakLanjut">
                            <image>
                               <Image url="@../../../../assets/tindak_lanjut.png" />
                            </image>

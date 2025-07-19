@@ -131,4 +131,43 @@ public class User {
     public void setRiskAnalysis(RiskAnalysis riskAnalysis) {
         this.riskAnalysis = riskAnalysis;
     }
+
+    // menangani data hasil rekomendasi untuk analisis
+    public List<String> getFoodRecommendations() {
+        return extractSection("Rekomendasi Makan");
+    }
+
+    public List<String> getSleepRecommendations() {
+        return extractSection("Rekomendasi Tidur");
+    }
+
+    public List<String> getActivityRecommendations() {
+        return extractSection("Rekomendasi Aktivitas");
+    }
+
+    private List<String> extractSection(String sectionTitle) {
+        if (recommendation == null || recommendation.isEmpty()) return List.of();
+
+        List<String> result = new ArrayList<>();
+        String[] lines = recommendation.split("\\r?\\n");
+        boolean inSection = false;
+
+        for (String line : lines) {
+            line = line.trim();
+            if (line.startsWith("Rekomendasi")) {
+                inSection = line.startsWith(sectionTitle);
+                continue;
+            }
+
+            if (inSection) {
+                if (line.startsWith("-")) {
+                    result.add(line);
+                } else if (line.startsWith("Rekomendasi")) {
+                    break; // keluar jika sudah masuk ke section lain
+                }
+            }
+        }
+
+        return result;
+    }
 }

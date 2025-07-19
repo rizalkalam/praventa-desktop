@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,25 +14,19 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class LaporanController implements Initializable {
+public class DiseaseRiskController implements Initializable {
     @FXML private AnchorPane rootPane;
     @FXML
-    private ScrollPane scrollPane;
-    @FXML private ImageView closeButton;
+    private ImageView closeButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Platform.runLater(() -> {
-            scrollPane.setVvalue(0.0); // scroll ke atas
-        });
-
         closeButton.setCursor(Cursor.HAND);
         // Validasi apakah closeButton null atau tidak terlihat
         closeButton.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Konfirmasi");
-            alert.setHeaderText("Batal eksport laporan?");
-            alert.setContentText("Kembali ke beranda?");
+            alert.setHeaderText("Kembali ke beranda?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
