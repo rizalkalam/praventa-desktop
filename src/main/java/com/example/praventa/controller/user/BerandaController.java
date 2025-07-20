@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,6 +34,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.*;
 
 public class BerandaController {
     @FXML
@@ -45,12 +47,23 @@ public class BerandaController {
     private ScrollPane scrollPane;
     @FXML
     private TextField inputField;
+    @FXML private Text foodRec1;
+    @FXML private Text foodRec2;
+    @FXML private Text activityRec1;
+    @FXML private Text activityRec2;
+    @FXML private Text sleepRec1;
+    @FXML private Text sleepRec2;
+    @FXML
+    private ImageView updateLifestyleButton;
 
-    private static final String FILE_PATH = "D:/Kuliah/Project/praventa/data/users.xml";
+
+    private static final String FILE_PATH = "D:\\Kuliah\\Project\\praventa\\data\\users.xml";
 
     @FXML
     public void initialize() {
+        // updateLifestyleButton.setVisible(true);
         checkLifestyleData();
+        showRecommendations();
 
         inputField.setOnAction(event -> handleUserMessage());
         // Auto scroll saat messageContainer height berubah
@@ -64,32 +77,39 @@ public class BerandaController {
         } else {
             usernameText.setText("Hai, Pengguna!");
         }
+
+        // Tambahkan aksi klik untuk update lifestyle
+        updateLifestyleButton.setOnMouseClicked(this::handleEditLifestyle);
+        updateLifestyleButton.setVisible(true); // default disembunyikan
     }
 
     @FXML
     private void handleStartLifestyleInput(ActionEvent event) {
+        openLifestyleEditor((Stage) ((Node) event.getSource()).getScene().getWindow());
+    }
+
+    public void handleEditLifestyle(MouseEvent event) {
+        openLifestyleEditor((Stage) ((Node) event.getSource()).getScene().getWindow());
+    }
+
+    private void openLifestyleEditor(Stage currentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/lifestyle.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setTitle("Edit Data Gaya Hidup - Praventa");
             stage.setScene(scene);
             stage.setMaximized(true);
 
-            // Fade in animation (opsional)
             FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
             fadeIn.play();
 
             stage.show();
-
-            // Tutup window sekarang
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,12 +140,81 @@ public class BerandaController {
                         startLifestyleButton.setText("Sudah Diisi");
                         startLifestyleButton.setStyle("-fx-background-color: #9E91E1; -fx-background-radius: 10;");
                         startLifestyleButton.setDisable(true);
+
+                        // Tampilkan tombol update lifestyle
+                        updateLifestyleButton.setVisible(true);
+                    } else {
+                        updateLifestyleButton.setVisible(false);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showRecommendations() {
+        User currentUser = Session.getCurrentUser();
+        if (currentUser != null && currentUser.getRecommendation() != null) {
+            Map<String, List<String>> parsed = parseRecommendationText(currentUser.getRecommendation());
+
+            List<String> foods = parsed.getOrDefault("makan", new ArrayList<>());
+            if (foods.isEmpty()) {
+                foodRec1.setText("Belum ada rekomendasi.");
+                foodRec2.setText("");
+            } else {
+                foodRec1.setText(foods.size() > 0 ? foods.get(0) : "");
+                foodRec2.setText(foods.size() > 1 ? foods.get(1) : "");
+            }
+
+            List<String> sleeps = parsed.getOrDefault("tidur", new ArrayList<>());
+            if (sleeps.isEmpty()) {
+                sleepRec1.setText("Belum ada rekomendasi.");
+                sleepRec2.setText("");
+            } else {
+                sleepRec1.setText(sleeps.size() > 0 ? sleeps.get(0) : "");
+                sleepRec2.setText(sleeps.size() > 1 ? sleeps.get(1) : "");
+            }
+
+            List<String> acts = parsed.getOrDefault("aktivitas", new ArrayList<>());
+            if (acts.isEmpty()) {
+                activityRec1.setText("Belum ada rekomendasi.");
+                activityRec2.setText("");
+            } else {
+                activityRec1.setText(acts.size() > 0 ? acts.get(0) : "");
+                activityRec2.setText(acts.size() > 1 ? acts.get(1) : "");
+            }
+        } else {
+            // fallback ketika recommendation == null
+            foodRec1.setText("Belum ada rekomendasi.");
+            foodRec2.setText("");
+            sleepRec1.setText("Belum ada rekomendasi.");
+            sleepRec2.setText("");
+            activityRec1.setText("Belum ada rekomendasi.");
+            activityRec2.setText("");
+        }
+    }
+
+    private Map<String, List<String>> parseRecommendationText(String raw) {
+        Map<String, List<String>> result = new HashMap<>();
+
+        String[] sections = raw.split("(?=Rekomendasi )"); // pisah berdasarkan label
+
+        for (String section : sections) {
+            if (section.contains(":")) {
+                String[] parts = section.split(":", 2);
+                String category = parts[0].replace("Rekomendasi ", "").trim().toLowerCase();
+                String[] items = parts[1].split("- ");
+                List<String> list = new ArrayList<>();
+                for (String item : items) {
+                    String trimmed = item.trim();
+                    if (!trimmed.isEmpty()) list.add("- " + trimmed);
+                }
+                result.put(category, list);
+            }
+        }
+
+        return result;
     }
 
     private void handleUserMessage() {

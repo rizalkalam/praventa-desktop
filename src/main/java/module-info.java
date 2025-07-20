@@ -6,6 +6,8 @@ module com.example.praventa {
     requires jakarta.xml.bind;
     requires java.net.http;
     requires com.google.gson;
+    requires itextpdf;
+    requires javafx.swing;
 
     opens com.example.praventa.model to jakarta.xml.bind;
     opens com.example.praventa.model.users to jakarta.xml.bind;

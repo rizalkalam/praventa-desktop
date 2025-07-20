@@ -14,40 +14,58 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxWidth="1200.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.LaporanController">
+<AnchorPane fx:id="rootPane" minWidth="1200.0" prefWidth="1484.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.LaporanController">
    <children>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-128.0" layoutY="-14.0" maxWidth="1200.0" minWidth="1200.0" prefHeight="792.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="-128.0" layoutY="-14.0" minWidth="1200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox alignment="TOP_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="2323.0" prefWidth="1420.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
+            <VBox fx:id="contentPane" alignment="TOP_RIGHT" minWidth="-Infinity" prefWidth="1420.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
                <children>
-                  <VBox alignment="CENTER" prefHeight="159.0" prefWidth="715.0" spacing="5.0" style="-fx-background-color: #ffff; -fx-background-radius: 18;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <effect>
-                        <DropShadow height="14.44" offsetX="3.0" offsetY="3.0" radius="6.9025" width="15.17">
-                           <color>
-                              <Color red="0.8355262875556946" green="0.8355262875556946" blue="0.8355262875556946" />
-                           </color>
-                        </DropShadow>
-                     </effect>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <VBox alignment="CENTER" prefHeight="143.0" prefWidth="845.0" spacing="5.0" style="-fx-background-color: #ffff; -fx-background-radius: 18;" BorderPane.alignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow height="14.44" offsetX="3.0" offsetY="3.0" radius="6.9025" width="15.17">
+                                 <color>
+                                    <Color red="0.8355262875556946" green="0.8355262875556946" blue="0.8355262875556946" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <children>
+                              <Label text="Laporan">
+                                 <font>
+                                    <Font name="System Bold" size="34.0" />
+                                 </font>
+                              </Label>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Laporan ini berdasarkan hasil kuisioner anda">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets bottom="28.0" left="380.0" right="380.0" top="28.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                     <right>
+                        <BorderPane prefHeight="700.0" prefWidth="17.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <ImageView fx:id="closeButton" BorderPane.alignment="TOP_RIGHT">
+                                 <image>
+                                    <Image url="@../../../../assets/close_btn.png" />
+                                 </image>
+                              </ImageView>
+                           </top>
+                        </BorderPane>
+                     </right>
                      <VBox.margin>
-                        <Insets bottom="30.0" left="200.0" right="200.0" top="30.0" />
+                        <Insets bottom="8.0" left="36.0" right="36.0" top="24.0" />
                      </VBox.margin>
-                     <children>
-                        <Label text="Laporan">
-                           <font>
-                              <Font name="System Bold" size="34.0" />
-                           </font>
-                        </Label>
-                        <Label text="Isi laporan berdasakan hasil kuisioner anda">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="458.0" prefWidth="1043.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
+                  </BorderPane>
+                  <VBox prefHeight="491.0" prefWidth="1410.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
                      <VBox.margin>
                         <Insets bottom="36.0" left="36.0" right="36.0" />
                      </VBox.margin>
@@ -68,7 +86,7 @@
                               </Label>
                            </left>
                            <right>
-                              <Label style="-fx-background-color: #FFD9D9; -fx-background-radius: 10;" text="Tinggi" textAlignment="CENTER" textFill="RED" BorderPane.alignment="CENTER">
+                              <Label fx:id="statusResiko" style="-fx-background-color: #FFD9D9; -fx-background-radius: 10;" text="Tinggi" textAlignment="CENTER" textFill="RED" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -108,7 +126,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #FFD9D9; -fx-background-radius: 10;">
                            <center>
-                              <Label text="Hipertensi" textFill="#b10000" BorderPane.alignment="CENTER_LEFT">
+                              <Label fx:id="penyakitTerdeteksi1" text="Hipertensi" textFill="#b10000" BorderPane.alignment="CENTER_LEFT">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -136,7 +154,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #FFD9D9; -fx-background-radius: 10;">
                            <center>
-                              <Label text="Diabetes Tipe 2" textFill="#b10000" BorderPane.alignment="CENTER_LEFT">
+                              <Label fx:id="penyakitTerdeteksi2" text="Diabetes Tipe 2" textFill="#b10000" BorderPane.alignment="CENTER_LEFT">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -160,6 +178,34 @@
                            </left>
                            <VBox.margin>
                               <Insets bottom="12.0" left="12.0" />
+                           </VBox.margin>
+                        </BorderPane>
+                        <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #FFD9D9; -fx-background-radius: 10;">
+                           <center>
+                              <Label fx:id="penyakitTerdeteksi3" text="Diabetes Tipe 2" textFill="#b10000" BorderPane.alignment="CENTER_LEFT">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets left="12.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </center>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                           <left>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../assets/icon_hipertensi.png" />
+                                 </image>
+                              </ImageView>
+                           </left>
+                           <VBox.margin>
+                              <Insets left="12.0" />
                            </VBox.margin>
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0">
@@ -192,7 +238,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 10;">
                            <center>
-                              <Label text="Pemeriksaan dengan dokter spesialis penyakit dalam" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
+                              <Label fx:id="rekomendasiPemeriksaan1" text="Pemeriksaan dengan dokter spesialis penyakit dalam" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -220,7 +266,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 10;">
                            <center>
-                              <Label text="Pemeriksaan fungsi ginjal" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
+                              <Label fx:id="rekomendasiPemeriksaan2" text="Pemeriksaan fungsi ginjal" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -248,7 +294,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="41.0" prefWidth="1003.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 10;">
                            <center>
-                              <Label text="Pemeriksaan gula darah" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
+                              <Label fx:id="rekomendasiPemeriksaan3" text="Pemeriksaan gula darah" textFill="#0081e4" BorderPane.alignment="CENTER_LEFT">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -279,7 +325,7 @@
                         <Insets left="20.0" right="20.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="1355.0" prefWidth="1043.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
+                  <VBox prefWidth="1043.0" style="-fx-background-color: #ffff; -fx-background-radius: 16;">
                      <effect>
                         <DropShadow offsetX="3.0" offsetY="3.0" spread="0.54">
                            <color>
@@ -327,7 +373,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Go Yoon Jung" BorderPane.alignment="CENTER">
+                                    <Label fx:id="name" text="Go Yoon Jung" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -343,7 +389,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="24 Tahun" BorderPane.alignment="CENTER">
+                                    <Label fx:id="age" text="24 Tahun" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -359,7 +405,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Perempuan" BorderPane.alignment="CENTER">
+                                    <Label fx:id="gender" text="Perempuan" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -375,7 +421,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="55kg" BorderPane.alignment="CENTER">
+                                    <Label fx:id="weight" text="55kg" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -391,7 +437,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="168cm" BorderPane.alignment="CENTER">
+                                    <Label fx:id="height" text="168cm" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -409,9 +455,9 @@
                               <Insets bottom="16.0" />
                            </VBox.margin>
                         </VBox>
-                        <VBox prefHeight="165.0" prefWidth="1003.0" spacing="5.0" style="-fx-background-color: #E6E3F7; -fx-background-radius: 16;">
+                        <VBox fx:id="containerFamilyHistory" prefHeight="165.0" prefWidth="1003.0" spacing="5.0" style="-fx-background-color: #E6E3F7; -fx-background-radius: 16;">
                            <children>
-                              <BorderPane prefHeight="36.0" prefWidth="979.0">
+                              <BorderPane fx:id="titleContainerFamilyHistory" prefHeight="36.0" prefWidth="979.0">
                                  <center>
                                     <Label text="Riwayat keluarga" BorderPane.alignment="CENTER_LEFT">
                                        <BorderPane.margin>
@@ -432,21 +478,21 @@
                               </BorderPane>
                               <BorderPane prefHeight="45.0" prefWidth="983.0" style="-fx-background-color: #ffff; -fx-background-radius: 12;">
                                  <left>
-                                    <Label text="Diabetes" BorderPane.alignment="CENTER">
+                                    <Label fx:id="familyHistory1" text="Diabetes" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="57 Tahun" BorderPane.alignment="CENTER">
+                                    <Label fx:id="ageFamily1" text="57 Tahun" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
                                  </right>
                                  <center>
-                                    <Label text="(Ayah)" BorderPane.alignment="CENTER">
+                                    <Label fx:id="family1" text="(Ayah)" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -458,21 +504,21 @@
                               </BorderPane>
                               <BorderPane prefHeight="45.0" prefWidth="983.0" style="-fx-background-color: #ffff; -fx-background-radius: 12;">
                                  <left>
-                                    <Label text="Hipertensi" BorderPane.alignment="CENTER">
+                                    <Label fx:id="familyHistory2" text="Hipertensi" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="57 Tahun" BorderPane.alignment="CENTER">
+                                    <Label fx:id="ageFamily2" text="57 Tahun" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
                                  </right>
                                  <center>
-                                    <Label text="(Ibu)" BorderPane.alignment="CENTER">
+                                    <Label fx:id="family2" text="(Ibu)" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -492,7 +538,7 @@
                         </VBox>
                         <VBox prefHeight="223.0" prefWidth="1003.0" spacing="5.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 16;">
                            <children>
-                              <BorderPane prefHeight="56.0" prefWidth="979.0">
+                              <BorderPane fx:id="titleContainerLifestyle" prefHeight="56.0" prefWidth="979.0">
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
@@ -520,7 +566,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Sering makan makanan manis" BorderPane.alignment="CENTER">
+                                    <Label fx:id="eat" text="Sering makan makanan manis" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -536,7 +582,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Sering (2-4  kali/minggu)" BorderPane.alignment="CENTER">
+                                    <Label fx:id="activity" text="Sering (2-4  kali/minggu)" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -552,7 +598,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Kurang baik (4-6 jam/malam)" BorderPane.alignment="CENTER">
+                                    <Label fx:id="sleep" text="Kurang baik (4-6 jam/malam)" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -568,7 +614,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="sedang" BorderPane.alignment="CENTER">
+                                    <Label fx:id="stress" text="sedang" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -584,7 +630,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Sering" BorderPane.alignment="CENTER">
+                                    <Label fx:id="alcohol" text="Sering" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -600,7 +646,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Tidak merokok" BorderPane.alignment="CENTER">
+                                    <Label fx:id="smoke" text="Tidak merokok" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -616,7 +662,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Selalu" BorderPane.alignment="CENTER">
+                                    <Label fx:id="not_sleep" text="Selalu" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -634,9 +680,9 @@
                               <Insets bottom="16.0" />
                            </VBox.margin>
                         </VBox>
-                        <VBox prefHeight="223.0" prefWidth="1003.0" spacing="5.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 16;">
+                        <VBox fx:id="containerDiseaseRisk" prefHeight="223.0" prefWidth="1003.0" spacing="5.0" style="-fx-background-color: #DBF0FF; -fx-background-radius: 16;">
                            <children>
-                              <BorderPane prefHeight="56.0" prefWidth="979.0">
+                              <BorderPane fx:id="titleContainerDiseaseRisk" prefHeight="56.0" prefWidth="979.0">
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
@@ -655,7 +701,7 @@
                                     </Label>
                                  </center>
                               </BorderPane>
-                              <Label text="Diabetes tipe 2">
+                              <Label fx:id="diseaseName" text="Diabetes tipe 2">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -669,7 +715,7 @@
                                     </Label>
                                  </left>
                                  <right>
-                                    <Label text="Ya" BorderPane.alignment="CENTER">
+                                    <Label fx:id="answer" text="Ya" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -885,6 +931,9 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
                         </VBox>
                      </children>
                      <padding>
@@ -949,7 +998,7 @@
                   </VBox>
                   <BorderPane prefHeight="91.0" prefWidth="1115.0">
                      <right>
-                        <Button mnemonicParsing="false" style="-fx-background-radius: 16; -fx-background-color: #86FEC8;" text="Unduh" textFill="WHITE" BorderPane.alignment="CENTER">
+                        <Button fx:id="unduhBtn" mnemonicParsing="false" onAction="#handleUnduhLaporan" style="-fx-background-radius: 16; -fx-background-color: #86FEC8;" text="Unduh" textFill="WHITE" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

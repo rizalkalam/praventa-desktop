@@ -167,45 +167,53 @@
     </user>
     <user>
         <id>2</id>
-        <username>rakha</username>
-        <password>rakha123</password>
-        <email>rakha@gmail.com</email>
+        <username>yuharam</username>
+        <password>yuha123</password>
+        <email>yuharam@gmail.com</email>
         <role>pasien</role>
         <profile_picture>assets/icn_profile_default.jpg</profile_picture>
         <phone_number>__</phone_number>
         <personal_data>
             <age>19</age>
             <body_metrics>
-                <height>168</height>
-                <weight>58</weight>
+                <height>166</height>
+                <weight>59</weight>
             </body_metrics>
-            <gender>Pria</gender>
+            <gender>Wanita</gender>
         </personal_data>
         <lifestyle_data>
-            <fastFoodFrequency>5</fastFoodFrequency>
+            <fastFoodFrequency>4</fastFoodFrequency>
             <drinkType>Air putih</drinkType>
-            <smokingHabit>Tidak</smokingHabit>
-            <alcoholHabit>Tidak</alcoholHabit>
-            <physicalActivity>Kurang</physicalActivity>
+            <smokingHabit>tidak</smokingHabit>
+            <alcoholHabit>tidak</alcoholHabit>
+            <physicalActivity>aktif</physicalActivity>
             <sleepHabits>
                 <habit>Sering begadang</habit>
             </sleepHabits>
-            <stressLevel>2</stressLevel>
+            <stressLevel>3</stressLevel>
         </lifestyle_data>
         <family_disease_history>
             <disease>
-                <relation>Kakek</relation>
-                <diseaseName>Katarak</diseaseName>
+                <relation>Nenek</relation>
+                <diseaseName>Stroke</diseaseName>
                 <diagnosedAge>66</diagnosedAge>
-                <status>Hidup</status>
+                <status>Wafat</status>
             </disease>
         </family_disease_history>
         <personal_disease_history>
             <disease>
                 <status>Masih aktif</status>
                 <diagnosedYear>2018</diagnosedYear>
-                <hospitalized>true</hospitalized>
+                <hospitalized>false</hospitalized>
                 <diseaseName>Asam Lambung</diseaseName>
+                <treatmentDetails></treatmentDetails>
+                <underTreatment>false</underTreatment>
+            </disease>
+            <disease>
+                <status>Tidak yakin</status>
+                <diagnosedYear>2010</diagnosedYear>
+                <hospitalized>false</hospitalized>
+                <diseaseName>Sakit gigi</diseaseName>
                 <treatmentDetails></treatmentDetails>
                 <underTreatment>false</underTreatment>
             </disease>
@@ -223,11 +231,11 @@
                 </question>
                 <question>
                     <text>Sering buang air kecil malam hari?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Berat badan berlebih?</text>
@@ -242,11 +250,11 @@
                 <category>Hipertensi</category>
                 <question>
                     <text>Sering merasa pusing sakit kepala mendadak?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Sering merasa tegang mudah marah?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Sering makan makanan manis?</text>
@@ -254,7 +262,7 @@
                 </question>
                 <question>
                     <text>Jarang berolahraga?</text>
-                    <answer>true</answer>
+                    <answer>false</answer>
                 </question>
                 <question>
                     <text>Jantung berdetak cepat tanpa sebab?</text>
@@ -269,11 +277,11 @@
                 </question>
                 <question>
                     <text>Cepat lelah saat naik tangga/jalan jauh?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Jantung berdebar/tidak teratur?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Sering makan gorengan dan makanan berlemak?</text>
@@ -292,7 +300,7 @@
                 </question>
                 <question>
                     <text>Kesulitan bicara mendadak?</text>
-                    <answer>true</answer>
+                    <answer>false</answer>
                 </question>
                 <question>
                     <text>Merokok setiap hari?</text>
@@ -300,7 +308,7 @@
                 </question>
                 <question>
                     <text>Stres berat berkepanjangan?</text>
-                    <answer>false</answer>
+                    <answer>true</answer>
                 </question>
                 <question>
                     <text>Riwayat keluarga pernah stroke?</text>
@@ -331,170 +339,17 @@
                 </question>
             </result>
         </questionnaire_results>
-    </user>
-    <user>
-        <id>3</id>
-        <username>farid</username>
-        <password>farid123</password>
-        <email>farid@gmail.com</email>
-        <role>pasien</role>
-        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
-        <phone_number>__</phone_number>
-        <personal_data>
-            <age>19</age>
-            <body_metrics>
-                <height>160</height>
-                <weight>65</weight>
-            </body_metrics>
-            <gender>Pria</gender>
-        </personal_data>
-        <lifestyle_data>
-            <fastFoodFrequency>4</fastFoodFrequency>
-            <drinkType>air es</drinkType>
-            <smokingHabit>sedikit</smokingHabit>
-            <alcoholHabit>iya</alcoholHabit>
-            <physicalActivity>baik</physicalActivity>
-            <sleepHabits>
-                <habit>Tidur cukup (7–8 jam)</habit>
-                <habit>Sering begadang</habit>
-                <habit>Sering bangun merasa lelah</habit>
-            </sleepHabits>
-            <stressLevel>5</stressLevel>
-        </lifestyle_data>
-        <questionnaire_results>
-            <result>
-                <category>Diabetes</category>
-                <question>
-                    <text>Sering merasa haus sepanjang hari?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Sering merasa lapar?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Sering buang air kecil malam hari?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Berat badan berlebih?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Riwayat penyakit keluarga diabetes?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Hipertensi</category>
-                <question>
-                    <text>Sering merasa pusing sakit kepala mendadak?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Sering merasa tegang mudah marah?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Sering makan makanan manis?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jarang berolahraga?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jantung berdetak cepat tanpa sebab?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Penyakit Jantung</category>
-                <question>
-                    <text>Nyeri dada saat beraktivitas?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Cepat lelah saat naik tangga/jalan jauh?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jantung berdebar/tidak teratur?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Sering makan gorengan dan makanan berlemak?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jarang berolahraga?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Stroke</category>
-                <question>
-                    <text>Tiba-tiba lemas di satu sisi tubuh?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Kesulitan bicara mendadak?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Merokok setiap hari?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Stres berat berkepanjangan?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Riwayat keluarga pernah stroke?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Kanker Serviks</category>
-                <question>
-                    <text>Belum pernah melakukan Pap smear?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Keputihan berbau/disertai darah?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Pendarahan setelah berhubungan?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Aktif seksual sejak usia muda?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Pasangan seksual lebih dari satu?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-        </questionnaire_results>
-        <recommendation>Berikut adalah rekomendasi gaya hidup sehat berdasarkan data yang Anda berikan:
-
-Rekomendasi Makan:
-- Kurangi frekuensi konsumsi *fast food*. Usahakan tidak lebih dari 1 kali per minggu, atau bahkan menghilangkannya sama sekali. Fokus pada makanan utuh dan bergizi.
-- Ganti air es dengan air putih suhu ruangan. Air putih suhu ruangan lebih baik untuk pencernaan.
+        <recommendation>Rekomendasi Makan:
+- Batasi konsumsi *fast food* maksimal 1 kali per minggu.
+- Tingkatkan konsumsi buah dan sayur setiap hari.
 
 Rekomendasi Tidur:
-- Usahakan untuk menghindari begadang, meskipun Anda tidur 7-8 jam. Pola tidur yang teratur lebih penting daripada durasi tidur yang panjang namun tidak teratur.
-- Evaluasi penyebab bangun tidur merasa lelah. Konsultasikan dengan dokter jika perlu, karena ini bisa menjadi indikasi masalah kesehatan lain.
+- Usahakan tidur dan bangun di jam yang sama setiap hari, termasuk akhir pekan.
+- Ciptakan rutinitas relaksasi sebelum tidur (misalnya membaca buku atau mandi air hangat).
 
 Rekomendasi Aktivitas:
-- Pertahankan aktivitas fisik yang baik. Usahakan untuk meningkatkan intensitas dan durasinya secara bertahap jika memungkinkan.
-- Pertimbangkan aktivitas relaksasi untuk mengurangi tingkat stres. Yoga, meditasi, atau bahkan sekadar berjalan-jalan di alam bisa membantu.
+- Pertahankan tingkat aktivitas fisik yang ada.
+- Variasikan jenis aktivitas untuk menghindari kebosanan.
 </recommendation>
         <risk_analysis>
             <risks>
@@ -533,176 +388,21 @@ Rekomendasi Aktivitas:
         </risk_analysis>
     </user>
     <user>
-        <id>4</id>
-        <username>yuharam</username>
-        <password>yuha123</password>
-        <email>yuharam@gmail.com</email>
+        <id>3</id>
+        <username>stella</username>
+        <password>stella123</password>
+        <email>stella@gmail.com</email>
         <role>pasien</role>
-        <profile_picture>C:\Users\LENOVO\praventa_assets\profile_1752840161386.jpg</profile_picture>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
         <phone_number>__</phone_number>
         <personal_data>
             <age>18</age>
             <body_metrics>
                 <height>166</height>
-                <weight>55</weight>
+                <weight>62</weight>
             </body_metrics>
             <gender>Wanita</gender>
         </personal_data>
-        <questionnaire_results>
-            <result>
-                <category>Diabetes</category>
-                <question>
-                    <text>Sering merasa haus sepanjang hari?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Sering merasa lapar?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Sering buang air kecil malam hari?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Berat badan berlebih?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Riwayat penyakit keluarga diabetes?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Hipertensi</category>
-                <question>
-                    <text>Sering merasa pusing sakit kepala mendadak?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Sering merasa tegang mudah marah?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Sering makan makanan manis?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jarang berolahraga?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Jantung berdetak cepat tanpa sebab?</text>
-                    <answer>true</answer>
-                </question>
-            </result>
-            <result>
-                <category>Penyakit Jantung</category>
-                <question>
-                    <text>Nyeri dada saat beraktivitas?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Cepat lelah saat naik tangga/jalan jauh?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Jantung berdebar/tidak teratur?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Sering makan gorengan dan makanan berlemak?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Jarang berolahraga?</text>
-                    <answer>true</answer>
-                </question>
-            </result>
-            <result>
-                <category>Stroke</category>
-                <question>
-                    <text>Tiba-tiba lemas di satu sisi tubuh?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Kesulitan bicara mendadak?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Merokok setiap hari?</text>
-                    <answer>true</answer>
-                </question>
-                <question>
-                    <text>Stres berat berkepanjangan?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Riwayat keluarga pernah stroke?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-            <result>
-                <category>Kanker Serviks</category>
-                <question>
-                    <text>Belum pernah melakukan Pap smear?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Keputihan berbau/disertai darah?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Pendarahan setelah berhubungan?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Aktif seksual sejak usia muda?</text>
-                    <answer>false</answer>
-                </question>
-                <question>
-                    <text>Pasangan seksual lebih dari satu?</text>
-                    <answer>false</answer>
-                </question>
-            </result>
-        </questionnaire_results>
-        <risk_analysis>
-            <risks>
-                <risk>
-                    <name>Diabetes Tipe 2</name>
-                    <percentage>0.5</percentage>
-                    <color>#4FC3F7</color>
-                </risk>
-                <risk>
-                    <name>Hipertensi</name>
-                    <percentage>0.8</percentage>
-                    <color>#FF7043</color>
-                </risk>
-                <risk>
-                    <name>Penyakit Jantung</name>
-                    <percentage>0.4</percentage>
-                    <color>#3F51B5</color>
-                </risk>
-                <risk>
-                    <name>Stroke</name>
-                    <percentage>0.6</percentage>
-                    <color>#EF5350</color>
-                </risk>
-                <risk>
-                    <name>Kanker Serviks</name>
-                    <percentage>0.3</percentage>
-                    <color>#81C784</color>
-                </risk>
-            </risks>
-            <chart_values>
-                <value>60</value>
-                <value>30</value>
-                <value>65</value>
-                <value>75</value>
-            </chart_values>
-        </risk_analysis>
+        <questionnaire_results/>
     </user>
 </users>
