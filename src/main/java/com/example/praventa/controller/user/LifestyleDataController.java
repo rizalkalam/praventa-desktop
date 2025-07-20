@@ -262,7 +262,7 @@ public class LifestyleDataController {
         // Hanya satu thread
         new Thread(() -> {
             try {
-                String rekomendasi = GeminiService.generateRecommendation(prompt.toString());
+                String rekomendasi = GeminiService.generateMedicalCheckupRecommendation(prompt.toString());
 
                 System.out.println("[Rekomendasi Gemini]\n" + rekomendasi);
 

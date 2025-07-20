@@ -327,7 +327,7 @@ public class InputKuisionerController {
         // 🔁 Kirim ke Gemini di thread baru
         new Thread(() -> {
             try {
-                String response = GeminiService.generateRecommendation(prompt.toString());
+                String response = GeminiService.generateMedicalCheckupRecommendation(prompt.toString());
                 System.out.println("[Gemini Output]\n" + response);
 
                 // ✅ Simpan hasil Gemini
