@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.admin.ArtikelAdminController">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox prefHeight="1161.0" prefWidth="1065.0" style="-fx-background-color: #fff; -fx-background-radius: 16;">
+               <children>
+                  <BorderPane prefHeight="82.0">
+                     <bottom>
+                        <Line endX="963.6262817382812" startX="-100.0" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <center>
+                        <TextField promptText="Search" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets left="38.0" right="700.0" />
+                           </BorderPane.margin>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" top="12.0" />
+                           </padding>
+                        </TextField>
+                     </center>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </BorderPane>
+                  <GridPane fx:id="grid" alignment="TOP_CENTER" prefWidth="1065.0" vgap="10.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1014.0" minWidth="10.0" prefWidth="351.5" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1045.8333206176758" minWidth="10.0" prefWidth="357.5" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1045.8333206176758" minWidth="10.0" prefWidth="355.5" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="495.5" minHeight="10.0" prefHeight="379.8333435058594" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="251.5" minHeight="10.0" prefHeight="240.16665649414062" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox fx:id="artikelCard" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="428.0" prefWidth="338.0" spacing="12.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" xmlns:fx="http://javafx.com/fxml/1">
+                  </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="18.0" right="24.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+         </content>
+         <padding>
+            <Insets left="40.0" right="40.0" top="35.0" />
+         </padding>
+      </ScrollPane>
+   </children>
+</AnchorPane>

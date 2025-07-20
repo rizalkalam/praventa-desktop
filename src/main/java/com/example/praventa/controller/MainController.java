@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
 public class MainController {
     @FXML
     private VBox navContainer;
@@ -54,6 +56,28 @@ public class MainController {
             e.printStackTrace();
         }
     }
+
+    public void loadPage(String pageName) {
+        this.defaultPage = pageName;
+
+        if (mainContent != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + pageName + ".fxml"));
+                Parent content = loader.load();
+                mainContent.getChildren().setAll(content);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("❌ Gagal memuat halaman: " + pageName);
+            }
+        }
+    }
+
+    public void refreshPage() {
+        if (defaultPage != null) {
+            loadPage(defaultPage);
+        }
+    }
+
 
     public void setDefaultPage(String pageName) {
         this.defaultPage = pageName;

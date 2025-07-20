@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1034.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.fxml.fxmlAdmin.UploadArtikel">
+<AnchorPane prefHeight="1034.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.admin.UploadArticleController">
     <children>
         <AnchorPane layoutX="26.0" layoutY="24.0" prefHeight="871.0" prefWidth="1151.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15; -fx-border-color: white; -fx-border-radius: 50;">
             <children>
@@ -28,7 +28,7 @@
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="emailField" layoutX="90.0" layoutY="105.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+            <TextField fx:id="title" layoutX="90.0" layoutY="105.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
                <padding>
                   <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
                </padding>
@@ -41,7 +41,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="emailField1" layoutX="90.0" layoutY="195.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+            <TextField fx:id="category" layoutX="90.0" layoutY="195.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
                <padding>
                   <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
                </padding>
@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="emailField11" layoutX="90.0" layoutY="285.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+            <TextField fx:id="date" layoutX="90.0" layoutY="285.0" prefHeight="43.0" prefWidth="971.0" promptText="masukkan judul artikel" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
                <padding>
                   <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
                </padding>
@@ -67,7 +67,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="emailField111" alignment="TOP_LEFT" layoutX="90.0" layoutY="375.0" prefHeight="105.0" prefWidth="971.0" promptText="Tulis ringkasan artikel (minimal 100 karakter)" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+            <TextField fx:id="ringkasan" alignment="TOP_LEFT" layoutX="90.0" layoutY="375.0" prefHeight="105.0" prefWidth="971.0" promptText="Tulis ringkasan artikel (minimal 100 karakter)" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
                <padding>
                   <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
                </padding>
@@ -80,7 +80,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="emailField1111" alignment="TOP_LEFT" layoutX="90.0" layoutY="530.0" prefHeight="179.0" prefWidth="971.0" promptText="Tulis konten artikel lengkap" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
+            <TextField fx:id="desc" alignment="TOP_LEFT" layoutX="90.0" layoutY="530.0" prefHeight="179.0" prefWidth="971.0" promptText="Tulis konten artikel lengkap" style="-fx-background-color: #ffff; -fx-border-color: #505050; -fx-border-radius: 10;">
                <padding>
                   <Insets bottom="10.0" left="18.0" right="150.0" top="10.0" />
                </padding>
@@ -93,9 +93,9 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="101.0" layoutY="770.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="378.0" text="max (10 mb)" />
-            <Button layoutX="864.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: blue;" text="Publikasi" textFill="WHITE" />
-            <Button layoutX="657.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Simpan draf" textFill="WHITE" />
+            <Button fx:id="inputImg" layoutX="101.0" layoutY="770.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="378.0" text="max (10 mb)" />
+            <Button fx:id="btnPublish" layoutX="864.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: blue;" text="Publikasi" textFill="WHITE" />
+            <Button fx:id="btnCancel" layoutX="657.0" layoutY="817.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Simpan draf" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

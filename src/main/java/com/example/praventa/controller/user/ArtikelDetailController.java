@@ -1,13 +1,11 @@
 package com.example.praventa.controller.user;
 
-import com.example.praventa.model.Artikel;
+import com.example.praventa.model.articles.Article;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
-import static com.example.praventa.utils.Session.sidebarController;
 
 public class ArtikelDetailController {
     @FXML
@@ -21,7 +19,7 @@ public class ArtikelDetailController {
         this.sidebarController = sidebarController;
     }
 
-    public void setArtikel(Artikel artikel) {
+    public void setArtikel(Article artikel) {
         tanggalText.setText(artikel.getTanggal());
         judulText.setText(artikel.getJudul());
         deskripsiText.setText(artikel.getDeskripsi());

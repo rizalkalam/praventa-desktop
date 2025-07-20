@@ -1,4 +1,4 @@
-package com.example.praventa.controller.user;
+package com.example.praventa.controller.admin;
 
 import com.example.praventa.model.users.LifestyleData;
 import com.example.praventa.model.users.User;
@@ -16,27 +16,32 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class BerandaController {
+public class BerandaAdminController {
     @FXML
     private Button startLifestyleButton;
     @FXML
@@ -300,9 +305,5 @@ public class BerandaController {
 
     private boolean isNullOrEmpty(String value) {
         return value == null || value.trim().isEmpty() || value.trim().equals("__");
-    }
-
-    public void refreshRecommendations() {
-        showRecommendations();
     }
 }

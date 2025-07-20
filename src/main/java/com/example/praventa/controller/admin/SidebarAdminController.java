@@ -1,10 +1,8 @@
 package com.example.praventa.controller.admin;
 
 import com.example.praventa.controller.BaseSidebarController;
-import com.example.praventa.controller.user.ArtikelController;
 import com.example.praventa.controller.user.ArtikelDetailController;
-import com.example.praventa.controller.user.ProfileController;
-import com.example.praventa.model.Artikel;
+import com.example.praventa.model.articles.Article;
 import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
@@ -136,12 +134,12 @@ public class SidebarAdminController extends BaseSidebarController {
 
     public void handleNavHomeClick() {
         setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
-        loadPage("beranda.fxml");
+        loadPage("beranda_admin.fxml");
     }
 
     public void handleNavArticleClick() {
         setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
-        loadPage("artikel.fxml");
+        loadPage("artikel_admin.fxml");
     }
 
     public void handleNavAkunClick() {
@@ -182,7 +180,7 @@ public class SidebarAdminController extends BaseSidebarController {
 
     public void loadPage(String fxmlName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlAdmin/" + fxmlName));
             Parent content = loader.load();
 
             contentTarget.getChildren().setAll(content);
@@ -196,7 +194,7 @@ public class SidebarAdminController extends BaseSidebarController {
         }
     }
 
-    public void loadDetailArtikelPage(Artikel artikel) {
+    public void loadDetailArtikelPage(Article artikel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_detail.fxml"));
             AnchorPane detailPage = loader.load();

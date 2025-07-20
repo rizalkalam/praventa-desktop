@@ -243,7 +243,7 @@
                               </Label>
                            </left>
                            <right>
-                              <Button mnemonicParsing="false" onMouseClicked="#handleAddHistory" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
+                              <Button fx:id="btnTambahRiwayat" mnemonicParsing="false" onMouseClicked="#handleAddHistory" style="-fx-background-color: #9E91E1; -fx-background-radius: 10;" text="Tambah Riwayat" textFill="WHITE" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

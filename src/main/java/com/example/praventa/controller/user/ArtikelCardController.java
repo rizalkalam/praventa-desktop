@@ -1,6 +1,6 @@
 package com.example.praventa.controller.user;
 
-import com.example.praventa.model.Artikel;
+import com.example.praventa.model.articles.Article;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,7 +14,7 @@ public class ArtikelCardController {
     @FXML private Label deskripsiText;
     @FXML private ImageView imageView;
 
-    public void setData(Artikel artikel) {
+    public void setData(Article artikel) {
         tanggalText.setText(artikel.getTanggal());
         judulText.setText(artikel.getJudul());
         deskripsiText.setText(artikel.getDeskripsi());
