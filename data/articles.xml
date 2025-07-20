@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<articles>
+    <article>
+        <deskripsi>java - Sebuah tim peneliti dari Synapse Tech Labs hari ini mengumumkan peluncuran NeuralMind, sebuah algoritma kecerdasan buatan revolusioner yang diklaim mampu mengidentifikasi dan menganalisis emosi manusia dengan tingkat akurasi yang belum pernah tercapai sebelumnya, mencapai 95%. Penemuan ini berpotensi mengubah lanskap interaksi manusia
+
+NeuralMind dikembangkan selama tiga tahun terakhir, menggunakan pendekatan pembelajaran mendalam (deep learning) dan jutaan data set ekspresi wajah, nada suara, dan pola bahasa tubuh. "Kami berfokus pada nuansa halus yang sering terlewatkan oleh sistem AI konvensional," ujar Dr. Anya Sharma, kepala proyek di Synapse Tech Labs. Algoritma ini tidak hanya mengidentifikasi emosi dasar seperti senang, sedih, atau marah, tetapi juga mampu mendeteksi emosi kompleks seperti kebingungan, frustrasi tersembunyi, atau bahkan sarkasme.</deskripsi>
+        <imagePath>C:\Users\LENOVO\OneDrive\Pictures\Traksion-Dashboard.png</imagePath>
+        <judul>Ekspo informatika uii</judul>
+        <tanggal>7, mei 2005</tanggal>
+    </article>
+    <article>
+        <deskripsi>
+            Diabetes adalah penyakit kronis yang terjadi ketika tubuh tidak dapat memproduksi atau menggunakan insulin
+            secara efektif.
+            Banyak orang tidak menyadari bahwa mereka mengidap diabetes hingga muncul komplikasi serius.
+            Gejala awal yang sering diabaikan antara lain sering buang air kecil, mudah merasa haus, kelelahan
+            berlebihan, penglihatan kabur, dan luka yang sulit sembuh.
+            Mengenali tanda-tanda ini lebih awal sangat penting agar penanganan dapat dilakukan sejak dini dan mencegah
+            kerusakan organ.
+        </deskripsi>
+        <imagePath>assets/images/diabetes_awal.jpg</imagePath>
+        <judul>5 Gejala Awal Diabetes yang Sering Diabaikan</judul>
+        <tanggal>20 Jul 2025</tanggal>
+    </article>
+    <article>
+        <deskripsi>
+            Hipertensi atau tekanan darah tinggi dapat menyebabkan berbagai komplikasi serius seperti stroke dan gagal
+            jantung.
+            Untungnya, gaya hidup sehat dapat membantu menurunkan tekanan darah tanpa harus bergantung pada obat.
+            Beberapa langkah yang disarankan adalah mengurangi konsumsi garam, rutin berolahraga setidaknya 30 menit
+            sehari,
+            menjaga berat badan ideal, mengurangi konsumsi kafein dan alkohol, serta mengelola stres melalui relaksasi
+            atau meditasi.
+            Konsultasikan dengan dokter sebelum menghentikan penggunaan obat.
+        </deskripsi>
+        <imagePath>assets/images/hipertensi.jpg</imagePath>
+        <judul>Cara Menurunkan Tekanan Darah Tanpa Obat</judul>
+        <tanggal>18 Jul 2025</tanggal>
+    </article>
+    <article>
+        <deskripsi>
+            Penyakit jantung adalah penyebab kematian nomor satu di dunia.
+            Banyak kasus baru diketahui ketika sudah parah. Deteksi dini bisa dilakukan dengan pemeriksaan tekanan
+            darah, kadar kolesterol, EKG, dan tes stres jantung.
+            Gaya hidup sehat juga berperan penting dalam pencegahan, termasuk olahraga teratur, diet rendah lemak jenuh,
+            tidak merokok, dan menghindari stres.
+            Pemeriksaan rutin sangat dianjurkan terutama bagi mereka yang memiliki riwayat keluarga dengan penyakit
+            jantung.
+        </deskripsi>
+        <imagePath>assets/images/jantung_dini.jpg</imagePath>
+        <judul>Pentingnya Deteksi Dini Penyakit Jantung</judul>
+        <tanggal>15 Jul 2025</tanggal>
+    </article>
+    <article>
+        <deskripsi>
+            Asam urat tinggi bisa menyebabkan nyeri sendi yang parah dan pembengkakan.
+            Makanan tertentu dapat memperparah kondisi ini, seperti jeroan, daging merah, makanan laut, serta minuman
+            manis tinggi fruktosa.
+            Sebaiknya konsumsi makanan rendah purin seperti buah, sayur hijau, dan biji-bijian.
+            Perbanyak juga minum air putih untuk membantu mengeluarkan asam urat dari tubuh.
+            Konsultasi dengan dokter atau ahli gizi penting untuk menyusun pola makan yang aman dan seimbang.
+        </deskripsi>
+        <imagePath>assets/images/asam_urat.jpg</imagePath>
+        <judul>Makanan yang Harus Dihindari oleh Penderita Asam Urat</judul>
+        <tanggal>12 Jul 2025</tanggal>
+    </article>
+    <article>
+        <deskripsi>
+            Tidur yang cukup dan berkualitas sangat penting bagi kesehatan tubuh dan pikiran.
+            Untuk tidur lebih nyenyak, buatlah rutinitas tidur yang konsisten setiap hari, hindari gadget 1 jam sebelum
+            tidur,
+            dan ciptakan suasana kamar yang nyaman dan tenang.
+            Batasi konsumsi kafein dan makanan berat sebelum tidur, serta coba teknik relaksasi seperti membaca atau
+            meditasi ringan.
+            Jika insomnia berlanjut, pertimbangkan untuk berkonsultasi dengan dokter atau psikolog.
+        </deskripsi>
+        <imagePath>assets/images/tidur_nyenyak.jpg</imagePath>
+        <judul>Tips Tidur Lebih Nyenyak di Malam Hari</judul>
+        <tanggal>10 Jul 2025</tanggal>
+    </article>
+</articles>

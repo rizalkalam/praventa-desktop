@@ -16,26 +16,28 @@ public class GeminiService {
      */
     public static String generateRecommendation(String userData) throws Exception {
         String instruction = """
-            Berdasarkan data gaya hidup berikut ini, buatlah rekomendasi gaya hidup sehat yang:
-            - Singkat, maksimal 2 poin untuk masing-masing kategori (makan, tidur, aktivitas).
-            - Profesional dan mudah dipahami.
-            - Tidak perlu penjelasan umum atau pengantar.
-            - Gunakan format berikut:
+        Berdasarkan data berikut, buat rekomendasi gaya hidup sehat secara langsung dan ringkas.
+        
+        - 2 poin untuk Makan, 2 poin untuk Tidur, dan 2 poin untuk Aktivitas.
+        - Gunakan bullet point (•) tanpa penjelasan tambahan.
+        - Tidak perlu pengantar atau penutup.
+        - Gunakan format ini persis:
+        
+        Rekomendasi Makan:
+        • ...
+        • ...
+        
+        Rekomendasi Tidur:
+        • ...
+        • ...
+        
+        Rekomendasi Aktivitas:
+        • ...
+        • ...
+        
+        Data pengguna:
+        """ + userData;
 
-              Rekomendasi Makan:
-              - ...
-              - ...
-
-              Rekomendasi Tidur:
-              - ...
-              - ...
-
-              Rekomendasi Aktivitas:
-              - ...
-              - ...
-
-            Berikut datanya:
-            """ + userData;
 
         return sendToGemini(instruction);
     }

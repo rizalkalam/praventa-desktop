@@ -10,12 +10,14 @@ import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PersonalDiseaseController {
 
@@ -31,6 +33,7 @@ public class PersonalDiseaseController {
     private ComboBox<String> choiceBox;
     private CheckBox yesCheckBox;
     private TextField extraTextField;
+    @FXML private ImageView closeButton;
 
     private int currentStep = 0;
 
@@ -73,6 +76,20 @@ public class PersonalDiseaseController {
     public void initialize() {
         applyStep(currentStep);
         nextButton.setOnAction(e -> handleNext());
+
+        // Validasi apakah closeButton null atau tidak terlihat
+        closeButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmasi");
+            alert.setHeaderText("Batal mengisi data?");
+            alert.setContentText("Perubahan belum akan disimpan. Kembali ke beranda?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Session.setDefaultPage("riwayat.fxml");
+                SceneUtil.switchToMainPage(rootPane);
+            }
+        });
     }
 
     private void applyStep(int index) {
@@ -133,6 +150,7 @@ public class PersonalDiseaseController {
             applyStep(currentStep);
         } else {
             saveToXML();
+            Session.setUpdatedPersonalDisease(true);
             SceneUtil.switchToMainPage(rootPane);
         }
     }

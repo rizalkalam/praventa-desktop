@@ -9,15 +9,14 @@ module com.example.praventa {
     requires itextpdf;
     requires javafx.swing;
 
-    opens com.example.praventa.model to jakarta.xml.bind;
     opens com.example.praventa.model.users to jakarta.xml.bind;
     opens com.example.praventa.controller to javafx.fxml;
     opens com.example.praventa.controller.admin to javafx.fxml;
     opens com.example.praventa.controller.pakar to javafx.fxml;
 
     exports com.example.praventa;
-    exports com.example.praventa.model;
     exports com.example.praventa.controller;
+    exports com.example.praventa.model.articles;
     exports com.example.praventa.model.users;
     exports com.example.praventa.model.questionnaire;
     opens com.example.praventa.model.questionnaire to jakarta.xml.bind;
@@ -27,4 +26,5 @@ module com.example.praventa {
     exports com.example.praventa.controller.admin;
     exports com.example.praventa.controller.pakar;
     opens com.example.praventa.controller.user to javafx.fxml;
+    opens com.example.praventa.model.articles to jakarta.xml.bind, javafx.fxml;
 }

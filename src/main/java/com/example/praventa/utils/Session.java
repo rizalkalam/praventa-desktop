@@ -6,6 +6,17 @@ import com.example.praventa.model.users.User;
 
 public class Session {
     private static User currentUser;
+    private static boolean isUpdatedPersonalDisease = false;
+
+    private static String defaultPage = "beranda_user.fxml";
+
+    public static String getDefaultPage() {
+        return defaultPage;
+    }
+
+    public static void setDefaultPage(String page) {
+        defaultPage = page;
+    }
 
     /**
      * Set user yang sedang login.
@@ -52,4 +63,11 @@ public class Session {
         return sidebarController;
     }
 
+    public static boolean isUpdatedPersonalDisease() {
+        return isUpdatedPersonalDisease;
+    }
+
+    public static void setUpdatedPersonalDisease(boolean updated) {
+        isUpdatedPersonalDisease = updated;
+    }
 }
