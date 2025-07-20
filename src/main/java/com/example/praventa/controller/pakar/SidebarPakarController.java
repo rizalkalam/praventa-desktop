@@ -1,10 +1,8 @@
 package com.example.praventa.controller.pakar;
 
 import com.example.praventa.controller.BaseSidebarController;
-import com.example.praventa.controller.user.ArtikelController;
 import com.example.praventa.controller.user.ArtikelDetailController;
-import com.example.praventa.controller.user.ProfileController;
-import com.example.praventa.model.Artikel;
+import com.example.praventa.model.articles.Article;
 import com.example.praventa.model.users.User;
 import com.example.praventa.utils.Session;
 import javafx.fxml.FXML;
@@ -210,7 +208,7 @@ public class SidebarPakarController extends BaseSidebarController {
         }
     }
 
-    public void loadDetailArtikelPage(Artikel artikel) {
+    public void loadDetailArtikelPage(Article artikel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_detail.fxml"));
             AnchorPane detailPage = loader.load();

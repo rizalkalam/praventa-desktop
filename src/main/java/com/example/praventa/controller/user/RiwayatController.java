@@ -8,6 +8,7 @@ import com.example.praventa.model.users.User;
 import com.example.praventa.model.users.UserListWrapper;
 import com.example.praventa.utils.Session;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -29,66 +30,62 @@ import java.util.List;
 
 public class RiwayatController {
 
-    @FXML
-    private VBox navContainer;
-
-    @FXML
-    private AnchorPane mainContent;
-
-    @FXML
-    private Text usernameText;
-    @FXML
-    private Text ageText;
-    @FXML
-    private Text genderText;
-    @FXML
-    private Text heightnweightText;
-
-    @FXML private Text relation1;
-    @FXML private Text relation2;
-    @FXML private Text relation3;
-    @FXML private Text relation4;
-    @FXML private Text disease1;
-    @FXML private Text disease2;
-    @FXML private Text disease3;
-    @FXML private Text disease4;
-
-    @FXML
-    private BorderPane containerRiskInfo;
-
-    @FXML
-    private VBox containerPersonalDisease;
-    @FXML
-    private BorderPane warp_content_History; // template utama dari FXML
-    @FXML
-    private Text titleHistory;
-    @FXML
-    private Text dateHistory;
-    @FXML
-    private Text drugInfo;
-    @FXML
-    private Text statusRawat;
-
-    @FXML
-    private VBox containerSkrinning;
-    @FXML
-    private BorderPane warp_content_Skrinning;
-    @FXML
-    private Label skrinningLabel;
-    @FXML
-    private Text titleSkrinning;
-    @FXML
-    private Text statusSkrinning;
-    @FXML
-    private Text textDste;
+    @FXML private VBox navContainer;
+    @FXML private AnchorPane mainContent;
+    @FXML private Text usernameText, ageText, genderText, heightnweightText;
+    @FXML private Text relation1, relation2, relation3, relation4;
+    @FXML private Text disease1, disease2, disease3, disease4;
+    @FXML private BorderPane containerRiskInfo;
+    @FXML private VBox containerPersonalDisease;
+    @FXML private BorderPane diseaseItemTemplate;
+    @FXML private BorderPane warp_content_History;
+    @FXML private Text titleHistory, dateHistory, drugInfo, statusRawat;
+    @FXML private VBox containerSkrinning;
+    @FXML private BorderPane warp_content_Skrinning;
+    @FXML private Label skrinningLabel;
+    @FXML private Text titleSkrinning, statusSkrinning, textDste;
 
     public void initialize() {
         User user = Session.getCurrentUser();
         if (user == null) return;
 
-        // Personal Info
-        usernameText.setText(user.getUsername());
+        setPersonalInfo(user);
+        setFamilyDiseaseDataOrReset(user);
+        loadPersonalDisease(user);
+        loadSkrinningData(user);
+        refreshData();
+        refreshPersonalDiseaseIfUpdated();
+    }
 
+    private void refreshPersonalDiseaseIfUpdated() {
+        Platform.runLater(() -> {
+            if (Session.isUpdatedPersonalDisease()) {
+                System.out.println("Detected update in personal disease data...");
+
+                Session.setUpdatedPersonalDisease(true);
+
+                User updatedUser = getUpdatedUser(Session.getCurrentUser().getUsername());
+                if (updatedUser != null) {
+                    Session.setCurrentUser(updatedUser);
+                    loadPersonalDisease(updatedUser);
+                }
+            }
+        });
+    }
+
+    private User getUpdatedUser(String username) {
+        try {
+            File file = new File("D:/Kuliah/Project/praventa/data/users.xml"); // ganti sesuai path kamu
+            UserListWrapper wrapper = AnalisisController.XmlUtils.loadFromXml(file, UserListWrapper.class);
+            return wrapper.getUserByUsername(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void setPersonalInfo(User user) {
+        usernameText.setText(user.getUsername());
         if (user.getPersonalData() != null) {
             ageText.setText(String.valueOf(user.getPersonalData().getAge()));
             genderText.setText(user.getPersonalData().getGender());
@@ -99,46 +96,42 @@ public class RiwayatController {
                 heightnweightText.setText(height + "cm / " + weight + "kg");
             }
         }
+    }
 
-        // Family Disease
+    private void setFamilyDiseaseDataOrReset(User user) {
         List<FamilyDiseaseHistory> familyDiseases = user.getFamilyDiseaseHistoryList();
         if (familyDiseases != null && !familyDiseases.isEmpty()) {
             setFamilyDiseaseData(familyDiseases);
+            containerRiskInfo.setVisible(true);
+            containerRiskInfo.setManaged(true);
         } else {
             resetFamilyDiseaseDisplay();
+            containerRiskInfo.setVisible(false);
+            containerRiskInfo.setManaged(false);
         }
+    }
 
-        // Personal Disease
+    private void loadPersonalDisease(User user) {
         List<PersonalDisease> historyList = user.getPersonalDiseases();
-        containerPersonalDisease.getChildren().clear(); // pastikan bersih dulu
+        containerPersonalDisease.getChildren().retainAll(diseaseItemTemplate);
 
         if (historyList != null && !historyList.isEmpty()) {
+            warp_content_History.setVisible(false);
+            warp_content_History.setManaged(false);
+
             for (PersonalDisease pd : historyList) {
                 BorderPane item = createHistoryItem(pd);
                 containerPersonalDisease.getChildren().add(item);
             }
         } else {
-            Label kosongLabel = new Label("Belum ada riwayat penyakit pribadi.");
-            kosongLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: #888;");
-            kosongLabel.setAlignment(Pos.CENTER);
-            kosongLabel.setMaxWidth(Double.MAX_VALUE);
-
-            VBox.setVgrow(kosongLabel, Priority.ALWAYS);
-            containerPersonalDisease.setAlignment(Pos.CENTER);
-            containerPersonalDisease.getChildren().add(kosongLabel);
+            warp_content_History.setVisible(false);
+            warp_content_History.setManaged(false);
         }
+    }
 
-
-        // Risiko dari riwayat keluarga
-        boolean hasRisk = familyDiseases != null && !familyDiseases.isEmpty();
-        containerRiskInfo.setVisible(hasRisk);
-        containerRiskInfo.setManaged(hasRisk);
-
-        // Sembunyikan template skrining
+    private void loadSkrinningData(User user) {
         warp_content_Skrinning.setVisible(false);
         warp_content_Skrinning.setManaged(false);
-
-        // Tampilkan skrining
         tampilkanSkriningStatik(user);
     }
 
@@ -152,7 +145,7 @@ public class RiwayatController {
         Text title = new Text(pd.getName() + " (" + pd.getActiveStatus() + ")");
         title.setFont(Font.font("System Bold", 14));
         StackPane leftPane = new StackPane(title);
-        StackPane.setAlignment(title, javafx.geometry.Pos.CENTER_LEFT);
+        StackPane.setAlignment(title, Pos.CENTER_LEFT);
         leftPane.setPrefWidth(200);
         clone.setLeft(leftPane);
 
@@ -165,35 +158,33 @@ public class RiwayatController {
         rawat.setFont(Font.font(14));
 
         HBox centerBox = new HBox(60, treatment, rawat);
-        centerBox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        centerBox.setAlignment(Pos.TOP_CENTER);
         centerBox.setPadding(new Insets(20, 0, 20, 0));
         clone.setCenter(centerBox);
 
         Text year = new Text(String.valueOf(pd.getDiagnosedYear()));
         year.setFont(Font.font(14));
         clone.setRight(year);
-        BorderPane.setAlignment(year, javafx.geometry.Pos.CENTER);
+        BorderPane.setAlignment(year, Pos.CENTER);
 
         return clone;
     }
 
     private BorderPane createSkrinningItem(QuestionnaireResult result) {
         BorderPane box = new BorderPane();
-        box.setId("dynamicSkrinningItem"); // Penanda untuk dibersihkan jika perlu
+        box.setId("dynamicSkrinningItem");
         box.setPrefHeight(66);
         box.setPrefWidth(1112);
         box.setStyle("-fx-background-color: #fff; -fx-background-radius: 14;");
         box.setPadding(new Insets(0, 30, 0, 30));
 
-        // LEFT – Kategori
         Text title = new Text(result.getCategory());
         title.setFont(Font.font("System Bold", 14));
         StackPane left = new StackPane(title);
-        StackPane.setAlignment(title, javafx.geometry.Pos.CENTER_LEFT);
+        StackPane.setAlignment(title, Pos.CENTER_LEFT);
         left.setPrefWidth(200);
         box.setLeft(left);
 
-        // CENTER – Status
         long jumlahTrue = result.getQuestionAnswers().stream()
                 .filter(QuestionAnswer::isAnswer)
                 .count();
@@ -202,15 +193,14 @@ public class RiwayatController {
         Text statusText = new Text(status);
         statusText.setFont(Font.font(14));
         HBox center = new HBox(statusText);
-        center.setAlignment(javafx.geometry.Pos.CENTER);
+        center.setAlignment(Pos.CENTER);
         center.setPadding(new Insets(20, 0, 20, 0));
         box.setCenter(center);
 
-        // RIGHT – Tanggal (dummy atau diambil dari result)
-        Text dateText = new Text("2025"); // Bisa diganti sesuai waktu submit
+        Text dateText = new Text("2025");
         dateText.setFont(Font.font(14));
         box.setRight(dateText);
-        BorderPane.setAlignment(dateText, javafx.geometry.Pos.CENTER);
+        BorderPane.setAlignment(dateText, Pos.CENTER);
 
         return box;
     }
@@ -218,7 +208,6 @@ public class RiwayatController {
     public void tampilkanSkriningStatik(User user) {
         if (user == null) return;
 
-        // Hapus item lama (selain header dan warp_content)
         if (containerSkrinning.getChildren().size() > 2) {
             containerSkrinning.getChildren().remove(2, containerSkrinning.getChildren().size());
         }
@@ -248,12 +237,6 @@ public class RiwayatController {
         }
     }
 
-    @FXML
-    private void handleAddHistory() {
-        System.out.println("Tambah riwayat diklik");
-        // Navigasi ke halaman form tambah
-    }
-
     private void setFamilyDiseaseData(List<FamilyDiseaseHistory> list) {
         if (list.size() > 0) {
             relation1.setText(list.get(0).getRelation());
@@ -272,20 +255,11 @@ public class RiwayatController {
             disease4.setText(list.get(3).getDiseaseName());
         }
 
-        // Jika jumlah data < 4, sisanya diisi default
         if (list.size() < 4) {
-            if (list.size() < 1) {
-                relation1.setText("__"); disease1.setText("__");
-            }
-            if (list.size() < 2) {
-                relation2.setText("__"); disease2.setText("__");
-            }
-            if (list.size() < 3) {
-                relation3.setText("__"); disease3.setText("__");
-            }
-            if (list.size() < 4) {
-                relation4.setText("__"); disease4.setText("__");
-            }
+            if (list.size() < 1) { relation1.setText("__"); disease1.setText("__"); }
+            if (list.size() < 2) { relation2.setText("__"); disease2.setText("__"); }
+            if (list.size() < 3) { relation3.setText("__"); disease3.setText("__"); }
+            if (list.size() < 4) { relation4.setText("__"); disease4.setText("__"); }
         }
     }
 
@@ -301,14 +275,12 @@ public class RiwayatController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/family_disease.fxml"));
             Parent root = loader.load();
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setTitle("Input Riwayat Keluarga - Praventa");
             stage.setScene(scene);
             stage.setMaximized(true);
 
-            // Fade in animation (opsional)
             FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
@@ -316,7 +288,6 @@ public class RiwayatController {
 
             stage.show();
 
-            // Tutup window sekarang
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
@@ -329,14 +300,12 @@ public class RiwayatController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/personal_disease.fxml"));
             Parent root = loader.load();
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setTitle("Input Riwayat Pribadi - Praventa");
             stage.setScene(scene);
             stage.setMaximized(true);
 
-            // Fade in animation (opsional)
             FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
@@ -344,11 +313,21 @@ public class RiwayatController {
 
             stage.show();
 
-            // Tutup window sekarang
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void refreshData() {
+        User user = Session.getCurrentUser();
+        if (user == null) return;
+
+        setPersonalInfo(user);
+        setFamilyDiseaseDataOrReset(user);
+        loadPersonalDisease(user);
+        loadSkrinningData(user);
+    }
+
 }

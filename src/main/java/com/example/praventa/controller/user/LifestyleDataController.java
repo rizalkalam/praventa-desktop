@@ -9,6 +9,8 @@ import com.example.praventa.utils.SceneUtil;
 import com.example.praventa.utils.Session;
 import com.example.praventa.utils.XmlUtils;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -101,7 +104,7 @@ public class LifestyleDataController {
 
         if (currentStep >= 7) {
             saveToUserXml();
-            navigateToDashboard(event);
+//            navigateToDashboard(event);
             sendToGemini();
         } else {
             showStep();
@@ -269,15 +272,27 @@ public class LifestyleDataController {
                 // Simpan ke user & XML
                 currentUser.setRecommendation(rekomendasi);
                 UserRepository.saveToXml(currentUser);
+                Session.setCurrentUser(currentUser);
 
                 // Tampilkan di UI
                 javafx.application.Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Rekomendasi Gaya Hidup");
-                    alert.setHeaderText("Hasil dari Gemini AI");
-                    alert.setContentText(rekomendasi);
+                    alert.setHeaderText("Hasil diagnosis dari AI");
+                    alert.setContentText("Rekomendasi telah disimpan dan akan ditampilkan di halaman utama.");
                     alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-                    alert.show();
+
+                    PauseTransition delay = new PauseTransition(Duration.seconds(0.5)); // ⏳ durasi sebelum pindah
+                    delay.setOnFinished(e -> {
+                        alert.close();
+
+                        Stage currentStage = (Stage) rootPane.getScene().getWindow();
+                        currentStage.close();
+
+                        Session.setDefaultPage("beranda_user");
+                        SceneUtil.switchToMainPage(new Button());
+                    });
+                    delay.play();
                 });
 
             } catch (Exception e) {
