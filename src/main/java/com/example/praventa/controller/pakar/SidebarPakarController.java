@@ -37,26 +37,26 @@ public class SidebarPakarController extends BaseSidebarController {
 
     @FXML private BorderPane navHome;
     @FXML private BorderPane navAnalisis;
-    @FXML private BorderPane navArtikel;
+//    @FXML private BorderPane navArtikel;
     @FXML private BorderPane navAkun;
     @FXML private BorderPane navKeluar;
 
     @FXML private ImageView iconHome;
     @FXML private ImageView iconAnalisis;
-    @FXML private ImageView iconArtikel;
+//    @FXML private ImageView iconArtikel;
     @FXML private ImageView iconAkun;
     @FXML private ImageView iconKeluar;
 
     @FXML private javafx.scene.text.Text textHome;
     @FXML private javafx.scene.text.Text textAnalisis;
-    @FXML private javafx.scene.text.Text textArtikel;
+//    @FXML private javafx.scene.text.Text textArtikel;
     @FXML private javafx.scene.text.Text textAkun;
     @FXML private javafx.scene.text.Text textKeluar;
 
 
     @FXML private Rectangle rectHome;
     @FXML private Rectangle rectAnalisis;
-    @FXML private Rectangle rectArtikel;
+//    @FXML private Rectangle rectArtikel;
     @FXML private Rectangle rectAkun;
     @FXML private Rectangle rectKeluar;
 
@@ -106,21 +106,21 @@ public class SidebarPakarController extends BaseSidebarController {
         // Reset ikon
         iconHome.setImage(loadIcon("icn_home.png"));
         iconAnalisis.setImage(loadIcon("icn_analisis.png"));
-        iconArtikel.setImage(loadIcon("icn_artikel.png"));
+//        iconArtikel.setImage(loadIcon("icn_artikel.png"));
         iconAkun.setImage(loadIcon("icn_akun.png"));
         iconKeluar.setImage(loadIcon("icn_logout.png"));
 
         // Reset rectangle
         rectHome.setVisible(false);
         rectAnalisis.setVisible(false);
-        rectArtikel.setVisible(false);
+//        rectArtikel.setVisible(false);
         rectAkun.setVisible(false);
         rectKeluar.setVisible(false);
 
         // Reset warna teks ke default (hitam)
         textHome.setFill(Color.BLACK);
         textAnalisis.setFill(Color.BLACK);
-        textArtikel.setFill(Color.BLACK);
+//        textArtikel.setFill(Color.BLACK);
         textAkun.setFill(Color.BLACK);
         textKeluar.setFill(Color.web("#ff0000"));
 
@@ -132,7 +132,7 @@ public class SidebarPakarController extends BaseSidebarController {
         // Ubah warna teks menu aktif
         if (activeIcon == iconHome) textHome.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconAnalisis) textAnalisis.setFill(Color.web("#9E91E1"));
-        else if (activeIcon == iconArtikel) textArtikel.setFill(Color.web("#9E91E1"));
+//        else if (activeIcon == iconArtikel) textArtikel.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconAkun) textAkun.setFill(Color.web("#9E91E1"));
         else if (activeIcon == iconKeluar) textKeluar.setFill(Color.web("#9E91E1"));
     }
@@ -143,18 +143,18 @@ public class SidebarPakarController extends BaseSidebarController {
 
     public void handleNavHomeClick() {
         setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
-        loadPage("beranda.fxml");
+        loadPage("beranda_pakar.fxml");
     }
 
     public void handleNavAnalysisClick() {
         setActiveMenu(navAnalisis, iconAnalisis, rectAnalisis, "icn_analisis_active.png");
-        loadPage("analisis.fxml");
+        loadPage("daftar_pasien.fxml");
     }
 
-    public void handleNavArticleClick() {
-        setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
-        loadPage("artikel.fxml");
-    }
+//    public void handleNavArticleClick() {
+//        setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
+//        loadPage("artikel.fxml");
+//    }
 
     public void handleNavAkunClick() {
         setActiveMenu(navAkun, iconAkun, rectAkun, "icn_akun_active.png");
@@ -194,7 +194,7 @@ public class SidebarPakarController extends BaseSidebarController {
 
     public void loadPage(String fxmlName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlPakar/" + fxmlName));
             Parent content = loader.load();
 
             contentTarget.getChildren().setAll(content);

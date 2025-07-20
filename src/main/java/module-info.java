@@ -8,6 +8,7 @@ module com.example.praventa {
     requires com.google.gson;
     requires itextpdf;
     requires javafx.swing;
+    requires javafx.web;
 
     opens com.example.praventa.model.users to jakarta.xml.bind;
     opens com.example.praventa.controller to javafx.fxml;

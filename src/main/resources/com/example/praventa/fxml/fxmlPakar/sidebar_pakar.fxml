@@ -123,27 +123,27 @@
                             <Rectangle fx:id="rectAnalisis" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" strokeType="INSIDE" strokeWidth="0.0" width="3.0" BorderPane.alignment="CENTER" />
                         </right>
                     </BorderPane>
-                    <BorderPane fx:id="navArtikel" onMouseClicked="#handleNavArticleClick" prefHeight="22.0" prefWidth="284.0">
-                        <left>
-                            <ImageView fx:id="iconArtikel" BorderPane.alignment="CENTER">
-                                <image>
-                                    <Image url="@../../assets/icn_artikel.png" />
-                                </image>
-                            </ImageView>
-                        </left>
-                        <center>
-                            <Text fx:id="textArtikel" strokeType="OUTSIDE" strokeWidth="0.0" text="Artikel" wrappingWidth="216.162109375" BorderPane.alignment="CENTER" />
-                        </center>
-                        <opaqueInsets>
-                            <Insets right="1.0" />
-                        </opaqueInsets>
-                        <padding>
-                            <Insets left="26.0" />
-                        </padding>
-                        <right>
-                            <Rectangle fx:id="rectArtikel" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" strokeType="INSIDE" strokeWidth="0.0" width="3.0" BorderPane.alignment="CENTER" />
-                        </right>
-                    </BorderPane>
+<!--                    <BorderPane fx:id="navArtikel" onMouseClicked="#handleNavArticleClick" prefHeight="22.0" prefWidth="284.0">-->
+<!--                        <left>-->
+<!--                            <ImageView fx:id="iconArtikel" BorderPane.alignment="CENTER">-->
+<!--                                <image>-->
+<!--                                    <Image url="@../../assets/icn_artikel.png" />-->
+<!--                                </image>-->
+<!--                            </ImageView>-->
+<!--                        </left>-->
+<!--                        <center>-->
+<!--                            <Text fx:id="textArtikel" strokeType="OUTSIDE" strokeWidth="0.0" text="Artikel" wrappingWidth="216.162109375" BorderPane.alignment="CENTER" />-->
+<!--                        </center>-->
+<!--                        <opaqueInsets>-->
+<!--                            <Insets right="1.0" />-->
+<!--                        </opaqueInsets>-->
+<!--                        <padding>-->
+<!--                            <Insets left="26.0" />-->
+<!--                        </padding>-->
+<!--                        <right>-->
+<!--                            <Rectangle fx:id="rectArtikel" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" strokeType="INSIDE" strokeWidth="0.0" width="3.0" BorderPane.alignment="CENTER" />-->
+<!--                        </right>-->
+<!--                    </BorderPane>-->
 
                 </children>
             </VBox>
