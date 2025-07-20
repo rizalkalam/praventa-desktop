@@ -59,6 +59,50 @@ public class ArtikelController implements Initializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }        try {
+            for (Article artikel : artikelList) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_card.fxml"));
+                VBox card = fxmlLoader.load();
+
+                ArtikelCardController controller = fxmlLoader.getController();
+                controller.setData(artikel);
+
+                // Tambahkan ke grid
+                grid.add(card, column++, row);
+
+                // Tambahkan handler klik
+                card.setOnMouseClicked(event -> openDetailPage(artikel));
+
+                // Atur baris
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        try {
+            for (Article artikel : artikelList) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_card.fxml"));
+                VBox card = fxmlLoader.load();
+
+                ArtikelCardController controller = fxmlLoader.getController();
+                controller.setData(artikel);
+
+                // Tambahkan ke grid
+                grid.add(card, column++, row);
+
+                // Tambahkan handler klik
+                card.setOnMouseClicked(event -> openDetailPage(artikel));
+
+                // Atur baris
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

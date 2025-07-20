@@ -76,4 +76,20 @@ public class SceneUtil {
             System.err.println("❌ Gagal memuat halaman main.fxml");
         }
     }
+
+    public static void switchSceneFromNode(Node sourceNode, String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneUtil.class.getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.setMaximized(true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

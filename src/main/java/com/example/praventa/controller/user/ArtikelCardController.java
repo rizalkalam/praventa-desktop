@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.io.File;
+import java.net.URL;
+
 public class ArtikelCardController {
     @FXML
     private Text tanggalText;
@@ -15,10 +18,36 @@ public class ArtikelCardController {
     @FXML private ImageView imageView;
 
     public void setData(Article artikel) {
-        tanggalText.setText(artikel.getTanggal());
         judulText.setText(artikel.getJudul());
         deskripsiText.setText(artikel.getDeskripsi());
-        Image image = new Image(getClass().getResource(artikel.getImagePath()).toExternalForm());
-        imageView.setImage(image);
+        tanggalText.setText(artikel.getTanggal());
+
+        try {
+            String imagePath = artikel.getImagePath();
+            Image image;
+
+            if (imagePath != null) {
+                File file = new File(imagePath);
+                if (file.exists()) {
+                    image = new Image(file.toURI().toString());
+                } else {
+                    // Jika bukan file lokal, coba dari resource
+                    URL url = getClass().getResource(imagePath);
+                    if (url != null) {
+                        image = new Image(url.toString());
+                    } else {
+                        System.out.println("Gambar tidak ditemukan: " + imagePath);
+                        // fallback default
+                        image = new Image(getClass().getResource("/assets/icn_article_default.png").toString());
+                    }
+                }
+                imageView.setImage(image);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Gagal set gambar artikel: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
 }

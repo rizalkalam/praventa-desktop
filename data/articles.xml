@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <articles>
     <article>
-        <tanggal>20 Jul 2025</tanggal>
-        <judul>5 Gejala Awal Diabetes yang Sering Diabaikan</judul>
+        <deskripsi>java - Sebuah tim peneliti dari Synapse Tech Labs hari ini mengumumkan peluncuran NeuralMind, sebuah algoritma kecerdasan buatan revolusioner yang diklaim mampu mengidentifikasi dan menganalisis emosi manusia dengan tingkat akurasi yang belum pernah tercapai sebelumnya, mencapai 95%. Penemuan ini berpotensi mengubah lanskap interaksi manusia
+
+NeuralMind dikembangkan selama tiga tahun terakhir, menggunakan pendekatan pembelajaran mendalam (deep learning) dan jutaan data set ekspresi wajah, nada suara, dan pola bahasa tubuh. "Kami berfokus pada nuansa halus yang sering terlewatkan oleh sistem AI konvensional," ujar Dr. Anya Sharma, kepala proyek di Synapse Tech Labs. Algoritma ini tidak hanya mengidentifikasi emosi dasar seperti senang, sedih, atau marah, tetapi juga mampu mendeteksi emosi kompleks seperti kebingungan, frustrasi tersembunyi, atau bahkan sarkasme.</deskripsi>
+        <imagePath>C:\Users\LENOVO\OneDrive\Pictures\Traksion-Dashboard.png</imagePath>
+        <judul>Ekspo informatika uii</judul>
+        <tanggal>7, mei 2005</tanggal>
+    </article>
+    <article>
         <deskripsi>
             Diabetes adalah penyakit kronis yang terjadi ketika tubuh tidak dapat memproduksi atau menggunakan insulin
             secara efektif.
@@ -13,11 +19,10 @@
             kerusakan organ.
         </deskripsi>
         <imagePath>assets/images/diabetes_awal.jpg</imagePath>
+        <judul>5 Gejala Awal Diabetes yang Sering Diabaikan</judul>
+        <tanggal>20 Jul 2025</tanggal>
     </article>
-
     <article>
-        <tanggal>18 Jul 2025</tanggal>
-        <judul>Cara Menurunkan Tekanan Darah Tanpa Obat</judul>
         <deskripsi>
             Hipertensi atau tekanan darah tinggi dapat menyebabkan berbagai komplikasi serius seperti stroke dan gagal
             jantung.
@@ -29,11 +34,10 @@
             Konsultasikan dengan dokter sebelum menghentikan penggunaan obat.
         </deskripsi>
         <imagePath>assets/images/hipertensi.jpg</imagePath>
+        <judul>Cara Menurunkan Tekanan Darah Tanpa Obat</judul>
+        <tanggal>18 Jul 2025</tanggal>
     </article>
-
     <article>
-        <tanggal>15 Jul 2025</tanggal>
-        <judul>Pentingnya Deteksi Dini Penyakit Jantung</judul>
         <deskripsi>
             Penyakit jantung adalah penyebab kematian nomor satu di dunia.
             Banyak kasus baru diketahui ketika sudah parah. Deteksi dini bisa dilakukan dengan pemeriksaan tekanan
@@ -44,11 +48,10 @@
             jantung.
         </deskripsi>
         <imagePath>assets/images/jantung_dini.jpg</imagePath>
+        <judul>Pentingnya Deteksi Dini Penyakit Jantung</judul>
+        <tanggal>15 Jul 2025</tanggal>
     </article>
-
     <article>
-        <tanggal>12 Jul 2025</tanggal>
-        <judul>Makanan yang Harus Dihindari oleh Penderita Asam Urat</judul>
         <deskripsi>
             Asam urat tinggi bisa menyebabkan nyeri sendi yang parah dan pembengkakan.
             Makanan tertentu dapat memperparah kondisi ini, seperti jeroan, daging merah, makanan laut, serta minuman
@@ -58,11 +61,10 @@
             Konsultasi dengan dokter atau ahli gizi penting untuk menyusun pola makan yang aman dan seimbang.
         </deskripsi>
         <imagePath>assets/images/asam_urat.jpg</imagePath>
+        <judul>Makanan yang Harus Dihindari oleh Penderita Asam Urat</judul>
+        <tanggal>12 Jul 2025</tanggal>
     </article>
-
     <article>
-        <tanggal>10 Jul 2025</tanggal>
-        <judul>Tips Tidur Lebih Nyenyak di Malam Hari</judul>
         <deskripsi>
             Tidur yang cukup dan berkualitas sangat penting bagi kesehatan tubuh dan pikiran.
             Untuk tidur lebih nyenyak, buatlah rutinitas tidur yang konsisten setiap hari, hindari gadget 1 jam sebelum
@@ -73,5 +75,7 @@
             Jika insomnia berlanjut, pertimbangkan untuk berkonsultasi dengan dokter atau psikolog.
         </deskripsi>
         <imagePath>assets/images/tidur_nyenyak.jpg</imagePath>
+        <judul>Tips Tidur Lebih Nyenyak di Malam Hari</judul>
+        <tanggal>10 Jul 2025</tanggal>
     </article>
 </articles>

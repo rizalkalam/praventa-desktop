@@ -13,6 +13,10 @@ public class Article {
     private String deskripsi;
     private String imagePath;
 
+    public Article() {
+        // Konstruktor kosong diperlukan untuk JAXB
+    }
+
     public Article(String tanggal, String judul, String deskripsi, String imagePath) {
         this.tanggal = tanggal;
         this.judul = judul;

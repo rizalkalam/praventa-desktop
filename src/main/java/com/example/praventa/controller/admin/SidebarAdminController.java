@@ -61,6 +61,15 @@ public class SidebarAdminController extends BaseSidebarController {
         Session.setSidebarController(this);
     }
 
+    public void setContent(Parent node) {
+        mainContent.getChildren().clear();
+        mainContent.getChildren().add(node);
+        AnchorPane.setTopAnchor(node, 0.0);
+        AnchorPane.setBottomAnchor(node, 0.0);
+        AnchorPane.setLeftAnchor(node, 0.0);
+        AnchorPane.setRightAnchor(node, 0.0);
+    }
+
     public void setMainContent(AnchorPane contentTarget) {
         this.contentTarget = contentTarget;
 

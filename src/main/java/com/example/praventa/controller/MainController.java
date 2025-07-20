@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-
 public class MainController {
     @FXML
     private VBox navContainer;
@@ -83,3 +82,4 @@ public class MainController {
         this.defaultPage = pageName;
     }
 }
+
