@@ -19,12 +19,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -34,12 +37,28 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AnalisisController {
-
     @FXML private PieChart pieChart;
     @FXML private Label centerLabel;
     @FXML private VBox legendBox;
     @FXML private StackPane donutContainer;
     @FXML private VBox riskBox;
+
+    @FXML
+    private Text nameText, ageText;
+
+    @FXML
+    private Label personalDataStatus, lifestyleDataStatus, questionnaireDataStatus;
+
+    @FXML
+    private VBox rekomendasiData;
+    @FXML
+    private Text rec1;
+    @FXML
+    private Text rec2;
+    @FXML
+    private VBox imageRecomendation;
+    @FXML
+    private Text recomendationTitle;
 
     private User loadedUser;
 
@@ -55,18 +74,43 @@ public class AnalisisController {
             if (currentUser != null) {
                 loadedUser = wrapper.getUserByUsername(currentUser.getUsername());
 
-                if (loadedUser != null && loadedUser.getRiskAnalysis() != null) {
-                    RiskAnalysis analysis = loadedUser.getRiskAnalysis();
+                if (loadedUser != null) {
+                    // === Tambahan: set text dinamis ===
+                    nameText.setText(loadedUser.getUsername());
 
-                    List<RiskData> risks = analysis.getRisks();
-                    if (risks != null && !risks.isEmpty()) {
-                        setChartDataFromRisks(risks);
-                        showDiseaseRiskBars();
+                    if (loadedUser.getPersonalData() != null) {
+                        String umur = loadedUser.getPersonalData().getAge();
+                        ageText.setText(umur + " thn");
+                        personalDataStatus.setText("Lengkap");
+                    } else {
+                        ageText.setText("-");
+                        personalDataStatus.setText("Belum");
+                    }
+
+                    if (loadedUser.getLifestyleData() != null) {
+                        lifestyleDataStatus.setText("Tersimpan");
+                    } else {
+                        lifestyleDataStatus.setText("Belum");
+                    }
+
+                    if (loadedUser.getQuestionnaireResults() != null && !loadedUser.getQuestionnaireResults().isEmpty()) {
+                        questionnaireDataStatus.setText("Diisi");
+                    } else {
+                        questionnaireDataStatus.setText("Kosong");
+                    }
+
+                    // === Analisis Risiko ===
+                    if (loadedUser.getRiskAnalysis() != null) {
+                        List<RiskData> risks = loadedUser.getRiskAnalysis().getRisks();
+                        if (risks != null && !risks.isEmpty()) {
+                            setChartDataFromRisks(risks);
+                            showDiseaseRiskBars();
+                        } else {
+                            showFallbackDiseaseBars();
+                        }
                     } else {
                         showFallbackDiseaseBars();
                     }
-                } else {
-                    showFallbackDiseaseBars();
                 }
             }
         } catch (Exception e) {
@@ -75,28 +119,62 @@ public class AnalisisController {
         }
 
         pieChart.getData().addListener((ListChangeListener<PieChart.Data>) change -> updateCenterTextFromChart());
+        loadRekomendasi();
+    }
+
+    public void loadRekomendasi() {
+        // Hapus semua child setelah gambar dan judul (index >= 2)
+        if (rekomendasiData.getChildren().size() > 2) {
+            rekomendasiData.getChildren().remove(2, rekomendasiData.getChildren().size());
+        }
+
+        User user = Session.getCurrentUser();
+
+        List<String> rekomendasi = List.of();
+
+        if (user != null && user.getRecommendation() != null && user.getFoodRecommendations() != null) {
+            rekomendasi = user.getFoodRecommendations();
+        }
+
+        if (rekomendasi.isEmpty()) {
+            Text kosong = new Text("Belum ada rekomendasi.");
+            kosong.setFont(Font.font(14));
+            kosong.setFill(Color.GRAY);
+            kosong.setWrappingWidth(260);
+            rekomendasiData.getChildren().add(kosong);
+        } else {
+            for (String item : rekomendasi) {
+                Text text = new Text( item);
+                text.setFont(Font.font(14));
+                text.setWrappingWidth(260);
+                rekomendasiData.getChildren().add(text);
+            }
+        }
     }
 
     public void setChartDataFromRisks(List<RiskData> risks) {
         pieChart.getData().clear();
+        legendBox.getChildren().clear();
 
-        // Buat salinan list agar bisa disort
+        // Fallback jika null atau kosong → tambahkan dummy pie chart
+        if (risks == null || risks.isEmpty()) {
+            PieChart.Data dummyData = new PieChart.Data("Tidak Ada Data", 100);
+            pieChart.getData().add(dummyData);
+            dummyData.getNode().setStyle("-fx-pie-color: #D3D3D3;");
+            dummyData.getNode().setUserData(new PieMeta("Tidak Ada Data", "#D3D3D3"));
+            centerLabel.setText("0%");
+            return;
+        }
+
+        // Ambil top 3 dan tampilkan
         List<RiskData> sortedRisks = new ArrayList<>(risks);
-
-        // Urutkan berdasarkan persentase menurun
         sortedRisks.sort((a, b) -> Double.compare(b.getPercentage(), a.getPercentage()));
-
-        // Ambil hanya 3 risiko tertinggi
         List<RiskData> top3Risks = sortedRisks.subList(0, Math.min(3, sortedRisks.size()));
 
         List<PieChart.Data> pieDataList = new ArrayList<>();
-
         for (RiskData risk : top3Risks) {
             double percentValue = risk.getPercentage() * 100;
-            PieChart.Data data = new PieChart.Data(
-                    risk.getName(),
-                    percentValue
-            );
+            PieChart.Data data = new PieChart.Data(risk.getName(), percentValue);
             pieDataList.add(data);
         }
 
@@ -110,7 +188,6 @@ public class AnalisisController {
                 data.getNode().setStyle("-fx-pie-color: " + color + ";");
                 data.getNode().setUserData(new PieMeta(data.getName(), color));
             }
-
             updateCenterTextFromChart();
         });
     }
@@ -152,17 +229,37 @@ public class AnalisisController {
     }
 
     public void showFallbackDiseaseBars() {
-        List<RiskData> fallbackRisks = List.of(
-                new RiskData("Diabetes Tipe 2", 0.5, "#4FC3F7"),
-                new RiskData("Hipertensi", 0.8, "#FF7043"),
-                new RiskData("Penyakit Jantung", 0.4, "#3F51B5"),
-                new RiskData("Stroke", 0.6, "#EF5350"),
-                new RiskData("Kanker Serviks", 0.3, "#81C784")
-        );
-        loadedUser = new User();
-        loadedUser.setRiskAnalysis(new RiskAnalysis(fallbackRisks, new ArrayList<>()));
-        setChartDataFromRisks(fallbackRisks);
-        showDiseaseRiskBars();
+        riskBox.getChildren().clear();
+        pieChart.getData().clear();
+        legendBox.getChildren().clear();
+
+        // Pie chart dummy 0%
+        PieChart.Data dummyData = new PieChart.Data("Tidak Ada Data", 100);
+        pieChart.getData().add(dummyData);
+        dummyData.getNode().setStyle("-fx-pie-color: #D3D3D3;");
+        dummyData.getNode().setUserData(new PieMeta("Tidak Ada Data", "#D3D3D3"));
+        centerLabel.setText("0%");
+
+        // Bar chart dummy 0%
+        Label label = new Label("Tidak Ada Data");
+        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #888888;");
+
+        StackPane barBackground = new StackPane();
+        barBackground.setStyle("-fx-background-color: #D3D3D3; -fx-background-radius: 10;");
+        barBackground.setPrefSize(179, 14);
+
+        Region fillBar = new Region();
+        fillBar.setStyle("-fx-background-color: #AAAAAA; -fx-background-radius: 10;");
+        fillBar.setPrefWidth(0); // 0%
+        fillBar.setPrefHeight(14);
+
+        barBackground.getChildren().add(fillBar);
+
+        VBox wrapper = new VBox(6, label, barBackground);
+        wrapper.setPadding(new Insets(5, 0, 5, 0));
+        wrapper.setAlignment(Pos.CENTER_LEFT);
+
+        riskBox.getChildren().add(wrapper);
     }
 
     private void makeDonut() {
@@ -238,6 +335,34 @@ public class AnalisisController {
     }
 
     @FXML
+    private void handleLifestyle(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/lifestyle.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Input Gaya Hidup - Praventa");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+
+            // Fade-in animation
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+
+            stage.show();
+
+            // Tutup window lama
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void handleQestionnaire(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/input_Kuisioner.fxml"));
@@ -256,6 +381,34 @@ public class AnalisisController {
 
             stage.show();
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleTindakLanjut(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/rekomendasi_pencegahan.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Tindak Lanjut");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+
+            // Fade in animation (opsional)
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(600), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+
+            stage.show();
+
+            // Tutup window sekarang
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

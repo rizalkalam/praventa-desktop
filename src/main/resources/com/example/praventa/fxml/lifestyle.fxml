@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.control.ToggleGroup?>
-
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.LifestyleDataController">
+
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1484.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.praventa.controller.user.LifestyleDataController">
     <children>
-        <HBox layoutX="-8.0" layoutY="-4.0" prefHeight="121.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox alignment="CENTER" layoutX="-8.0" layoutY="-4.0" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox fx:id="formContainer" prefHeight="700.0" prefWidth="624.0">
                     <children>
@@ -55,10 +57,10 @@
                                     </font>
                                 </Button>
                                 <!-- Sleep Habit Checkboxes (Hidden by default) -->
-                                <CheckBox fx:id="cbTidurNormal" layoutX="84.0" layoutY="191.0" text="Tidur cukup (7–8 jam)" visible="false"/>
-                                <CheckBox fx:id="cbBegadang" layoutX="84.0" layoutY="221.0" text="Sering begadang" visible="false"/>
-                                <CheckBox fx:id="cbBangunSiang" layoutX="84.0" layoutY="251.0" text="Sering bangun merasa lelah" visible="false"/>
-                                <CheckBox fx:id="cbTerbangunMalam" layoutX="84.0" layoutY="251.0" text="Sering bangun merasa lelah" visible="false"/>
+                                <CheckBox fx:id="cbTidurNormal" layoutX="84.0" layoutY="191.0" text="Tidur cukup (7–8 jam)" visible="false" />
+                                <CheckBox fx:id="cbBegadang" layoutX="84.0" layoutY="221.0" text="Sering begadang" visible="false" />
+                                <CheckBox fx:id="cbBangunSiang" layoutX="84.0" layoutY="251.0" text="Sering bangun merasa lelah" visible="false" />
+                                <CheckBox fx:id="cbTerbangunMalam" layoutX="84.0" layoutY="251.0" text="Sering bangun merasa lelah" visible="false" />
 
                                 <!-- Stress Level Slider (Hidden by default) -->
                                 <Label fx:id="stressLabel" layoutX="84.0" layoutY="180.0" text="Level stres: 0" visible="false">
@@ -66,25 +68,45 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <Slider fx:id="stressSlider" layoutX="84.0" layoutY="210.0" min="0" max="10" majorTickUnit="1" showTickMarks="true" showTickLabels="true" blockIncrement="1" visible="false" prefWidth="399.0"/>
+                                <Slider fx:id="stressSlider" blockIncrement="1" layoutX="84.0" layoutY="210.0" majorTickUnit="1" max="10" min="0" prefWidth="399.0" showTickLabels="true" showTickMarks="true" visible="false" />
                             </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="151.0" prefWidth="596.0" />
                     </children>
                 </VBox>
-                <AnchorPane prefHeight="700.0" prefWidth="633.0">
-                    <children>
-                        <StackPane layoutX="43.0" layoutY="126.0" prefHeight="495.0" prefWidth="494.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <children>
-                                <ImageView fitHeight="546.0" fitWidth="531.0">
-                                    <image>
-                                        <Image url="@../../../../assets/bg_questionaire.png" />
-                                    </image>
-                                </ImageView>
-                            </children></StackPane>
-                    </children>
-                </AnchorPane>
+            <AnchorPane prefHeight="700.0" prefWidth="575.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                              <StackPane prefHeight="495.0" prefWidth="494.0">
+                                  <children>
+                                      <ImageView fitHeight="495.0" fitWidth="482.0">
+                                          <image>
+                                              <Image url="@../../../../assets/bg_questionaire.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <BorderPane prefHeight="700.0" prefWidth="17.0">
+               <top>
+                  <ImageView fx:id="closeButton" BorderPane.alignment="TOP_RIGHT">
+                     <image>
+                        <Image url="@../../../../assets/close_btn.png" />
+                     </image>
+                  </ImageView>
+               </top>
+               <HBox.margin>
+                  <Insets top="40.0" />
+               </HBox.margin>
+            </BorderPane>
             </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
         </HBox>
     </children>
 </AnchorPane>

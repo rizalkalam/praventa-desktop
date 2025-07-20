@@ -42,7 +42,7 @@ public class Session {
         currentUser = null;
     }
 
-    private static BaseSidebarController sidebarController;
+    public static BaseSidebarController sidebarController;
 
     public static void setSidebarController(BaseSidebarController controller) {
         sidebarController = controller;

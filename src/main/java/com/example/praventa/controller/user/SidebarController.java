@@ -105,7 +105,7 @@ public class SidebarController extends BaseSidebarController {
         handleNavHomeClick();
     }
 
-    private void setActiveMenu(BorderPane activeNav, ImageView activeIcon, Rectangle activeRect, String activeIconName) {
+    public void setActiveMenu(BorderPane activeNav, ImageView activeIcon, Rectangle activeRect, String activeIconName) {
         // Reset ikon
         iconHome.setImage(loadIcon("icn_home.png"));
         iconRiwayat.setImage(loadIcon("icn_riwayat.png"));
@@ -166,6 +166,10 @@ public class SidebarController extends BaseSidebarController {
     public void handleNavArticleClick() {
         setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
         loadPage("artikel.fxml");
+    }
+
+    public void activateArtikelMenu() {
+        setActiveMenu(navArtikel, iconArtikel, rectArtikel, "icn_artikel_active.png");
     }
 
     public void handleNavAkunClick() {
@@ -238,12 +242,14 @@ public class SidebarController extends BaseSidebarController {
 
             ArtikelDetailController controller = loader.getController();
             controller.setArtikel(artikel);
+            controller.setSidebarController(this); // inject controller ini untuk tombol kembali
 
-            contentTarget.getChildren().setAll(detailPage);  // Ganti dari mainContent
+            contentTarget.getChildren().setAll(detailPage);
             AnchorPane.setTopAnchor(detailPage, 0.0);
             AnchorPane.setBottomAnchor(detailPage, 0.0);
             AnchorPane.setLeftAnchor(detailPage, 0.0);
             AnchorPane.setRightAnchor(detailPage, 0.0);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -25,7 +26,7 @@
                 </ImageView>
             </children>
         </StackPane>
-        <VBox prefHeight="105.0" prefWidth="294.0" spacing="10.0">
+        <VBox prefHeight="145.0" prefWidth="294.0" spacing="10.0">
             <children>
                 <Text fx:id="tanggalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Interior Deaign , 16 Jun 2025" wrappingWidth="196.5475311279297">
                     <VBox.margin>
@@ -45,8 +46,15 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-            <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-image: &quot;C:\Users\ASUS\Pictures\Figma\Group 79.png&quot;;" />
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <right>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-image: &quot;C:\Users\ASUS\Pictures\Figma\Group 79.png&quot;;" BorderPane.alignment="CENTER">
+                            <image>
+                                <Image url="@../../../../../assets/centang.png" />
+                            </image>
+                        </ImageView>
+                    </right>
+                </BorderPane>
             </children>
             <padding>
                 <Insets left="10.0" right="10.0" />

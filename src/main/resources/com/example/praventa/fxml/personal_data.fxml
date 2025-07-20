@@ -61,14 +61,22 @@
             </VBox>
             <AnchorPane prefHeight="700.0" prefWidth="633.0">
                <children>
-                  <StackPane layoutX="43.0" layoutY="126.0" prefHeight="495.0" prefWidth="494.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="546.0" fitWidth="531.0">
-                           <image>
-                              <Image url="@../../../../assets/bg_questionaire.png" />
-                           </image>
-                        </ImageView>
-                     </children></StackPane>
+                        <BorderPane prefHeight="71.0" prefWidth="605.0">
+
+                        </BorderPane>
+                        <StackPane prefHeight="495.0" prefWidth="494.0">
+                           <children>
+                              <ImageView fitHeight="546.0" fitWidth="531.0">
+                                 <image>
+                                    <Image url="@../../../../assets/bg_questionaire.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>
