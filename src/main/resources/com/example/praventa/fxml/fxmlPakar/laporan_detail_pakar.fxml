@@ -55,7 +55,7 @@
                            <top>
                               <ImageView fx:id="closeButton" BorderPane.alignment="TOP_RIGHT">
                                  <image>
-                                    <Image url="@../../../../assets/close_btn.png" />
+                                    <Image url="@../../../../../assets/close_btn.png" />
                                  </image>
                               </ImageView>
                            </top>
@@ -100,7 +100,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/ion_warning.png" />
+                                    <Image url="@../../../../../assets/ion_warning.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -147,7 +147,7 @@
                            <left>
                               <ImageView fitHeight="18.0" fitWidth="18.0" BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/icon_hipertensi.png" />
+                                    <Image url="@../../../../../assets/icon_hipertensi.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -172,7 +172,7 @@
                            <left>
                               <ImageView fitHeight="18.0" fitWidth="18.0" BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/icon_hipertensi.png" />
+                                    <Image url="@../../../../../assets/icon_hipertensi.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -200,7 +200,7 @@
                            <left>
                               <ImageView fitHeight="18.0" fitWidth="18.0" BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/icon_hipertensi.png" />
+                                    <Image url="@../../../../../assets/icon_hipertensi.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -231,7 +231,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/rek_pemeriksaan.png" />
+                                    <Image url="@../../../../../assets/rek_pemeriksaan.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -259,7 +259,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/rek_pemeriksaan_fill.png" />
+                                    <Image url="@../../../../../assets/rek_pemeriksaan_fill.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -284,7 +284,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/rek_pemeriksaan_fill.png" />
+                                    <Image url="@../../../../../assets/rek_pemeriksaan_fill.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -312,7 +312,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/rek_pemeriksaan_fill.png" />
+                                    <Image url="@../../../../../assets/rek_pemeriksaan_fill.png" />
                                  </image>
                               </ImageView>
                            </left>
@@ -349,7 +349,7 @@
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../assets/informasi_pribadi.png" />
+                                          <Image url="@../../../../../assets/informasi_pribadi.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -471,7 +471,7 @@
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../assets/riwayat_kel.png" />
+                                          <Image url="@../../../../../assets/riwayat_kel.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -542,7 +542,7 @@
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../assets/informasi_pribadi.png" />
+                                          <Image url="@../../../../../assets/informasi_pribadi.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -686,7 +686,7 @@
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../assets/informasi_pribadi.png" />
+                                          <Image url="@../../../../../assets/informasi_pribadi.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -914,7 +914,7 @@
                                  <left>
                                     <ImageView BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../assets/catatan_penting.png" />
+                                          <Image url="@../../../../../assets/catatan_penting.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -956,7 +956,7 @@
                            <left>
                               <ImageView BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../assets/ion_warning.png" />
+                                    <Image url="@../../../../../assets/ion_warning.png" />
                                  </image>
                               </ImageView>
                            </left>

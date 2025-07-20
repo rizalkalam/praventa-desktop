@@ -17,6 +17,9 @@ public class User {
     private String email;
     private String role;
 
+    @XmlElement(name = "validasi")
+    private String validasi = "belum";
+
     @XmlElement(name = "profile_picture")
     private String profilePicture;
 
@@ -88,6 +91,14 @@ public class User {
 
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getValidasi() {
+        return validasi;
+    }
+
+    public void setValidasi(String validasi) {
+        this.validasi = validasi;
+    }
 
     public PersonalData getPersonalData() { return personalData; }
     public void setPersonalData(PersonalData personalData) { this.personalData = personalData; }

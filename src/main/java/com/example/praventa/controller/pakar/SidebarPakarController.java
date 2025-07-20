@@ -143,12 +143,12 @@ public class SidebarPakarController extends BaseSidebarController {
 
     public void handleNavHomeClick() {
         setActiveMenu(navHome, iconHome, rectHome, "icn_home_active.png");
-        loadPage("beranda.fxml");
+        loadPage("beranda_pakar.fxml");
     }
 
     public void handleNavAnalysisClick() {
         setActiveMenu(navAnalisis, iconAnalisis, rectAnalisis, "icn_analisis_active.png");
-        loadPage("analisis.fxml");
+        loadPage("daftar_pasien.fxml");
     }
 
     public void handleNavArticleClick() {
@@ -194,7 +194,7 @@ public class SidebarPakarController extends BaseSidebarController {
 
     public void loadPage(String fxmlName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/" + fxmlName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/fxmlPakar/" + fxmlName));
             Parent content = loader.load();
 
             contentTarget.getChildren().setAll(content);

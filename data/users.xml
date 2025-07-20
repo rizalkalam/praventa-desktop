@@ -1,12 +1,298 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <id></id>
+        <id>1</id>
         <username>admin</username>
         <password>praventa123</password>
         <email>admin@gmail.com</email>
         <role>admin</role>
+        <validasi>belum</validasi>
         <profile_picture>assets/icn_profile_default.jpg</profile_picture>
         <phone_number>__</phone_number>
+        <questionnaire_results/>
+    </user>
+    <user>
+        <id>2</id>
+        <username>pakar</username>
+        <password>praventa123</password>
+        <email>pakar@gmail.com</email>
+        <role>pakar</role>
+        <validasi>belum</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <questionnaire_results/>
+    </user>
+    <user>
+        <id>3</id>
+        <username>goyoonjung</username>
+        <password>gyj1234</password>
+        <email>goyoonjung@gmail.com</email>
+        <role>user</role>
+        <validasi>belum</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <questionnaire_results/>
+    </user>
+    <user>
+        <id>4</id>
+        <username>haqqi</username>
+        <password>haqqi123</password>
+        <email>haqqi@gmail.com</email>
+        <role>user</role>
+        <validasi>belum</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <questionnaire_results/>
+    </user>
+    <user>
+        <id>5</id>
+        <username>rizalkalam</username>
+        <password>kalam123</password>
+        <email>rizalkalam@gmail.com</email>
+        <role>user</role>
+        <validasi>belum</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <age>19</age>
+            <body_metrics>
+                <height>172</height>
+                <weight>56</weight>
+            </body_metrics>
+            <gender>Pria</gender>
+        </personal_data>
+        <questionnaire_results/>
+    </user>
+    <user>
+        <id>6</id>
+        <username>adesetiawan</username>
+        <password>ade123</password>
+        <email>adesetiawan@gmail.com</email>
+        <role>pasien</role>
+        <validasi>valid</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <age>26</age>
+            <body_metrics>
+                <height>162</height>
+                <weight>59</weight>
+            </body_metrics>
+            <gender>Pria</gender>
+        </personal_data>
+        <lifestyle_data>
+            <fastFoodFrequency>3</fastFoodFrequency>
+            <drinkType>air putih</drinkType>
+            <smokingHabit>tidak</smokingHabit>
+            <alcoholHabit>tidak</alcoholHabit>
+            <physicalActivity>aktif</physicalActivity>
+            <sleepHabits>
+                <habit>Tidur cukup (7–8 jam)</habit>
+            </sleepHabits>
+            <stressLevel>1</stressLevel>
+        </lifestyle_data>
+        <family_disease_history>
+            <disease>
+                <relation>Nenek</relation>
+                <diseaseName>Diabetes</diseaseName>
+                <diagnosedAge>65</diagnosedAge>
+                <status>Hidup</status>
+            </disease>
+        </family_disease_history>
+        <personal_disease_history>
+            <disease>
+                <status>Masih aktif</status>
+                <diagnosedYear>2023</diagnosedYear>
+                <hospitalized>false</hospitalized>
+                <diseaseName>Asam lambung</diseaseName>
+                <treatmentDetails></treatmentDetails>
+                <underTreatment>false</underTreatment>
+            </disease>
+        </personal_disease_history>
+        <questionnaire_results>
+            <result>
+                <category>Diabetes</category>
+                <question>
+                    <text>Sering merasa haus sepanjang hari?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering merasa lapar?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering buang air kecil malam hari?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Tubuh cepat lelah tanpa alasan yang jelas?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Berat badan berlebih?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Riwayat penyakit keluarga diabetes?</text>
+                    <answer>true</answer>
+                </question>
+            </result>
+            <result>
+                <category>Hipertensi</category>
+                <question>
+                    <text>Sering merasa pusing sakit kepala mendadak?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering merasa tegang mudah marah?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Sering makan makanan manis?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jantung berdetak cepat tanpa sebab?</text>
+                    <answer>true</answer>
+                </question>
+            </result>
+            <result>
+                <category>Penyakit Jantung</category>
+                <question>
+                    <text>Nyeri dada saat beraktivitas?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Cepat lelah saat naik tangga/jalan jauh?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Jantung berdebar/tidak teratur?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Sering makan gorengan dan makanan berlemak?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Jarang berolahraga?</text>
+                    <answer>true</answer>
+                </question>
+            </result>
+            <result>
+                <category>Stroke</category>
+                <question>
+                    <text>Tiba-tiba lemas di satu sisi tubuh?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Kesulitan bicara mendadak?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Merokok setiap hari?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Stres berat berkepanjangan?</text>
+                    <answer>true</answer>
+                </question>
+                <question>
+                    <text>Riwayat keluarga pernah stroke?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+            <result>
+                <category>Kanker Serviks</category>
+                <question>
+                    <text>Belum pernah melakukan Pap smear?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Keputihan berbau/disertai darah?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Pendarahan setelah berhubungan?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Aktif seksual sejak usia muda?</text>
+                    <answer>false</answer>
+                </question>
+                <question>
+                    <text>Pasangan seksual lebih dari satu?</text>
+                    <answer>false</answer>
+                </question>
+            </result>
+        </questionnaire_results>
+        <recommendation>Karena Anda tidak memberikan Umur dan Jenis Kelamin pasien, saya akan menggunakan nilai default untuk melanjutkan.
+
+Umur: 30
+Jenis Kelamin: Pria
+Tinggi badan: 0 cm
+Berat badan: 0 kg
+
+**Pemeriksaan yang Direkomendasikan:**
+
+- Panel Lipid (Kolesterol)
+- Pemeriksaan Tekanan Darah
+- Glukosa Darah Puasa
+
+Rendah
+
+**Rekomendasi Gaya Hidup Sehat:**
+
+Rekomendasi Makan:
+- Kurangi frekuensi konsumsi *fast food*, pertimbangkan pengganti yang lebih sehat seperti makanan rumahan atau pilihan restoran yang lebih sehat.
+- Perbanyak konsumsi buah dan sayuran untuk memastikan asupan vitamin dan mineral yang cukup.
+
+Rekomendasi Tidur:
+- Pertahankan jadwal tidur yang konsisten, bahkan di akhir pekan.
+- Ciptakan rutinitas relaksasi sebelum tidur untuk membantu meningkatkan kualitas tidur.
+
+Rekomendasi Aktivitas:
+- Lanjutkan tingkat aktivitas fisik yang aktif.
+- Tambahkan variasi pada latihan untuk menghindari kebosanan dan melatih berbagai kelompok otot.
+</recommendation>
+        <risk_analysis>
+            <risks>
+                <risk>
+                    <name>Diabetes Tipe 2</name>
+                    <percentage>0.5</percentage>
+                    <color>#4FC3F7</color>
+                </risk>
+                <risk>
+                    <name>Hipertensi</name>
+                    <percentage>0.8</percentage>
+                    <color>#FF7043</color>
+                </risk>
+                <risk>
+                    <name>Penyakit Jantung</name>
+                    <percentage>0.4</percentage>
+                    <color>#3F51B5</color>
+                </risk>
+                <risk>
+                    <name>Stroke</name>
+                    <percentage>0.6</percentage>
+                    <color>#EF5350</color>
+                </risk>
+                <risk>
+                    <name>Kanker Serviks</name>
+                    <percentage>0.3</percentage>
+                    <color>#81C784</color>
+                </risk>
+            </risks>
+            <chart_values>
+                <value>60</value>
+                <value>30</value>
+                <value>65</value>
+                <value>75</value>
+            </chart_values>
+        </risk_analysis>
     </user>
 </users>
