@@ -295,4 +295,54 @@ Rekomendasi Aktivitas:
             </chart_values>
         </risk_analysis>
     </user>
+    <user>
+        <id>7</id>
+        <username>farid</username>
+        <password>farid123</password>
+        <email>farid@gmail.com</email>
+        <role>pasien</role>
+        <validasi>belum</validasi>
+        <profile_picture>assets/icn_profile_default.jpg</profile_picture>
+        <phone_number>__</phone_number>
+        <personal_data>
+            <age>18</age>
+            <body_metrics>
+                <height>160</height>
+                <weight>58</weight>
+            </body_metrics>
+            <gender>Pria</gender>
+        </personal_data>
+        <lifestyle_data>
+            <fastFoodFrequency>18</fastFoodFrequency>
+            <drinkType>Minuman manis</drinkType>
+            <smokingHabit>tidak</smokingHabit>
+            <alcoholHabit>tidak</alcoholHabit>
+            <physicalActivity>Kurang</physicalActivity>
+            <sleepHabits>
+                <habit>Tidur cukup (7–8 jam)</habit>
+            </sleepHabits>
+            <stressLevel>2</stressLevel>
+        </lifestyle_data>
+        <questionnaire_results/>
+        <recommendation>Karena tinggi dan berat badan pasien adalah 0, saya tidak dapat menghitung BMI dan memberikan rekomendasi medis yang akurat. Silakan berikan tinggi dan berat badan yang valid untuk mendapatkan analisis yang lebih tepat. Namun, berdasarkan informasi yang ada (usia dan jenis kelamin tidak diketahui, frekuensi makan makanan cepat saji yang sangat tinggi, konsumsi minuman manis, aktivitas fisik kurang, dan tingkat stres rendah), berikut adalah rekomendasi sementara:
+
+- Pemeriksaan Profil Lipid (kolesterol)
+- Pemeriksaan Gula Darah Puasa
+- Pemeriksaan Tekanan Darah
+
+Tinggi
+
+Rekomendasi Makan:
+- Kurangi secara drastis konsumsi *fast food* dan minuman manis. Fokus pada makanan utuh seperti buah-buahan, sayuran, protein tanpa lemak, dan biji-bijian.
+- Batasi asupan gula tambahan dan lemak tidak sehat.
+
+Rekomendasi Tidur:
+- Pertahankan jadwal tidur yang teratur, bahkan di akhir pekan.
+- Ciptakan rutinitas relaksasi sebelum tidur untuk meningkatkan kualitas tidur.
+
+Rekomendasi Aktivitas:
+- Lakukan aktivitas fisik aerobik intensitas sedang setidaknya 150 menit per minggu, atau aktivitas fisik aerobik intensitas tinggi setidaknya 75 menit per minggu.
+- Sertakan latihan kekuatan untuk semua kelompok otot utama setidaknya dua hari per minggu.
+</recommendation>
+    </user>
 </users>
