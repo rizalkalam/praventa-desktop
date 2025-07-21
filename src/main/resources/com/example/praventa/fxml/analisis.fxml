@@ -188,19 +188,19 @@
             </HBox>
             <BorderPane prefHeight="59.0" prefWidth="1115.0">
                <right>
-                  <HBox prefHeight="103.0" prefWidth="670.0" spacing="12.0" BorderPane.alignment="CENTER">
+                  <HBox prefHeight="103.0" prefWidth="670.0" spacing="32.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="54.0" fitWidth="235.0" onMouseClicked="#handleTindakLanjut">
+                        <ImageView fitHeight="70.0" fitWidth="300.0" onMouseClicked="#handleTindakLanjut">
                            <image>
                               <Image url="@../../../../assets/tindak_lanjut.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="54.0" fitWidth="235.0">
+                        <ImageView fx:id="updateLifestyle" onMouseClicked="#handleLifestyle" fitHeight="70.0" fitWidth="300.0">
                            <image>
                               <Image url="@../assets/btn_update.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="54.0" fitWidth="235.0" onMouseClicked="#handleExport">
+                        <ImageView fitHeight="70.0" fitWidth="300.0" onMouseClicked="#handleExport">
                            <image>
                               <Image url="@../assets/btn_export.png" />
                            </image>
@@ -209,7 +209,7 @@
                   </HBox>
                </right>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </BorderPane>
          </children>

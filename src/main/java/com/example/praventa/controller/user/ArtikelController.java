@@ -8,9 +8,17 @@ import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,22 +26,12 @@ public class ArtikelController implements Initializable {
     @FXML private GridPane grid;
     @FXML private SidebarController sidebarController;
 
-    private List<Article> artikelList = List.of(
-            new Article("Interior Design , 16 Jun 2025", "Diabetes - Gejala, Penyebab, dan Pencegahan",
-                    "Diabetes tipe 2 merupakan salah satu penyakit metabolik yang dapat dicegah dengan perubahan gaya hidup yang sehat. Salah satu langkah utama dalam pencegahan adalah memperbaiki pola makan. Mengonsumsi lebih banyak sayur dan buah secara rutin memberikan tubuh asupan serat, vitamin, dan antioksidan yang penting untuk menjaga kestabilan gula darah. Sayur dan buah juga membantu memperlambat penyerapan glukosa ke dalam darah, sehingga mengurangi risiko lonjakan gula darah secara tiba-tiba. Disarankan untuk memilih buah yang rendah indeks glikemik seperti apel, pir, atau buah beri, serta memperbanyak sayuran hijau seperti bayam, brokoli, dan sawi.\n" +
-                            "\n" +
-                            "Selain itu, penting untuk membatasi konsumsi gula dan garam dalam kehidupan sehari-hari. Gula tambahan yang berlebihan dapat menyebabkan resistensi insulin, yang merupakan salah satu pemicu utama diabetes tipe 2. Produk-produk seperti minuman manis, kue, dan makanan olahan sebaiknya dikurangi atau dihindari. Begitu juga dengan asupan garam yang tinggi dapat meningkatkan tekanan darah, yang kerap menjadi komplikasi pada penderita diabetes. Mengurangi makanan tinggi sodium seperti makanan cepat saji, mie instan, dan camilan asin juga berperan besar dalam menjaga kesehatan metabolik secara keseluruhan. Dengan konsistensi dalam pola makan sehat ini, risiko terkena diabetes tipe 2 dapat ditekan secara signifikan.",
-                    "/assets/img_article1.png"),
-            new Article("Lifestyle, 17 Jun 2025", "Pentingnya Tidur yang Cukup",
-                    "Tidur cukup membantu regenerasi tubuh, meningkatkan daya tahan, dan menjaga mood.",
-                    "/assets/img_article1.png"),
-            new Article("Kesehatan, 18 Jun 2025", "Makanan Sehat Harian",
-                    "Pilih makanan tinggi serat, protein, dan rendah gula untuk keseimbangan nutrisi.",
-                    "/assets/img_article1.png")
-    );
+    private List<Article> artikelList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        artikelList = loadArticlesFromXML("D:\\Kuliah\\Project\\praventa\\data\\articles.xml");
+
         int column = 0;
         int row = 0;
 
@@ -45,57 +43,10 @@ public class ArtikelController implements Initializable {
                 ArtikelCardController controller = fxmlLoader.getController();
                 controller.setData(artikel);
 
-                // Tambahkan ke grid
                 grid.add(card, column++, row);
 
-                // Tambahkan handler klik
                 card.setOnMouseClicked(event -> openDetailPage(artikel));
 
-                // Atur baris
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        try {
-            for (Article artikel : artikelList) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_card.fxml"));
-                VBox card = fxmlLoader.load();
-
-                ArtikelCardController controller = fxmlLoader.getController();
-                controller.setData(artikel);
-
-                // Tambahkan ke grid
-                grid.add(card, column++, row);
-
-                // Tambahkan handler klik
-                card.setOnMouseClicked(event -> openDetailPage(artikel));
-
-                // Atur baris
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        try {
-            for (Article artikel : artikelList) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/praventa/fxml/artikel_card.fxml"));
-                VBox card = fxmlLoader.load();
-
-                ArtikelCardController controller = fxmlLoader.getController();
-                controller.setData(artikel);
-
-                // Tambahkan ke grid
-                grid.add(card, column++, row);
-
-                // Tambahkan handler klik
-                card.setOnMouseClicked(event -> openDetailPage(artikel));
-
-                // Atur baris
                 if (column == 3) {
                     column = 0;
                     row++;
@@ -104,6 +55,36 @@ public class ArtikelController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private List<Article> loadArticlesFromXML(String filePath) {
+        List<Article> articles = new ArrayList<>();
+        try {
+            File xmlFile = new File(filePath);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("article");
+
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem = (Element) nNode;
+
+                    String tanggal = elem.getElementsByTagName("tanggal").item(0).getTextContent();
+                    String judul = elem.getElementsByTagName("judul").item(0).getTextContent();
+                    String deskripsi = elem.getElementsByTagName("deskripsi").item(0).getTextContent();
+                    String imagePath = elem.getElementsByTagName("imagePath").item(0).getTextContent();
+
+                    articles.add(new Article(tanggal, judul, deskripsi, imagePath));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return articles;
     }
 
     public void setSidebarController(SidebarController sidebarController) {
