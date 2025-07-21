@@ -3,15 +3,18 @@ package com.example.praventa.controller.user;
 import com.example.praventa.model.users.FamilyDiseaseHistory;
 import com.example.praventa.model.users.User;
 import com.example.praventa.model.users.UserListWrapper;
+import com.example.praventa.utils.SceneUtil;
 import com.example.praventa.utils.Session;
 import com.example.praventa.utils.XmlUtils;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,6 +43,7 @@ public class FamilyDiseaseController {
     @FXML private RadioButton rbDeceased;
     @FXML private Button submitButton;
     @FXML private HBox statusBox;
+    @FXML private ImageView closeButton;
 
     @FXML private VBox formContainer;
     private int currentStep = 0;
@@ -51,6 +55,7 @@ public class FamilyDiseaseController {
 
     @FXML
     public void initialize() {
+        closeButton.setCursor(Cursor.HAND);
         rbYes.setToggleGroup(yesNoGroup);
         rbNo.setToggleGroup(yesNoGroup);
         rbAlive.setToggleGroup(statusGroup);
@@ -63,6 +68,18 @@ public class FamilyDiseaseController {
 
         submitButton.setOnAction(this::handleNextStep);
         showStep(currentStep);
+        // Validasi apakah closeButton null atau tidak terlihat
+        closeButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmasi");
+            alert.setHeaderText("Batal mengisi data?");
+            alert.setContentText("Perubahan belum akan disimpan. Kembali ke beranda?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                SceneUtil.switchToMainPage(rootPane);
+            }
+        });
     }
 
     private void showStep(int step) {

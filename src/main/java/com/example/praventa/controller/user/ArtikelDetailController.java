@@ -7,6 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+import java.io.File;
+import java.net.URL;
+
 public class ArtikelDetailController {
     @FXML
     private ImageView imageView;
@@ -24,8 +28,32 @@ public class ArtikelDetailController {
         judulText.setText(artikel.getJudul());
         deskripsiText.setText(artikel.getDeskripsi());
 
-        Image image = new Image(getClass().getResource(artikel.getImagePath()).toExternalForm());
-        imageView.setImage(image);
+        String imagePath = artikel.getImagePath();
+        Image image;
+
+        try {
+            if (imagePath.startsWith("/") || imagePath.startsWith("com")) {
+                URL resource = getClass().getResource(imagePath);
+                if (resource != null) {
+                    image = new Image(resource.toExternalForm());
+                } else {
+                    System.err.println("Gambar tidak ditemukan di resource: " + imagePath);
+                    image = new Image("/com/example/praventa/assets/icn_default_article.jpg"); // fallback
+                }
+            } else {
+                File file = new File(imagePath);
+                if (file.exists()) {
+                    image = new Image(file.toURI().toString());
+                } else {
+                    System.err.println("Gambar tidak ditemukan di path lokal: " + imagePath);
+                    image = new Image("/com/example/praventa/assets/icn_default_article.jpg"); // fallback
+                }
+            }
+
+            imageView.setImage(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
