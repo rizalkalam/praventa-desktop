@@ -18,9 +18,9 @@ public class ArtikelCardController {
     @FXML private ImageView imageView;
 
     public void setData(Article artikel) {
+        tanggalText.setText(artikel.getTanggal());
         judulText.setText(artikel.getJudul());
         deskripsiText.setText(artikel.getDeskripsi());
-        tanggalText.setText(artikel.getTanggal());
 
         try {
             String imagePath = artikel.getImagePath();
@@ -49,5 +49,4 @@ public class ArtikelCardController {
             e.printStackTrace();
         }
     }
-
 }
